@@ -1,0 +1,15 @@
+{
+	"extends": "English",
+	"dictionaries": {
+		"item": {
+            "modPigmentDyeCornflower": ["cornflower", "A beautiful flower"],
+            "modPigmentDyeCornflowerSeeds": ["cornflowerseeds", "A beautiful flower's seeds"]
+        },
+		"doodad": {
+            "modPigmentDyeCornflower": ["cornflower", "A beautiful flower"]
+		},
+        "itemGroup": {
+            // Empty for now
+		}
+	}
+}
