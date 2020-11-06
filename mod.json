@@ -1,5 +1,5 @@
 {
-	"name": "Pigment & Dye",
+	"name": "Pigment Dye",
 	"description": "Creates a blue flower resource to be gathered, creating base pigments of Red, Yellow, and Blue that can be mixed to create other pigments. Dyes can then be created with the pigment colors and applied to chests, armor, etc.",
 	"version": "1.0.0",
 	"author": "Tek",
