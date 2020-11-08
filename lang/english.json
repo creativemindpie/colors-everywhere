@@ -3,10 +3,13 @@
 	"dictionaries": {
 		"item": {
             "modPigmentDyeCornflower": ["cornflower", "A beautiful cornflower. Can be used to create pigment."],
-            "modPigmentDyeCornflowerSeeds": ["cornflower seeds", "Cornflower seeds. Plant them and make more cornflowers to harvest."]
+			"modPigmentDyeCornflowerSeeds": ["cornflower seeds", "Cornflower seeds. Plant them and make more cornflowers to harvest."],
+			"modPigmentDyeRose": ["rose", "A beautiful rose. Can be used to create pigment."],
+            "modPigmentDyeRoseSeeds": ["rose seeds", "Rose seeds. Plant them and make more roses to harvest."]
         },
 		"doodad": {
-            "modPigmentDyeCornflower": ["cornflower", "A beautiful cornflower."]
+			"modPigmentDyeCornflower": ["cornflower", "A beautiful cornflower."],
+			"modPigmentDyeRose": ["rose", "A beautiful rose."]
 		},
         "itemGroup": {
             // Empty for now

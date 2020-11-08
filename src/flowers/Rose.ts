@@ -6,42 +6,42 @@ import { WorldZ } from "game/WorldZ";
 import { ItemType, ItemTypeGroup } from "item/IItem";
 import { Registry } from "mod/ModRegistry";
 import { TerrainType } from "tile/ITerrain";
-import PigmentDye from "./PigmentDye";
+import PigmentDye from "../PigmentDye";
 
-export const CornflowerDescription = {
+export const RoseDescription = {
     use: [ActionType.Eat],
     weight: 0.2,
     groups: [ItemTypeGroup.Medicinal]
 }
 
-export const CornflowerSeedsDescription = {
+export const RoseSeedsDescription = {
     use: [ActionType.Plant, ActionType.Eat],
     weight: 0.1,
-    onUse:  { [ActionType.Plant] : Registry<PigmentDye>().get('doodadCornflower') },
+    onUse:  { [ActionType.Plant] : Registry<PigmentDye>().get('doodadRose') },
     groups: [ItemTypeGroup.Seed]
 }
 
-export const CornflowerDoodadDescription = {
+export const RoseDoodadDescription = {
     spreadMax: 4,
     gather: {
         [GrowingStage.Vegetative]: [
             { type: ItemType.PlantRoots },
         ],
         [GrowingStage.Budding]: [
-            { type: Registry<PigmentDye>().get('itemCornflower') },
+            { type: Registry<PigmentDye>().get('itemRose') },
             { type: ItemType.PlantRoots },
         ],
     },
     harvest: {
         [GrowingStage.Flowering]: [
-            { type: Registry<PigmentDye>().get('itemCornflower') },
-            { type: Registry<PigmentDye>().get('itemCornflower') },
+            { type: Registry<PigmentDye>().get('itemRose') },
+            { type: Registry<PigmentDye>().get('itemRose') },
         ],
         [GrowingStage.Ripening]: [
-            { type: Registry<PigmentDye>().get('itemCornflowerSeeds') },
-            { type: Registry<PigmentDye>().get('itemCornflower') },
-            { type: Registry<PigmentDye>().get('itemCornflower'), chance: 15 },
-            { type: Registry<PigmentDye>().get('itemCornflower') },
+            { type: Registry<PigmentDye>().get('itemRoseSeeds') },
+            { type: Registry<PigmentDye>().get('itemRose') },
+            { type: Registry<PigmentDye>().get('itemRose'), chance: 15 },
+            { type: Registry<PigmentDye>().get('itemRose') },
         ],
     },
     skillUse: SkillType.Botany,
@@ -49,7 +49,7 @@ export const CornflowerDoodadDescription = {
     canTrampleWhenMature: true,
     isFlammable: true,
     graphicVariation: true,
-    particles: { r: 26, g: 96, b: 255 },
+    particles: { r: 183, g: 17, b: 28 },
     growthParticles: {
         [GrowingStage.Seedling]: { r: 187, g: 213, b: 81 },
     },
@@ -59,7 +59,7 @@ export const CornflowerDoodadDescription = {
     spawnOnWorldGen: {
         [BiomeType.Coastal]: {
             [WorldZ.Overworld]: {
-                [TerrainType.Grass]: 2,
+                [TerrainType.Grass]: 3,
             },
         },
     }
