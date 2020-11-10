@@ -59,7 +59,7 @@ export const SunflowerDoodadDescription = {
     spawnOnWorldGen: {
         [BiomeType.Coastal]: {
             [WorldZ.Overworld]: {
-                [TerrainType.Grass]: 7,
+                [TerrainType.Grass]: 10,
             },
         },
     }

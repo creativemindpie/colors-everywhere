@@ -59,7 +59,7 @@ export const RoseDoodadDescription = {
     spawnOnWorldGen: {
         [BiomeType.Coastal]: {
             [WorldZ.Overworld]: {
-                [TerrainType.Grass]: 6,
+                [TerrainType.Grass]: 10,
             },
         },
     }

@@ -7,7 +7,8 @@
 			"modPigmentDyeRose": ["rose", "A beautiful rose. Can be used to create pigment."],
 			"modPigmentDyeRoseSeeds": ["rose seeds", "Rose seeds. Plant them and make more roses to harvest."],
 			"modPigmentDyeSunflower": ["sunflower", "A beautiful sunflower. Can be used to create pigment."],
-            "modPigmentDyeSunflowerSeeds": ["sunflower seeds", "Sunflower seeds. Plant them and make more sunflowers to harvest."]
+			"modPigmentDyeSunflowerSeeds": ["sunflower seeds", "Sunflower seeds. Plant them and make more sunflowers to harvest."],
+			"modPigmentDyeRedPigment": ["red pigment", "Red pigment created from a rose."]
         },
 		"doodad": {
 			"modPigmentDyeCornflower": ["cornflower", "A beautiful cornflower."],
@@ -15,7 +16,8 @@
 			"modPigmentDyeSunflower": ["sunflower", "A beautiful sunflower."]
 		},
         "itemGroup": {
-            // Empty for now
+			"modPigmentDyePigmentGroup": ["pigments", "Pigments of various colors."],
+			"modPigmentDyeRedPigmentGroup": ["red pigments", "Pigments of red color."]
 		}
 	}
 }
