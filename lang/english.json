@@ -8,7 +8,10 @@
 			"modPigmentDyeRoseSeeds": ["rose seeds", "Rose seeds. Plant them and make more roses to harvest."],
 			"modPigmentDyeSunflower": ["sunflower", "A beautiful sunflower. Can be used to create pigment."],
 			"modPigmentDyeSunflowerSeeds": ["sunflower seeds", "Sunflower seeds. Plant them and make more sunflowers to harvest."],
-			"modPigmentDyeRedPigment": ["red pigment", "Red pigment created from a rose."]
+			"modPigmentDyeRedPigment": ["red pigment", "Red pigment created from a rose."],
+			"modPigmentDyeRedDye": ["red dye", "Red dye to be used with a paintbrush."],
+			"modPigmentDyeStoneBowl": ["stone bowl", "A bowl used to hold any dyes created."],
+			"modPigmentDyePaintbrush": ["paintbrush", "A paintbrush that can be used to apply dye."]
         },
 		"doodad": {
 			"modPigmentDyeCornflower": ["cornflower", "A beautiful cornflower."],
@@ -16,8 +19,12 @@
 			"modPigmentDyeSunflower": ["sunflower", "A beautiful sunflower."]
 		},
         "itemGroup": {
-			"modPigmentDyePigmentGroup": ["pigments", "Pigments of various colors."],
-			"modPigmentDyeRedPigmentGroup": ["red pigments", "Pigments of red color."]
+			"modPigmentDyeRedPigmentIngredientGroup": ["red pigments", "Pigments of red color. Perhaps you can mix it with another color..."],
+			"modPigmentDyeYellowPigmentIngredientGroup": ["yellow pigments", "Pigments of yellow color. Perhaps you can mix it with another color..."],
+			"modPigmentDyeBluePigmentIngredientGroup": ["blue pigments", "Pigments of blue color. Perhaps you can mix it with another color..."]
+		},
+		"action": {
+			"modPigmentDyePaintChest": ["paint the chest", "Paint the chest."]
 		}
 	}
 }

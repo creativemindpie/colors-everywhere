@@ -1,13 +1,21 @@
 import { DoodadType } from "doodad/IDoodad";
-import { ItemType, ItemTypeGroup } from "item/IItem";
+import { Action } from "entity/action/Action";
+import { ActionArgument, ActionType } from "entity/action/IAction";
+import { EntityType } from "entity/IEntity";
+import { SkillType } from "entity/IHuman";
+import { IItemDescription, ItemType, ItemTypeGroup } from "item/IItem";
+import { itemDescriptions } from "item/Items";
 import { HookMethod } from "mod/IHookHost";
 import Mod from "mod/Mod";
-import Register, { Registry } from "mod/ModRegistry";
+import Register from "mod/ModRegistry";
+import { RedDyeDescription } from "./dyes/Dyes";
 import { CornflowerDescription, CornflowerSeedsDescription, CornflowerDoodadDescription } from "./flowers/Cornflower";
 import { RoseDescription, RoseDoodadDescription, RoseSeedsDescription } from "./flowers/Rose";
 import { SunflowerDescription, SunflowerDoodadDescription, SunflowerSeedsDescription } from "./flowers/Sunflower";
-import { BluePigmentGroup, GreenPigmentGroup, OrangePigmentGroup, PigmentGroup, PurplePigmentGroup, RedPigmentGroup, YellowPigmentGroup } from "./pigments/PigmentGroups";
+import { BluePigmentIngredientGroup, RedPigmentIngredientGroup, YellowPigmentIngredientGroup } from "./pigments/PigmentGroups";
 import { BluePigmentDescription, GreenPigmentDescription, OrangePigmentDescription, PurplePigmentDescription, RedPigmentDescription, YellowPigmentDescription } from "./pigments/Pigments";
+import { PaintbrushDescription, StoneBowlDescription } from "./tools/Tools";
+
 
 export default class PigmentDye extends Mod {
 
@@ -51,72 +59,110 @@ export default class PigmentDye extends Mod {
     // Register pigment groups
     ////////////////////////////////////////////////////////////
 
-    @Register.itemGroup("PigmentGroup", { ...PigmentGroup })
-    public itemPigmentGroup: ItemTypeGroup;
+    @Register.itemGroup("RedPigmentIngredientGroup", { ...RedPigmentIngredientGroup })
+    public itemRedPigmentIngredientGroup: ItemTypeGroup;
 
-    @Register.itemGroup("RedPigmentGroup", { ...RedPigmentGroup })
-    public itemRedPigmentGroup: ItemTypeGroup;
+    @Register.itemGroup("YellowPigmentIngredientGroup", { ...YellowPigmentIngredientGroup })
+    public itemYellowPigmentIngredientGroup: ItemTypeGroup;
 
-    @Register.itemGroup("YellowPigmentGroup", { ...YellowPigmentGroup })
-    public itemYellowPigmentGroup: ItemTypeGroup;
-
-    @Register.itemGroup("BluePigmentGroup", { ...BluePigmentGroup })
-    public itemBluePigmentGroup: ItemTypeGroup;
-
-    @Register.itemGroup("OrangePigmentGroup", { ...OrangePigmentGroup })
-    public itemOrangePigmentGroup: ItemTypeGroup;
-
-    @Register.itemGroup("PurplePigmentGroup", { ...PurplePigmentGroup })
-    public itemPurplePigmentGroup: ItemTypeGroup;
-
-    @Register.itemGroup("GreenPigmentGroup", { ...GreenPigmentGroup })
-    public itemGreenPigmentGroup: ItemTypeGroup;
+    @Register.itemGroup("BluePigmentIngredientGroup", { ...BluePigmentIngredientGroup })
+    public itemBluePigmentIngredientGroup: ItemTypeGroup;
 
 
     ////////////////////////////////////////////////////////////
     // Register pigments
     ////////////////////////////////////////////////////////////
 
-    @Register.item("RedPigment", { 
-        ...RedPigmentDescription,
-        groups: [Registry<PigmentDye>().get("itemPigmentGroup"), Registry<PigmentDye>().get("itemRedPigmentGroup")]
-    })
+    @Register.item("RedPigment", { ...RedPigmentDescription })
     public itemRedPigment: ItemType;
 
-    @Register.item("YellowPigment", { 
-        ...YellowPigmentDescription,
-        groups: [Registry<PigmentDye>().get("itemPigmentGroup"), Registry<PigmentDye>().get("itemYellowPigmentGroup")]
-    })
+    @Register.item("YellowPigment", { ...YellowPigmentDescription })
     public itemYellowPigment: ItemType;
 
-    @Register.item("BluePigment", { 
-        ...BluePigmentDescription,
-        groups: [Registry<PigmentDye>().get("itemPigmentGroup"), Registry<PigmentDye>().get("itemBluePigmentGroup")]
-    })
+    @Register.item("BluePigment", { ...BluePigmentDescription })
     public itemBluePigment: ItemType;
 
-    @Register.item("OrangePigment", { 
-        ...OrangePigmentDescription,
-        groups: [Registry<PigmentDye>().get("itemPigmentGroup"), Registry<PigmentDye>().get("itemOrangePigmentGroup")]
-    })
+    @Register.item("OrangePigment", { ...OrangePigmentDescription })
     public itemOrangePigment: ItemType;
 
-    @Register.item("PurplePigment", { 
-        ...PurplePigmentDescription,
-        groups: [Registry<PigmentDye>().get("itemPigmentGroup"), Registry<PigmentDye>().get("itemPurplePigmentGroup")]
-    })
+    @Register.item("PurplePigment", { ...PurplePigmentDescription })
     public itemPurplePigment: ItemType;
 
-    @Register.item("GreenPigment", { 
-        ...GreenPigmentDescription,
-        groups: [Registry<PigmentDye>().get("itemPigmentGroup"), Registry<PigmentDye>().get("itemGreenPigmentGroup")]
-    })
+    @Register.item("GreenPigment", { ...GreenPigmentDescription })
     public itemGreenPigment: ItemType;
+
+
+    ////////////////////////////////////////////////////////////
+    // Register dyes
+    ////////////////////////////////////////////////////////////
+
+    @Register.item("RedDye", { ...RedDyeDescription })
+    public itemRedDye: ItemType;
+    
+
+    ////////////////////////////////////////////////////////////
+    // Register tools
+    ////////////////////////////////////////////////////////////
+
+    @Register.item("StoneBowl", { ...StoneBowlDescription })
+    public itemStoneBowl: ItemType;
+
+    @Register.item("Paintbrush", { ...PaintbrushDescription })
+    public itemPaintbrush: ItemType;
+
+    ////////////////////////////////////////////////////////////
+    // Register actions
+    ////////////////////////////////////////////////////////////
+
+    @Register.action("PaintChest", new Action(ActionArgument.ItemNearby)
+		.setUsableBy(EntityType.Player)
+		.setHandler((action, item) => {
+
+			const player = action.executor;
+			const tile = player.getFacingTile();
+            const tileDoodad = tile.doodad;
+
+            if (tileDoodad && tileDoodad.type === DoodadType.WoodenChest) {
+                const tileDoodadDescription = tileDoodad.description();
+                if (tileDoodadDescription) { 
+                    tileDoodadDescription.imagePath = 'redchest.png';
+                }
+            }
+
+			game.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, { r: 12, g: 128, b: 247 });
+			// item.changeInto(PigmentDye.INSTANCE.itemPaintbrush);
+			game.passTurn(player);
+        }))
+        
+	public readonly actionPaintChest: ActionType;
 
     
     ////////////////////////////////////////////////////////////
     // Overrides
     ////////////////////////////////////////////////////////////
+
+    private milkThistleOrig: IItemDescription;
+    
+    @Override public onLoad() {
+        this.milkThistleOrig = itemDescriptions[ItemType.MilkThistleFlowers];
+        const milkThistle = itemDescriptions[ItemType.MilkThistleFlowers];
+
+        if (milkThistle && milkThistle.dismantle === undefined) {
+            milkThistle.dismantle = {
+                items: [{
+                    type: this.itemPurplePigment,
+                    amount: 1
+                }],
+                required: ItemTypeGroup.MortarAndPestle,
+                skill: SkillType.Chemistry,
+                reputation: 2
+            };
+        }
+    }
+
+    @Override public onUnload() {
+        itemDescriptions[ItemType.MilkThistleFlowers] = this.milkThistleOrig;
+    }
 
     @Override @HookMethod
 	public onGameStart(isLoadingSave: boolean, playedCount: number): void {
@@ -131,7 +177,14 @@ export default class PigmentDye extends Mod {
             localPlayer.createItemInInventory(this.itemRedPigment);
             localPlayer.createItemInInventory(this.itemBluePigment);
             localPlayer.createItemInInventory(this.itemYellowPigment);
-            // localPlayer.createItemInInventory(ItemType.MilkThistleFlowers);
+            localPlayer.createItemInInventory(ItemType.ClayMortarAndPestle);
+            localPlayer.createItemInInventory(ItemType.MilkThistleFlowers);
+            localPlayer.createItemInInventory(ItemType.ClayJugOfUnpurifiedFreshWater);
+            localPlayer.createItemInInventory(ItemType.LargeRock);
+            localPlayer.createItemInInventory(this.itemPaintbrush);
+            localPlayer.createItemInInventory(ItemType.WoodenChest);
+            localPlayer.createItemInInventory(ItemType.WoodenPole);
+            localPlayer.createItemInInventory(ItemType.String);
 		}
 	}
 

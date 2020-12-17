@@ -2,7 +2,10 @@ import { ItemType } from "item/IItem";
 import { Registry } from "mod/ModRegistry";
 import PigmentDye from "src/PigmentDye";
 
-export const PigmentGroup = {
+
+// Global Group
+
+/* export const PigmentGroup = {
     default: Registry<PigmentDye>().get("itemRedPigment"),
     types: [
         Registry<PigmentDye>().get("itemRedPigment"),
@@ -12,16 +15,19 @@ export const PigmentGroup = {
         Registry<PigmentDye>().get("itemPurplePigment"),
         Registry<PigmentDye>().get("itemGreenPigment")
     ]
-}
+} */
 
-export const RedPigmentGroup = {
+
+// Ingredient Groups
+
+export const RedPigmentIngredientGroup = {
     default: Registry<PigmentDye>().get("itemRose"),
     types: [
         Registry<PigmentDye>().get("itemRose")
     ]
 }
 
-export const YellowPigmentGroup = {
+export const YellowPigmentIngredientGroup = {
     default: Registry<PigmentDye>().get("itemSunflower"),
     types: [
         Registry<PigmentDye>().get("itemSunflower"),
@@ -30,10 +36,54 @@ export const YellowPigmentGroup = {
     ]
 }
 
-export const BluePigmentGroup = {
+export const BluePigmentIngredientGroup = {
     default: Registry<PigmentDye>().get("itemCornflower"),
     types: [
         Registry<PigmentDye>().get("itemCornflower")
+    ]
+}
+
+/* export const OrangePigmentIngredientGroup = {
+    default: Registry<PigmentDye>().get("itemOrangePigment"),
+    types: [
+        Registry<PigmentDye>().get("itemOrangePigment")
+    ]
+}
+
+export const PurplePigmentIngredientGroup = {
+    default: Registry<PigmentDye>().get("itemPurplePigment"),
+    types: [
+        Registry<PigmentDye>().get("itemPurplePigment")
+    ]
+}
+
+export const GreenPigmentIngredientGroup = {
+    default: Registry<PigmentDye>().get("itemGreenPigment"),
+    types: [
+        Registry<PigmentDye>().get("itemGreenPigment")
+    ]
+} */
+
+// Usage Groups
+
+/* export const RedPigmentGroup = {
+    default: Registry<PigmentDye>().get("itemRedPigment"),
+    types: [
+        Registry<PigmentDye>().get("itemRedPigment")
+    ]
+}
+
+export const YellowPigmentGroup = {
+    default: Registry<PigmentDye>().get("itemYellowPigment"),
+    types: [
+        Registry<PigmentDye>().get("itemYellowPigment")
+    ]
+}
+
+export const BluePigmentGroup = {
+    default: Registry<PigmentDye>().get("itemBluePigment"),
+    types: [
+        Registry<PigmentDye>().get("itemBluePigment")
     ]
 }
 
@@ -56,4 +106,4 @@ export const GreenPigmentGroup = {
     types: [
         Registry<PigmentDye>().get("itemGreenPigment")
     ]
-}
+} */
