@@ -11,12 +11,18 @@
 			"modPigmentDyeRedPigment": ["red pigment", "Red pigment created from a rose."],
 			"modPigmentDyeRedDye": ["red dye", "Red dye to be used with a paintbrush."],
 			"modPigmentDyeStoneBowl": ["stone bowl", "A bowl used to hold any dyes created."],
-			"modPigmentDyePaintbrush": ["paintbrush", "A paintbrush that can be used to apply dye."]
+			"modPigmentDyePaintbrush": ["paintbrush", "A paintbrush that can be used to apply dye."],
+			"modPigmentDyeRedPaintbrush": ["red paintbrush", "A paintbrush with red dye."],
+			"modPigmentDyeGreenPaintbrush": ["green paintbrush", "A paintbrush with green dye."],
+			"modPigmentDyeRedWoodenChest": ["red wooden chest", "A red wooden chest for storage."],
+			"modPigmentDyeGreenWoodenChest": ["green wooden chest", "A green wooden chest for storage."]
         },
 		"doodad": {
 			"modPigmentDyeCornflower": ["cornflower", "A beautiful cornflower."],
 			"modPigmentDyeRose": ["rose", "A beautiful rose."],
-			"modPigmentDyeSunflower": ["sunflower", "A beautiful sunflower."]
+			"modPigmentDyeSunflower": ["sunflower", "A beautiful sunflower."],
+			"modPigmentDyeRedWoodenChest": ["red wooden chest", "A red wooden chest for storage."],
+			"modPigmentDyeGreenWoodenChest": ["green wooden chest", "A green wooden chest for storage."]
 		},
         "itemGroup": {
 			"modPigmentDyeRedPigmentIngredientGroup": ["red pigments", "Pigments of red color. Perhaps you can mix it with another color..."],
@@ -24,7 +30,12 @@
 			"modPigmentDyeBluePigmentIngredientGroup": ["blue pigments", "Pigments of blue color. Perhaps you can mix it with another color..."]
 		},
 		"action": {
-			"modPigmentDyePaintChest": ["paint the chest", "Paint the chest."]
+			"modPigmentDyePaint": ["Paint", "Paint a chest perhaps."],
+			"modPigmentDyeCleanPaintbrush": ["Clean Paintbrush", "Remove the dye from your brush."]
+		},
+		"message": {
+			"modPigmentDyePaintbrushNotDirty": "{#428cfb: The paintbrush is already clean.}",
+			"modPigmentDyeNoWaterSource": "{#f00: You need water to do that.}"
 		}
 	}
 }
