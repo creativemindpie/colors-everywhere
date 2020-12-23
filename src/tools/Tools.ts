@@ -27,6 +27,32 @@ export const PaintbrushDescription: IItemDescription = {
     }
 }
 
+export const WhitePaintbrushDescription: IItemDescription = {
+    recipe: {
+        components: [
+            RecipeComponent(Registry<PigmentDye>().get("itemPaintbrush"),1,1),
+            RecipeComponent(Registry<PigmentDye>().get("itemWhiteDye"),1,0,1)
+        ],
+        skill: SkillType.Chemistry,
+        level: RecipeLevel.Simple,
+        reputation: 2
+    },
+    use: [Registry<PigmentDye>().get("actionPaint"), Registry<PigmentDye>().get("actionCleanPaintbrush")]
+}
+
+export const BlackPaintbrushDescription: IItemDescription = {
+    recipe: {
+        components: [
+            RecipeComponent(Registry<PigmentDye>().get("itemPaintbrush"),1,1),
+            RecipeComponent(Registry<PigmentDye>().get("itemBlackDye"),1,0,1)
+        ],
+        skill: SkillType.Chemistry,
+        level: RecipeLevel.Simple,
+        reputation: 2
+    },
+    use: [Registry<PigmentDye>().get("actionPaint"), Registry<PigmentDye>().get("actionCleanPaintbrush")]
+}
+
 export const RedPaintbrushDescription: IItemDescription = {
     recipe: {
         components: [
@@ -40,11 +66,63 @@ export const RedPaintbrushDescription: IItemDescription = {
     use: [Registry<PigmentDye>().get("actionPaint"), Registry<PigmentDye>().get("actionCleanPaintbrush")]
 }
 
+export const YellowPaintbrushDescription: IItemDescription = {
+    recipe: {
+        components: [
+            RecipeComponent(Registry<PigmentDye>().get("itemPaintbrush"),1,1),
+            RecipeComponent(Registry<PigmentDye>().get("itemYellowDye"),1,0,1)
+        ],
+        skill: SkillType.Chemistry,
+        level: RecipeLevel.Simple,
+        reputation: 2
+    },
+    use: [Registry<PigmentDye>().get("actionPaint"), Registry<PigmentDye>().get("actionCleanPaintbrush")]
+}
+
+export const BluePaintbrushDescription: IItemDescription = {
+    recipe: {
+        components: [
+            RecipeComponent(Registry<PigmentDye>().get("itemPaintbrush"),1,1),
+            RecipeComponent(Registry<PigmentDye>().get("itemBlueDye"),1,0,1)
+        ],
+        skill: SkillType.Chemistry,
+        level: RecipeLevel.Simple,
+        reputation: 2
+    },
+    use: [Registry<PigmentDye>().get("actionPaint"), Registry<PigmentDye>().get("actionCleanPaintbrush")]
+}
+
+export const OrangePaintbrushDescription: IItemDescription = {
+    recipe: {
+        components: [
+            RecipeComponent(Registry<PigmentDye>().get("itemPaintbrush"),1,1),
+            RecipeComponent(Registry<PigmentDye>().get("itemOrangeDye"),1,0,1)
+        ],
+        skill: SkillType.Chemistry,
+        level: RecipeLevel.Simple,
+        reputation: 2
+    },
+    use: [Registry<PigmentDye>().get("actionPaint"), Registry<PigmentDye>().get("actionCleanPaintbrush")]
+}
+
 export const GreenPaintbrushDescription: IItemDescription = {
     recipe: {
         components: [
             RecipeComponent(Registry<PigmentDye>().get("itemPaintbrush"),1,1),
             RecipeComponent(Registry<PigmentDye>().get("itemRedDye"),1,0,1)
+        ],
+        skill: SkillType.Chemistry,
+        level: RecipeLevel.Simple,
+        reputation: 2
+    },
+    use: [Registry<PigmentDye>().get("actionPaint"), Registry<PigmentDye>().get("actionCleanPaintbrush")]
+}
+
+export const PurplePaintbrushDescription: IItemDescription = {
+    recipe: {
+        components: [
+            RecipeComponent(Registry<PigmentDye>().get("itemPaintbrush"),1,1),
+            RecipeComponent(Registry<PigmentDye>().get("itemPurpleDye"),1,0,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,

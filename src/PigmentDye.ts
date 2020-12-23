@@ -11,15 +11,15 @@ import { HookMethod } from "mod/IHookHost";
 import Mod from "mod/Mod";
 import Register, { Registry } from "mod/ModRegistry";
 import { TerrainType } from "tile/ITerrain";
-import { RedDyeDescription } from "./dyes/Dyes";
+import { BlackDyeDescription, BlueDyeDescription, GreenDyeDescription, OrangeDyeDescription, PurpleDyeDescription, RedDyeDescription, WhiteDyeDescription, YellowDyeDescription } from "./dyes/Dyes";
 import { CornflowerDescription, CornflowerSeedsDescription, CornflowerDoodadDescription } from "./flowers/Cornflower";
 import { RoseDescription, RoseDoodadDescription, RoseSeedsDescription } from "./flowers/Rose";
 import { SunflowerDescription, SunflowerDoodadDescription, SunflowerSeedsDescription } from "./flowers/Sunflower";
-import { BluePigmentIngredientGroup, RedPigmentIngredientGroup, YellowPigmentIngredientGroup } from "./pigments/PigmentGroups";
-import { BluePigmentDescription, GreenPigmentDescription, OrangePigmentDescription, PurplePigmentDescription, RedPigmentDescription, YellowPigmentDescription } from "./pigments/Pigments";
-import { GreenPaintbrushDescription, PaintbrushDescription, RedPaintbrushDescription, StoneBowlDescription } from "./tools/Tools";
+import { BlackPigmentIngredientGroup, BluePigmentIngredientGroup, RedPigmentIngredientGroup, WhitePigmentIngredientGroup, YellowPigmentIngredientGroup } from "./pigments/PigmentGroups";
+import { BlackPigmentDescription, BluePigmentDescription, GreenPigmentDescription, OrangePigmentDescription, PurplePigmentDescription, RedPigmentDescription, WhitePigmentDescription, YellowPigmentDescription } from "./pigments/Pigments";
+import { BlackPaintbrushDescription, BluePaintbrushDescription, GreenPaintbrushDescription, OrangePaintbrushDescription, PaintbrushDescription, PurplePaintbrushDescription, RedPaintbrushDescription, StoneBowlDescription, WhitePaintbrushDescription, YellowPaintbrushDescription } from "./tools/Tools";
 import TileHelpers from "utilities/TileHelpers";
-import { GreenWoodenChestDescription, RedWoodenChestDescription } from "./chests/Chests";
+import { BlackWoodenChestDescription, BlueWoodenChestDescription, GreenWoodenChestDescription, OrangeWoodenChestDescription, PurpleWoodenChestDescription, RedWoodenChestDescription, WhiteWoodenChestDescription, YellowWoodenChestDescription } from "./chests/Chests";
 import { BaseStatsDoodadWoodenChest } from "./chests/BaseDoodad";
 import Enums from "utilities/enum/Enums";
 import { rgbColors } from "./utils/Utils";
@@ -69,6 +69,12 @@ export default class PigmentDye extends Mod {
     // Register pigment groups
     ////////////////////////////////////////////////////////////
 
+    @Register.itemGroup("WhitePigmentIngredientGroup", { ...WhitePigmentIngredientGroup })
+    public itemWhitePigmentIngredientGroup: ItemTypeGroup;
+
+    @Register.itemGroup("BlackPigmentIngredientGroup", { ...BlackPigmentIngredientGroup })
+    public itemBlackPigmentIngredientGroup: ItemTypeGroup;
+
     @Register.itemGroup("RedPigmentIngredientGroup", { ...RedPigmentIngredientGroup })
     public itemRedPigmentIngredientGroup: ItemTypeGroup;
 
@@ -83,6 +89,12 @@ export default class PigmentDye extends Mod {
     // Register pigments
     ////////////////////////////////////////////////////////////
 
+    @Register.item("WhitePigment", { ...WhitePigmentDescription })
+    public itemWhitePigment: ItemType;
+
+    @Register.item("BlackPigment", { ...BlackPigmentDescription })
+    public itemBlackPigment: ItemType;
+
     @Register.item("RedPigment", { ...RedPigmentDescription })
     public itemRedPigment: ItemType;
 
@@ -95,23 +107,44 @@ export default class PigmentDye extends Mod {
     @Register.item("OrangePigment", { ...OrangePigmentDescription })
     public itemOrangePigment: ItemType;
 
-    @Register.item("PurplePigment", { ...PurplePigmentDescription })
-    public itemPurplePigment: ItemType;
-
     @Register.item("GreenPigment", { ...GreenPigmentDescription })
     public itemGreenPigment: ItemType;
+
+    @Register.item("PurplePigment", { ...PurplePigmentDescription })
+    public itemPurplePigment: ItemType;
 
 
     ////////////////////////////////////////////////////////////
     // Register dyes
     ////////////////////////////////////////////////////////////
 
+    @Register.item("WhiteDye", { ...WhiteDyeDescription })
+    public itemWhiteDye: ItemType;
+
+    @Register.item("BlackDye", { ...BlackDyeDescription })
+    public itemBlackDye: ItemType;
+
     @Register.item("RedDye", { ...RedDyeDescription })
     public itemRedDye: ItemType;
+
+    @Register.item("YellowDye", { ...YellowDyeDescription })
+    public itemYellowDye: ItemType;
+
+    @Register.item("BlueDye", { ...BlueDyeDescription })
+    public itemBlueDye: ItemType;
+
+    @Register.item("OrangeDye", { ...OrangeDyeDescription })
+    public itemOrangeDye: ItemType;
+
+    @Register.item("GreenDye", { ...GreenDyeDescription })
+    public itemGreenDye: ItemType;
+
+    @Register.item("PurpleDye", { ...PurpleDyeDescription })
+    public itemPurpleDye: ItemType;
     
 
     ////////////////////////////////////////////////////////////
-    // Register tools
+    // Register tools - W,B,R,Y,B,O,G,P
     ////////////////////////////////////////////////////////////
 
     @Register.item("StoneBowl", { ...StoneBowlDescription })
@@ -120,15 +153,78 @@ export default class PigmentDye extends Mod {
     @Register.item("Paintbrush", { ...PaintbrushDescription })
     public itemPaintbrush: ItemType;
 
+    @Register.item("WhitePaintbrush", { ...WhitePaintbrushDescription })
+    public itemWhitePaintbrush: ItemType;
+
+    @Register.item("BlackPaintbrush", { ...BlackPaintbrushDescription })
+    public itemBlackPaintbrush: ItemType;
+
     @Register.item("RedPaintbrush", { ...RedPaintbrushDescription })
     public itemRedPaintbrush: ItemType;
 
+    @Register.item("YellowPaintbrush", { ...YellowPaintbrushDescription })
+    public itemYellowPaintbrush: ItemType;
+
+    @Register.item("BluePaintbrush", { ...BluePaintbrushDescription })
+    public itemBluePaintbrush: ItemType;
+
+    @Register.item("OrangePaintbrush", { ...OrangePaintbrushDescription })
+    public itemOrangePaintbrush: ItemType;
+
     @Register.item("GreenPaintbrush", { ...GreenPaintbrushDescription })
     public itemGreenPaintbrush: ItemType;
-    
+
+    @Register.item("PurplePaintbrush", { ...PurplePaintbrushDescription })
+    public itemPurplePaintbrush: ItemType;
+
 
     ////////////////////////////////////////////////////////////
-    // Register tools
+    // Register chests - W,B,R,Y,B,O,G,P
+    ////////////////////////////////////////////////////////////
+    
+    @Register.item("WhiteWoodenChest", { ... WhiteWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
+    public itemWhiteWoodenChest: ItemType;
+    @Register.doodad("WhiteWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<PigmentDye>().get('itemWhiteWoodenChest')] })
+    public doodadWhiteWoodenChest: DoodadType;
+
+    @Register.item("BlackWoodenChest", { ... BlackWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
+    public itemBlackWoodenChest: ItemType;
+    @Register.doodad("BlackWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<PigmentDye>().get('itemBlackWoodenChest')] })
+    public doodadBlackWoodenChest: DoodadType;
+
+    @Register.item("RedWoodenChest", { ... RedWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
+    public itemRedWoodenChest: ItemType;
+    @Register.doodad("RedWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<PigmentDye>().get('itemRedWoodenChest')] })
+    public doodadRedWoodenChest: DoodadType;
+
+    @Register.item("YellowWoodenChest", { ... YellowWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
+    public itemYellowWoodenChest: ItemType;
+    @Register.doodad("YellowWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<PigmentDye>().get('itemYellowWoodenChest')] })
+    public doodadYellowWoodenChest: DoodadType;
+
+    @Register.item("BlueWoodenChest", { ... BlueWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
+    public itemBlueWoodenChest: ItemType;
+    @Register.doodad("BlueWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<PigmentDye>().get('itemBlueWoodenChest')] })
+    public doodadBlueWoodenChest: DoodadType;
+
+    @Register.item("OrangeWoodenChest", { ... OrangeWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
+    public itemOrangeWoodenChest: ItemType;
+    @Register.doodad("OrangeWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<PigmentDye>().get('itemOrangeWoodenChest')] })
+    public doodadOrangeWoodenChest: DoodadType;
+
+    @Register.item("GreenWoodenChest", { ... GreenWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
+    public itemGreenWoodenChest: ItemType;
+    @Register.doodad("GreenWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<PigmentDye>().get('itemGreenWoodenChest')] })
+    public doodadGreenWoodenChest: DoodadType;
+
+    @Register.item("PurpleWoodenChest", { ... PurpleWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
+    public itemPurpleWoodenChest: ItemType;
+    @Register.doodad("PurpleWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<PigmentDye>().get('itemPurpleWoodenChest')] })
+    public doodadPurpleWoodenChest: DoodadType;
+
+
+    ////////////////////////////////////////////////////////////
+    // Register messages
     ////////////////////////////////////////////////////////////
 
     @Register.message("PaintbrushNotDirty")
@@ -136,37 +232,6 @@ export default class PigmentDye extends Mod {
     
     @Register.message("NoWaterSource")
     public readonly messageNoWaterSource: Message;
-
-
-    ////////////////////////////////////////////////////////////
-    // Register chests
-    ////////////////////////////////////////////////////////////
-    
-    @Register.item("RedWoodenChest", { 
-        ... RedWoodenChestDescription,
-        groups: [ItemTypeGroup.Storage]
-    })
-    public itemRedWoodenChest: ItemType;
-
-    @Register.doodad("RedWoodenChest", {
-        ...BaseStatsDoodadWoodenChest,
-        pickUp: [Registry<PigmentDye>().get('itemRedWoodenChest')]
-    })
-    public doodadRedWoodenChest: DoodadType;
-
-    // --
-
-    @Register.item("GreenWoodenChest", { 
-        ... GreenWoodenChestDescription,
-        groups: [ItemTypeGroup.Storage]
-    })
-    public itemGreenWoodenChest: ItemType;
-
-    @Register.doodad("GreenWoodenChest", {
-        ...BaseStatsDoodadWoodenChest,
-        pickUp: [Registry<PigmentDye>().get('itemGreenWoodenChest')]
-    })
-    public doodadGreenWoodenChest: DoodadType;
     
 
     ////////////////////////////////////////////////////////////
@@ -182,8 +247,14 @@ export default class PigmentDye extends Mod {
                 DoodadType.WroughtIronChest,
                 DoodadType.IronChest,
                 DoodadType.CopperChest,
+                PigmentDye.INSTANCE.doodadWhiteWoodenChest,
+                PigmentDye.INSTANCE.doodadBlackWoodenChest,
                 PigmentDye.INSTANCE.doodadRedWoodenChest,
-                PigmentDye.INSTANCE.doodadGreenWoodenChest
+                PigmentDye.INSTANCE.doodadYellowWoodenChest,
+                PigmentDye.INSTANCE.doodadBlueWoodenChest,
+                PigmentDye.INSTANCE.doodadOrangeWoodenChest,
+                PigmentDye.INSTANCE.doodadGreenWoodenChest,
+                PigmentDye.INSTANCE.doodadPurpleWoodenChest
             ];
 
 			const player = action.executor;

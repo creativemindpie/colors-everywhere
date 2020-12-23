@@ -8,23 +8,61 @@
 			"modPigmentDyeRoseSeeds": ["rose seeds", "Rose seeds. Plant them and make more roses to harvest."],
 			"modPigmentDyeSunflower": ["sunflower", "A beautiful sunflower. Can be used to create pigment."],
 			"modPigmentDyeSunflowerSeeds": ["sunflower seeds", "Sunflower seeds. Plant them and make more sunflowers to harvest."],
-			"modPigmentDyeRedPigment": ["red pigment", "Red pigment created from a rose."],
+
+			"modPigmentDyeWhitePigment": ["white pigment", "White pigment to be used in creating dye."],
+			"modPigmentDyeBlackPigment": ["black pigment", "Black pigment to be used in creating dye."],
+			"modPigmentDyeRedPigment": ["red pigment", "Red pigment created from a rose to be used in creating dye."],
+			"modPigmentDyeYellowPigment": ["yellow pigment", "Yellow pigment to be used in creating dye."],
+			"modPigmentDyeBluePigment": ["blue pigment", "Blue pigment to be used in creating dye."],
+			"modPigmentDyeOrangePigment": ["orange pigment", "Orange pigment to be used in creating dye."],
+			"modPigmentDyeGreenPigment": ["green pigment", "Green pigment to be used in creating dye."],
+			"modPigmentDyePurplePigment": ["purple pigment", "Purple pigment to be used in creating dye."],
+
+			"modPigmentDyeWhiteDye": ["white dye", "White dye to be used with a paintbrush."],
+			"modPigmentDyeBlackDye": ["black dye", "Black dye to be used with a paintbrush."],
 			"modPigmentDyeRedDye": ["red dye", "Red dye to be used with a paintbrush."],
+			"modPigmentDyeYellowDye": ["yellow dye", "Yellow dye to be used with a paintbrush."],
+			"modPigmentDyeBlueDye": ["blue dye", "Blue dye to be used with a paintbrush."],
+			"modPigmentDyeOrangeDye": ["orange dye", "Orange dye to be used with a paintbrush."],
+			"modPigmentDyeGreenDye": ["green dye", "Green dye to be used with a paintbrush."],
+			"modPigmentDyePurpleDye": ["pruple dye", "Purple dye to be used with a paintbrush."],
+
 			"modPigmentDyeStoneBowl": ["stone bowl", "A bowl used to hold any dyes created."],
 			"modPigmentDyePaintbrush": ["paintbrush", "A paintbrush that can be used to apply dye."],
+
+			"modPigmentDyeWhitePaintbrush": ["white paintbrush", "A paintbrush with white dye."],
+			"modPigmentDyeBlackPaintbrush": ["black paintbrush", "A paintbrush with black dye."],
 			"modPigmentDyeRedPaintbrush": ["red paintbrush", "A paintbrush with red dye."],
+			"modPigmentDyeYellowPaintbrush": ["yellow paintbrush", "A paintbrush with yellow dye."],
+			"modPigmentDyeBluePaintbrush": ["blue paintbrush", "A paintbrush with blue dye."],
+			"modPigmentDyeOrangePaintbrush": ["orange paintbrush", "A paintbrush with orange dye."],
 			"modPigmentDyeGreenPaintbrush": ["green paintbrush", "A paintbrush with green dye."],
-			"modPigmentDyeRedWoodenChest": ["red wooden chest", "A red wooden chest for storage."],
-			"modPigmentDyeGreenWoodenChest": ["green wooden chest", "A green wooden chest for storage."]
+			"modPigmentDyePurplePaintbrush": ["purple paintbrush", "A paintbrush with purple dye."],
+
+			"modPigmentDyeWhiteWoodenChest": ["white wooden chest", "A white wooden chest for storage."],
+			"modPigmentDyeBlackWoodenChest": ["black wooden chest", "A black wooden chest for storage."],
+            "modPigmentDyeRedWoodenChest": ["red wooden chest", "A red wooden chest for storage."],
+            "modPigmentDyeYellowWoodenChest": ["yellow wooden chest", "A yellow wooden chest for storage."],
+            "modPigmentDyeGreenWoodenChest": ["green wooden chest", "A green wooden chest for storage."],
+            "modPigmentDyeOrangeWoodenChest": ["orange wooden chest", "A orange wooden chest for storage."],
+            "modPigmentDyePurpleWoodenChest": ["purple wooden chest", "A purple wooden chest for storage."]
         },
 		"doodad": {
 			"modPigmentDyeCornflower": ["cornflower", "A beautiful cornflower."],
 			"modPigmentDyeRose": ["rose", "A beautiful rose."],
 			"modPigmentDyeSunflower": ["sunflower", "A beautiful sunflower."],
-			"modPigmentDyeRedWoodenChest": ["red wooden chest", "A red wooden chest for storage."],
-			"modPigmentDyeGreenWoodenChest": ["green wooden chest", "A green wooden chest for storage."]
+			
+			"modPigmentDyeBlackWoodenChest": ["black wooden chest", "A black wooden chest for storage."],
+            "modPigmentDyeWhiteWoodenChest": ["white wooden chest", "A white wooden chest for storage."],
+            "modPigmentDyeRedWoodenChest": ["red wooden chest", "A red wooden chest for storage."],
+            "modPigmentDyeYellowWoodenChest": ["yellow wooden chest", "A yellow wooden chest for storage."],
+            "modPigmentDyeGreenWoodenChest": ["green wooden chest", "A green wooden chest for storage."],
+            "modPigmentDyeOrangeWoodenChest": ["orange wooden chest", "A orange wooden chest for storage."],
+            "modPigmentDyePurpleWoodenChest": ["purple wooden chest", "A purple wooden chest for storage."]
 		},
         "itemGroup": {
+			"modPigmentDyeWhitePigmentIngredientGroup": ["white pigments", "Pigments of white color. Perhaps you can mix it with another color..."],
+			"modPigmentDyeBlackPigmentIngredientGroup": ["black pigments", "Pigments of black color. Perhaps you can mix it with another color..."],
 			"modPigmentDyeRedPigmentIngredientGroup": ["red pigments", "Pigments of red color. Perhaps you can mix it with another color..."],
 			"modPigmentDyeYellowPigmentIngredientGroup": ["yellow pigments", "Pigments of yellow color. Perhaps you can mix it with another color..."],
 			"modPigmentDyeBluePigmentIngredientGroup": ["blue pigments", "Pigments of blue color. Perhaps you can mix it with another color..."]
