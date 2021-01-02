@@ -15,6 +15,23 @@ export const StoneBowlDescription: IItemDescription = {
     }
 }
 
+export const DyeRemoverDescription: IItemDescription = {
+    recipe: {
+        components: [
+            RecipeComponent(ItemType.Ectoplasm,1,1),
+            RecipeComponent(Registry<PigmentDye>().get("itemPaintbrush"),1,1)
+        ],
+        skill: SkillType.Chemistry,
+        level: RecipeLevel.Simple,
+        reputation: 2
+    },
+    returnOnUseAndDecay: {
+        type: Registry<PigmentDye>().get("itemDyeRemover"),
+        damaged: true,
+    },
+    use: [Registry<PigmentDye>().get("actionRemovePaint"), Registry<PigmentDye>().get("actionCleanPaintbrush")]
+}
+
 export const PaintbrushDescription: IItemDescription = {
     recipe: {
         components: [
@@ -37,6 +54,10 @@ export const WhitePaintbrushDescription: IItemDescription = {
         level: RecipeLevel.Simple,
         reputation: 2
     },
+    returnOnUseAndDecay: {
+        type: Registry<PigmentDye>().get("itemWhitePaintbrush"),
+        damaged: true,
+    },
     use: [Registry<PigmentDye>().get("actionPaint"), Registry<PigmentDye>().get("actionCleanPaintbrush")]
 }
 
@@ -49,6 +70,10 @@ export const BlackPaintbrushDescription: IItemDescription = {
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
         reputation: 2
+    },
+    returnOnUseAndDecay: {
+        type: Registry<PigmentDye>().get("itemBlackPaintbrush"),
+        damaged: true,
     },
     use: [Registry<PigmentDye>().get("actionPaint"), Registry<PigmentDye>().get("actionCleanPaintbrush")]
 }
@@ -63,6 +88,10 @@ export const RedPaintbrushDescription: IItemDescription = {
         level: RecipeLevel.Simple,
         reputation: 2
     },
+    returnOnUseAndDecay: {
+        type: Registry<PigmentDye>().get("itemRedPaintbrush"),
+        damaged: true,
+    },
     use: [Registry<PigmentDye>().get("actionPaint"), Registry<PigmentDye>().get("actionCleanPaintbrush")]
 }
 
@@ -75,6 +104,10 @@ export const YellowPaintbrushDescription: IItemDescription = {
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
         reputation: 2
+    },
+    returnOnUseAndDecay: {
+        type: Registry<PigmentDye>().get("itemYellowPaintbrush"),
+        damaged: true,
     },
     use: [Registry<PigmentDye>().get("actionPaint"), Registry<PigmentDye>().get("actionCleanPaintbrush")]
 }
@@ -89,6 +122,10 @@ export const BluePaintbrushDescription: IItemDescription = {
         level: RecipeLevel.Simple,
         reputation: 2
     },
+    returnOnUseAndDecay: {
+        type: Registry<PigmentDye>().get("itemBluePaintbrush"),
+        damaged: true,
+    },
     use: [Registry<PigmentDye>().get("actionPaint"), Registry<PigmentDye>().get("actionCleanPaintbrush")]
 }
 
@@ -101,6 +138,10 @@ export const OrangePaintbrushDescription: IItemDescription = {
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
         reputation: 2
+    },
+    returnOnUseAndDecay: {
+        type: Registry<PigmentDye>().get("itemOrangePaintbrush"),
+        damaged: true,
     },
     use: [Registry<PigmentDye>().get("actionPaint"), Registry<PigmentDye>().get("actionCleanPaintbrush")]
 }
@@ -115,6 +156,10 @@ export const GreenPaintbrushDescription: IItemDescription = {
         level: RecipeLevel.Simple,
         reputation: 2
     },
+    returnOnUseAndDecay: {
+        type: Registry<PigmentDye>().get("itemGreenPaintbrush"),
+        damaged: true,
+    },
     use: [Registry<PigmentDye>().get("actionPaint"), Registry<PigmentDye>().get("actionCleanPaintbrush")]
 }
 
@@ -127,6 +172,10 @@ export const PurplePaintbrushDescription: IItemDescription = {
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
         reputation: 2
+    },
+    returnOnUseAndDecay: {
+        type: Registry<PigmentDye>().get("itemPurplePaintbrush"),
+        damaged: true,
     },
     use: [Registry<PigmentDye>().get("actionPaint"), Registry<PigmentDye>().get("actionCleanPaintbrush")]
 }

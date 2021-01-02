@@ -25,3 +25,13 @@ export const BaseStatsDoodadIronChest = {
     weightCapacity: 125,
     preservationChance: 0.4
 }
+
+export const BaseStatsDoodadStoneWall = {
+    blockMove: true,
+    canBreak: true,
+    blockJump: true,
+    repairItem: 64,
+    reduceDurabilityOnGather: true,
+    disableDrop: true,
+    isWall: true
+}
