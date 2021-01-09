@@ -117,6 +117,9 @@
             "modPigmentDyeOrangeIronChest": ["orange iron chest", "A orange iron chest for storage."],
             "modPigmentDyePurpleIronChest": ["purple iron chest", "A purple iron chest for storage."]
 		},
+		"terrain": {
+			"modPigmentDyeWhiteCobblestoneFlooring": ["white cobblestone flooring", "A brilliant white sheen."]
+		},
         "itemGroup": {
 			"modPigmentDyeWhitePigmentIngredientGroup": ["white pigments", "Pigments of white color. Perhaps you can mix it with another color..."],
 			"modPigmentDyeBlackPigmentIngredientGroup": ["black pigments", "Pigments of black color. Perhaps you can mix it with another color..."],

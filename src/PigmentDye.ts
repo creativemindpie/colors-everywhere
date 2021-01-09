@@ -10,7 +10,7 @@ import Message from "language/dictionary/Message";
 import { HookMethod } from "mod/IHookHost";
 import Mod from "mod/Mod";
 import Register, { Registry } from "mod/ModRegistry";
-import { TerrainType } from "tile/ITerrain";
+import { TerrainType, TerrainTypeGroup } from "tile/ITerrain";
 import { BlackDyeDescription, BlueDyeDescription, GreenDyeDescription, OrangeDyeDescription, PurpleDyeDescription, RedDyeDescription, WhiteDyeDescription, YellowDyeDescription } from "./dyes/Dyes";
 import { CornflowerDescription, CornflowerSeedsDescription, CornflowerDoodadDescription } from "./flowers/Cornflower";
 import { RoseDescription, RoseDoodadDescription, RoseSeedsDescription } from "./flowers/Rose";
@@ -24,6 +24,7 @@ import { BaseStatsDoodadCopperChest, BaseStatsDoodadIronChest, BaseStatsDoodadSt
 import Enums from "utilities/enum/Enums";
 import { particleColor } from "./utils/Utils";
 import { Quality } from "game/IObject";
+import { BlackAshCementFlooringDescription, BlackAshCementFlooringTerrainDescription, BlackClayFlooringDescription, BlackClayFlooringTerrainDescription, BlackCobblestoneFlooringDescription, BlackCobblestoneFlooringTerrainDescription, BlackWoodenFlooringDescription, BlackWoodenFlooringTerrainDescription, BlueAshCementFlooringDescription, BlueAshCementFlooringTerrainDescription, BlueClayFlooringDescription, BlueClayFlooringTerrainDescription, BlueCobblestoneFlooringDescription, BlueCobblestoneFlooringTerrainDescription, BlueWoodenFlooringDescription, BlueWoodenFlooringTerrainDescription, GreenAshCementFlooringDescription, GreenAshCementFlooringTerrainDescription, GreenClayFlooringDescription, GreenClayFlooringTerrainDescription, GreenCobblestoneFlooringDescription, GreenCobblestoneFlooringTerrainDescription, GreenWoodenFlooringDescription, GreenWoodenFlooringTerrainDescription, OrangeAshCementFlooringDescription, OrangeAshCementFlooringTerrainDescription, OrangeClayFlooringDescription, OrangeClayFlooringTerrainDescription, OrangeCobblestoneFlooringDescription, OrangeCobblestoneFlooringTerrainDescription, OrangeWoodenFlooringDescription, OrangeWoodenFlooringTerrainDescription, PurpleAshCementFlooringDescription, PurpleAshCementFlooringTerrainDescription, PurpleClayFlooringDescription, PurpleClayFlooringTerrainDescription, PurpleCobblestoneFlooringDescription, PurpleCobblestoneFlooringTerrainDescription, PurpleWoodenFlooringDescription, PurpleWoodenFlooringTerrainDescription, RedAshCementFlooringDescription, RedAshCementFlooringTerrainDescription, RedClayFlooringDescription, RedClayFlooringTerrainDescription, RedCobblestoneFlooringDescription, RedCobblestoneFlooringTerrainDescription, RedWoodenFlooringDescription, RedWoodenFlooringTerrainDescription, WhiteAshCementFlooringDescription, WhiteAshCementFlooringTerrainDescription, WhiteClayFlooringDescription, WhiteClayFlooringTerrainDescription, WhiteCobblestoneFlooringDescription, WhiteCobblestoneFlooringTerrainDescription, WhiteWoodenFlooringDescription, WhiteWoodenFlooringTerrainDescription, YellowAshCementFlooringDescription, YellowAshCementFlooringTerrainDescription, YellowClayFlooringDescription, YellowClayFlooringTerrainDescription, YellowCobblestoneFlooringDescription, YellowCobblestoneFlooringTerrainDescription, YellowWoodenFlooringDescription, YellowWoodenFlooringTerrainDescription } from "./terrains/Terrains";
 
 
 export default class PigmentDye extends Mod {
@@ -393,6 +394,176 @@ export default class PigmentDye extends Mod {
     public doodadPurpleStoneWall: DoodadType;
 
 
+    ////////////////////////////////////////////////////////////
+    // Register terrains
+    ////////////////////////////////////////////////////////////
+
+    @Register.item("WhiteCobblestoneFlooring", { ... WhiteCobblestoneFlooringDescription })
+    public itemWhiteCobblestoneFlooring: ItemType;
+    @Register.terrain("WhiteCobblestoneFlooring", { ... WhiteCobblestoneFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainWhiteCobblestoneFlooring: TerrainType;
+
+    @Register.item("BlackCobblestoneFlooring", { ... BlackCobblestoneFlooringDescription })
+    public itemBlackCobblestoneFlooring: ItemType;
+    @Register.terrain("BlackCobblestoneFlooring", { ... BlackCobblestoneFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainBlackCobblestoneFlooring: TerrainType;
+
+    @Register.item("RedCobblestoneFlooring", { ... RedCobblestoneFlooringDescription })
+    public itemRedCobblestoneFlooring: ItemType;
+    @Register.terrain("RedCobblestoneFlooring", { ... RedCobblestoneFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainRedCobblestoneFlooring: TerrainType;
+
+    @Register.item("YellowCobblestoneFlooring", { ... YellowCobblestoneFlooringDescription })
+    public itemYellowCobblestoneFlooring: ItemType;
+    @Register.terrain("YellowCobblestoneFlooring", { ... YellowCobblestoneFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainYellowCobblestoneFlooring: TerrainType;
+
+    @Register.item("BlueCobblestoneFlooring", { ... BlueCobblestoneFlooringDescription })
+    public itemBlueCobblestoneFlooring: ItemType;
+    @Register.terrain("BlueCobblestoneFlooring", { ... BlueCobblestoneFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainBlueCobblestoneFlooring: TerrainType;
+
+    @Register.item("OrangeCobblestoneFlooring", { ... OrangeCobblestoneFlooringDescription })
+    public itemOrangeCobblestoneFlooring: ItemType;
+    @Register.terrain("OrangeCobblestoneFlooring", { ... OrangeCobblestoneFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainOrangeCobblestoneFlooring: TerrainType;
+
+    @Register.item("GreenCobblestoneFlooring", { ... GreenCobblestoneFlooringDescription })
+    public itemGreenCobblestoneFlooring: ItemType;
+    @Register.terrain("GreenCobblestoneFlooring", { ... GreenCobblestoneFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainGreenCobblestoneFlooring: TerrainType;
+
+    @Register.item("PurpleCobblestoneFlooring", { ... PurpleCobblestoneFlooringDescription })
+    public itemPurpleCobblestoneFlooring: ItemType;
+    @Register.terrain("PurpleCobblestoneFlooring", { ... PurpleCobblestoneFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainPurpleCobblestoneFlooring: TerrainType;
+
+    // ----------------------------------------
+
+    @Register.item("WhiteWoodenFlooring", { ... WhiteWoodenFlooringDescription })
+    public itemWhiteWoodenFlooring: ItemType;
+    @Register.terrain("WhiteWoodenFlooring", { ... WhiteWoodenFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainWhiteWoodenFlooring: TerrainType;
+
+    @Register.item("BlackWoodenFlooring", { ... BlackWoodenFlooringDescription })
+    public itemBlackWoodenFlooring: ItemType;
+    @Register.terrain("BlackWoodenFlooring", { ... BlackWoodenFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainBlackWoodenFlooring: TerrainType;
+
+    @Register.item("RedWoodenFlooring", { ... RedWoodenFlooringDescription })
+    public itemRedWoodenFlooring: ItemType;
+    @Register.terrain("RedWoodenFlooring", { ... RedWoodenFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainRedWoodenFlooring: TerrainType;
+
+    @Register.item("YellowWoodenFlooring", { ... YellowWoodenFlooringDescription })
+    public itemYellowWoodenFlooring: ItemType;
+    @Register.terrain("YellowWoodenFlooring", { ... YellowWoodenFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainYellowWoodenFlooring: TerrainType;
+
+    @Register.item("BlueWoodenFlooring", { ... BlueWoodenFlooringDescription })
+    public itemBlueWoodenFlooring: ItemType;
+    @Register.terrain("BlueWoodenFlooring", { ... BlueWoodenFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainBlueWoodenFlooring: TerrainType;
+
+    @Register.item("OrangeWoodenFlooring", { ... OrangeWoodenFlooringDescription })
+    public itemOrangeWoodenFlooring: ItemType;
+    @Register.terrain("OrangeWoodenFlooring", { ... OrangeWoodenFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainOrangeWoodenFlooring: TerrainType;
+
+    @Register.item("GreenWoodenFlooring", { ... GreenWoodenFlooringDescription })
+    public itemGreenWoodenFlooring: ItemType;
+    @Register.terrain("GreenWoodenFlooring", { ... GreenWoodenFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainGreenWoodenFlooring: TerrainType;
+
+    @Register.item("PurpleWoodenFlooring", { ... PurpleWoodenFlooringDescription })
+    public itemPurpleWoodenFlooring: ItemType;
+    @Register.terrain("PurpleWoodenFlooring", { ... PurpleWoodenFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainPurpleWoodenFlooring: TerrainType;
+
+    // ----------------------------------------
+
+    @Register.item("WhiteClayFlooring", { ... WhiteClayFlooringDescription })
+    public itemWhiteClayFlooring: ItemType;
+    @Register.terrain("WhiteClayFlooring", { ... WhiteClayFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainWhiteClayFlooring: TerrainType;
+
+    @Register.item("BlackClayFlooring", { ... BlackClayFlooringDescription })
+    public itemBlackClayFlooring: ItemType;
+    @Register.terrain("BlackClayFlooring", { ... BlackClayFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainBlackClayFlooring: TerrainType;
+
+    @Register.item("RedClayFlooring", { ... RedClayFlooringDescription })
+    public itemRedClayFlooring: ItemType;
+    @Register.terrain("RedClayFlooring", { ... RedClayFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainRedClayFlooring: TerrainType;
+
+    @Register.item("YellowClayFlooring", { ... YellowClayFlooringDescription })
+    public itemYellowClayFlooring: ItemType;
+    @Register.terrain("YellowClayFlooring", { ... YellowClayFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainYellowClayFlooring: TerrainType;
+
+    @Register.item("BlueClayFlooring", { ... BlueClayFlooringDescription })
+    public itemBlueClayFlooring: ItemType;
+    @Register.terrain("BlueClayFlooring", { ... BlueClayFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainBlueClayFlooring: TerrainType;
+
+    @Register.item("OrangeClayFlooring", { ... OrangeClayFlooringDescription })
+    public itemOrangeClayFlooring: ItemType;
+    @Register.terrain("OrangeClayFlooring", { ... OrangeClayFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainOrangeClayFlooring: TerrainType;
+
+    @Register.item("GreenClayFlooring", { ... GreenClayFlooringDescription })
+    public itemGreenClayFlooring: ItemType;
+    @Register.terrain("GreenClayFlooring", { ... GreenClayFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainGreenClayFlooring: TerrainType;
+
+    @Register.item("PurpleClayFlooring", { ... PurpleClayFlooringDescription })
+    public itemPurpleClayFlooring: ItemType;
+    @Register.terrain("PurpleClayFlooring", { ... PurpleClayFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainPurpleClayFlooring: TerrainType;
+
+    // ----------------------------------------
+
+    @Register.item("WhiteAshCementFlooring", { ... WhiteAshCementFlooringDescription })
+    public itemWhiteAshCementFlooring: ItemType;
+    @Register.terrain("WhiteAshCementFlooring", { ... WhiteAshCementFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainWhiteAshCementFlooring: TerrainType;
+
+    @Register.item("BlackAshCementFlooring", { ... BlackAshCementFlooringDescription })
+    public itemBlackAshCementFlooring: ItemType;
+    @Register.terrain("BlackAshCementFlooring", { ... BlackAshCementFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainBlackAshCementFlooring: TerrainType;
+
+    @Register.item("RedAshCementFlooring", { ... RedAshCementFlooringDescription })
+    public itemRedAshCementFlooring: ItemType;
+    @Register.terrain("RedAshCementFlooring", { ... RedAshCementFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainRedAshCementFlooring: TerrainType;
+
+    @Register.item("YellowAshCementFlooring", { ... YellowAshCementFlooringDescription })
+    public itemYellowAshCementFlooring: ItemType;
+    @Register.terrain("YellowAshCementFlooring", { ... YellowAshCementFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainYellowAshCementFlooring: TerrainType;
+
+    @Register.item("BlueAshCementFlooring", { ... BlueAshCementFlooringDescription })
+    public itemBlueAshCementFlooring: ItemType;
+    @Register.terrain("BlueAshCementFlooring", { ... BlueAshCementFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainBlueAshCementFlooring: TerrainType;
+
+    @Register.item("OrangeAshCementFlooring", { ... OrangeAshCementFlooringDescription })
+    public itemOrangeAshCementFlooring: ItemType;
+    @Register.terrain("OrangeAshCementFlooring", { ... OrangeAshCementFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainOrangeAshCementFlooring: TerrainType;
+
+    @Register.item("GreenAshCementFlooring", { ... GreenAshCementFlooringDescription })
+    public itemGreenAshCementFlooring: ItemType;
+    @Register.terrain("GreenAshCementFlooring", { ... GreenAshCementFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainGreenAshCementFlooring: TerrainType;
+
+    @Register.item("PurpleAshCementFlooring", { ... PurpleAshCementFlooringDescription })
+    public itemPurpleAshCementFlooring: ItemType;
+    @Register.terrain("PurpleAshCementFlooring", { ... PurpleAshCementFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
+    public terrainPurpleAshCementFlooring: TerrainType;
+
 
     ////////////////////////////////////////////////////////////
     // Register messages
@@ -414,6 +585,47 @@ export default class PigmentDye extends Mod {
     ////////////////////////////////////////////////////////////
     // Register actions
     ////////////////////////////////////////////////////////////
+
+    public getTerrainList(): TerrainType[] {
+        return [
+            TerrainType.CobblestoneFlooring,
+            TerrainType.WoodenFlooring,
+            TerrainType.ClayFlooring,
+            TerrainType.AshCementFlooring,
+            this.terrainWhiteCobblestoneFlooring,
+            this.terrainBlackCobblestoneFlooring,
+            this.terrainRedCobblestoneFlooring,
+            this.terrainYellowCobblestoneFlooring,
+            this.terrainBlueCobblestoneFlooring,
+            this.terrainOrangeCobblestoneFlooring,
+            this.terrainGreenCobblestoneFlooring,
+            this.terrainPurpleCobblestoneFlooring,
+            this.terrainWhiteWoodenFlooring,
+            this.terrainBlackWoodenFlooring,
+            this.terrainRedWoodenFlooring,
+            this.terrainYellowWoodenFlooring,
+            this.terrainBlueWoodenFlooring,
+            this.terrainOrangeWoodenFlooring,
+            this.terrainGreenWoodenFlooring,
+            this.terrainPurpleWoodenFlooring,
+            this.terrainWhiteClayFlooring,
+            this.terrainBlackClayFlooring,
+            this.terrainRedClayFlooring,
+            this.terrainYellowClayFlooring,
+            this.terrainBlueClayFlooring,
+            this.terrainOrangeClayFlooring,
+            this.terrainGreenClayFlooring,
+            this.terrainPurpleClayFlooring,
+            this.terrainWhiteAshCementFlooring,
+            this.terrainBlackAshCementFlooring,
+            this.terrainRedAshCementFlooring,
+            this.terrainYellowAshCementFlooring,
+            this.terrainBlueAshCementFlooring,
+            this.terrainOrangeAshCementFlooring,
+            this.terrainGreenAshCementFlooring,
+            this.terrainPurpleAshCementFlooring
+        ]
+    }
 
     public getDoodadList(): DoodadType[] {
         return [
@@ -470,47 +682,76 @@ export default class PigmentDye extends Mod {
 		.setHandler((action, item) => {
 
 			const player = action.executor;
-			const tile = player.getFacingTile();
+            const tile = player.getFacingTile();
+            const tilePosition = player.getFacingPoint();
             const tileDoodad = tile.doodad;
+            const tileTerrain = TileHelpers.getType(tile);
+
+
             const doodadTypeList = PigmentDye.INSTANCE.getDoodadList();
+            const terrainTypeList = PigmentDye.INSTANCE.getTerrainList();
+
             const itemName = item.getName(false,1,false,false).toString();
             const itemSplitName = itemName.split(' ').shift();
             let itemColorName = itemSplitName ? itemSplitName : '';
 
-            function usePaintAction(doodadType: DoodadType, color: string) {
+            function usePaintAction(color: string, doodadType?: DoodadType, terrainType?: TerrainType) {
 
                 const colorName = color.charAt(0).toUpperCase() + color.slice(1);
-                const doodadKeys = Enums.toString(DoodadType, doodadType);
-                let doodadKeyName = doodadKeys.split(" | ").pop();
+                let keyName: string | undefined;
+
+                if (doodadType) { 
+                    const doodadKeys = Enums.toString(DoodadType, doodadType);
+                    keyName = doodadKeys.split(" | ").pop();
+                }
+                if (terrainType) {
+                    const terrainKeys = Enums.toString(TerrainType, terrainType);
+                    keyName = terrainKeys.split(" | ").pop();
+                }
+                
 
                 // Can't paint it the same color
-                if (doodadKeyName?.includes(colorName)) { 
+                if (keyName?.includes(colorName)) { 
                     player.messages.source(Source.Action).send(PigmentDye.INSTANCE.messageNoSameColor);
                     return;
                 }
 
                 // Painting over the paint
-                if (doodadKeyName?.includes('ModPigmentDye')) { 
-                    const removedModName = doodadKeyName.replace('ModPigmentDye', '');
+                if (keyName?.includes('ModPigmentDye')) { 
+                    const removedModName = keyName.replace('ModPigmentDye', '');
                     const colorArray = ['White', 'Black', 'Red', 'Yellow', 'Blue', 'Orange', 'Green', 'Purple'];
                     colorArray.forEach( val => {
-                        if (doodadKeyName?.includes(val)) { 
-                            doodadKeyName = removedModName.replace(val, '')
+                        if (keyName?.includes(val)) { 
+                            keyName = removedModName.replace(val, '')
                         }
                     })
                 }
 
-                const name = `doodad${colorName}${doodadKeyName}` as keyof PigmentDye;
-                const changedTypeName = PigmentDye.INSTANCE[name] as DoodadType;
-
                 game.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, particleColor(color));
-                tileDoodad?.changeType(changedTypeName);
+
+                if (doodadType) {
+                    const name = `doodad${colorName}${keyName}` as keyof PigmentDye;
+                    const changedTypeName = PigmentDye.INSTANCE[name] as DoodadType;
+                    tileDoodad?.changeType(changedTypeName);
+                }
+
+                if (terrainType) {
+                    const name = `terrain${colorName}${keyName}` as keyof PigmentDye;
+                    const changedTypeName = PigmentDye.INSTANCE[name] as TerrainType;
+                    game.changeTile(changedTypeName, tilePosition.x, tilePosition.y, tilePosition.z, false)
+                }
+
                 item.returns();
 
             }
 
-            if (tileDoodad && doodadTypeList.includes(tileDoodad.type)) {
-                usePaintAction(tileDoodad?.type, itemColorName);
+            if (tileDoodad || tileTerrain) {
+                if (tileDoodad && doodadTypeList.includes(tileDoodad.type)) {
+                    usePaintAction(itemColorName, tileDoodad?.type);
+                }
+                if (tileTerrain && terrainTypeList.includes(tileTerrain)) {
+                    usePaintAction(itemColorName, undefined, tileTerrain);
+                }
             } else {
                 player.messages.source(Source.Action).send(PigmentDye.INSTANCE.messageNoDyeAllowed);
             }
@@ -528,40 +769,66 @@ export default class PigmentDye extends Mod {
             
             const player = action.executor;
             const tile = player.getFacingTile();
+            const tilePosition = player.getFacingPoint();
             const tileDoodad = tile.doodad;
+            const tileTerrain = TileHelpers.getType(tile);
+
             const doodadTypeList = PigmentDye.INSTANCE.getDoodadList();
-            // const terrainType = TileHelpers.getType(tile);
+            const terrainTypeList = PigmentDye.INSTANCE.getTerrainList();
 
-            function useRemovePaintAction(doodadType: DoodadType) {
+            function useRemovePaintAction(doodadType?: DoodadType, terrainType?: TerrainType) {
 
-                const doodadKeys = Enums.toString(DoodadType, doodadType);
-                let doodadKeyName = doodadKeys.split(" | ").pop();
+                let keyName: string | undefined;
+
+                if (doodadType) { 
+                    const doodadKeys = Enums.toString(DoodadType, doodadType);
+                    keyName = doodadKeys.split(" | ").pop();
+                }
+                if (terrainType) {
+                    const terrainKeys = Enums.toString(TerrainType, terrainType);
+                    keyName = terrainKeys.split(" | ").pop();
+                }
 
                 // Remove paint
-                if (doodadKeyName?.includes('ModPigmentDye')) { 
-                    const removedModName = doodadKeyName.replace('ModPigmentDye', '');
+                if (keyName?.includes('ModPigmentDye')) { 
+                    const removedModName = keyName.replace('ModPigmentDye', '');
                     const colorArray = ['White', 'Black', 'Red', 'Yellow', 'Blue', 'Orange', 'Green', 'Purple'];
                     colorArray.forEach( val => {
-                        if (doodadKeyName?.includes(val)) { 
-                            doodadKeyName = removedModName.replace(val, '')
+                        if (keyName?.includes(val)) { 
+                            keyName = removedModName.replace(val, '')
                         }
                     })
                 }
 
-                const name = `${doodadKeyName}` as keyof typeof DoodadType;
-                const changedTypeName = DoodadType[name] as DoodadType;
-
                 game.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, particleColor('white'));
-                tileDoodad?.changeType(changedTypeName);
+
+                if (doodadType) {
+                    const name = `${keyName}` as keyof typeof DoodadType;
+                    const changedTypeName = DoodadType[name] as DoodadType;
+                    tileDoodad?.changeType(changedTypeName);
+                }
+
+                if (terrainType) {
+                    const name = `${keyName}` as keyof typeof TerrainType;
+                    const changedTypeName = TerrainType[name] as TerrainType;
+                    game.changeTile(changedTypeName, tilePosition.x, tilePosition.y, tilePosition.z, false)
+                }
+
                 item.returns();
 
             }
 
-            if (tileDoodad && doodadTypeList.includes(tileDoodad.type)) {
-                useRemovePaintAction(tileDoodad?.type);
+            if (tileDoodad || tileTerrain) {
+                if (tileDoodad && doodadTypeList.includes(tileDoodad.type)) {
+                    useRemovePaintAction(tileDoodad?.type);
+                }
+                if (tileTerrain && terrainTypeList.includes(tileTerrain)) {
+                    useRemovePaintAction(undefined, tileTerrain);
+                }
             } else {
                 player.messages.source(Source.Action).send(PigmentDye.INSTANCE.messageNoDyeAllowed);
             }
+
 			game.passTurn(player);
         }))
         
@@ -663,14 +930,13 @@ export default class PigmentDye extends Mod {
             localPlayer.createItemInInventory(this.itemBluePaintbrush);
             localPlayer.createItemInInventory(this.itemPurplePaintbrush);
             localPlayer.createItemInInventory(this.itemGreenPaintbrush, Quality.Exceptional);
-            localPlayer.createItemInInventory(ItemType.WoodenChest);
-            localPlayer.createItemInInventory(ItemType.CopperChest);
-            localPlayer.createItemInInventory(ItemType.WroughtIronChest);
-            localPlayer.createItemInInventory(ItemType.IronChest);
             localPlayer.createItemInInventory(ItemType.Ectoplasm);
-            localPlayer.createItemInInventory(ItemType.StoneWall);
-            localPlayer.createItemInInventory(ItemType.StoneWall);
-            localPlayer.createItemInInventory(ItemType.StoneWall);
+            localPlayer.createItemInInventory(ItemType.CobblestoneFlooring);
+            localPlayer.createItemInInventory(ItemType.CobblestoneFlooring);
+            localPlayer.createItemInInventory(ItemType.CobblestoneFlooring);
+            localPlayer.createItemInInventory(ItemType.CobblestoneFlooring);
+            localPlayer.createItemInInventory(ItemType.CobblestoneFlooring);
+            localPlayer.createItemInInventory(this.itemWhiteCobblestoneFlooring);
 		}
 	}
 
