@@ -1,16 +1,16 @@
-import { DoodadType } from "doodad/IDoodad";
-import { Action } from "entity/action/Action";
-import { ActionArgument, ActionType } from "entity/action/IAction";
-import { EntityType } from "entity/IEntity";
-import { SkillType } from "entity/IHuman";
-import { Source } from "entity/player/IMessageManager";
-import { IItemDescription, ItemType, ItemTypeGroup } from "item/IItem";
-import { itemDescriptions } from "item/Items";
+import { DoodadType } from "game/doodad/IDoodad";
+import { Action } from "game/entity/action/Action";
+import { ActionArgument, ActionType } from "game/entity/action/IAction";
+import { EntityType } from "game/entity/IEntity";
+import { SkillType } from "game/entity/IHuman";
+import { Source } from "game/entity/player/IMessageManager";
+import { IItemDescription, ItemType, ItemTypeGroup } from "game/item/IItem";
+import { itemDescriptions } from "game/item/Items";
 import Message from "language/dictionary/Message";
 import { HookMethod } from "mod/IHookHost";
 import Mod from "mod/Mod";
 import Register, { Registry } from "mod/ModRegistry";
-import { TerrainType, TerrainTypeGroup } from "tile/ITerrain";
+import { TerrainType, TerrainTypeGroup } from "game/tile/ITerrain";
 import { BlackDyeDescription, BlueDyeDescription, GreenDyeDescription, OrangeDyeDescription, PurpleDyeDescription, RedDyeDescription, WhiteDyeDescription, YellowDyeDescription } from "./dyes/Dyes";
 import { CornflowerDescription, CornflowerSeedsDescription, CornflowerDoodadDescription } from "./flowers/Cornflower";
 import { RoseDescription, RoseDoodadDescription, RoseSeedsDescription } from "./flowers/Rose";
@@ -18,19 +18,20 @@ import { SunflowerDescription, SunflowerDoodadDescription, SunflowerSeedsDescrip
 import { BlackPigmentIngredientGroup, BluePigmentIngredientGroup, RedPigmentIngredientGroup, WhitePigmentIngredientGroup, YellowPigmentIngredientGroup } from "./pigments/PigmentGroups";
 import { BlackPigmentDescription, BluePigmentDescription, GreenPigmentDescription, OrangePigmentDescription, PurplePigmentDescription, RedPigmentDescription, WhitePigmentDescription, YellowPigmentDescription } from "./pigments/Pigments";
 import { BlackPaintbrushDescription, BluePaintbrushDescription, DyeRemoverDescription, GreenPaintbrushDescription, OrangePaintbrushDescription, PaintbrushDescription, PurplePaintbrushDescription, RedPaintbrushDescription, StoneBowlDescription, WhitePaintbrushDescription, YellowPaintbrushDescription } from "./tools/Tools";
-import TileHelpers from "utilities/TileHelpers";
+import TileHelpers from "utilities/game/TileHelpers";
 import { BlackCopperChestDescription, BlackIronChestDescription, BlackStoneWallDescription, BlackWoodenChestDescription, BlackWroughtIronChestDescription, BlueCopperChestDescription, BlueIronChestDescription, BlueStoneWallDescription, BlueWoodenChestDescription, BlueWroughtIronChestDescription, GreenCopperChestDescription, GreenIronChestDescription, GreenStoneWallDescription, GreenWoodenChestDescription, GreenWroughtIronChestDescription, OrangeCopperChestDescription, OrangeIronChestDescription, OrangeStoneWallDescription, OrangeWoodenChestDescription, OrangeWroughtIronChestDescription, PurpleCopperChestDescription, PurpleIronChestDescription, PurpleStoneWallDescription, PurpleWoodenChestDescription, PurpleWroughtIronChestDescription, RedCopperChestDescription, RedIronChestDescription, RedStoneWallDescription, RedWoodenChestDescription, RedWroughtIronChestDescription, WhiteCopperChestDescription, WhiteIronChestDescription, WhiteStoneWallDescription, WhiteWoodenChestDescription, WhiteWroughtIronChestDescription, YellowCopperChestDescription, YellowIronChestDescription, YellowStoneWallDescription, YellowWoodenChestDescription, YellowWroughtIronChestDescription } from "./doodads/Doodads";
-import { BaseStatsDoodadCopperChest, BaseStatsDoodadIronChest, BaseStatsDoodadStoneWall, BaseStatsDoodadWoodenChest, BaseStatsDoodadWroughtIronChest } from "./doodads/BaseDoodad";
+import { BaseStatsDoodadCopperChest, BaseStatsDoodadDye, BaseStatsDoodadIronChest, BaseStatsDoodadStoneWall, BaseStatsDoodadWoodenChest, BaseStatsDoodadWroughtIronChest } from "./doodads/BaseDoodad";
 import Enums from "utilities/enum/Enums";
 import { particleColor } from "./utils/Utils";
 import { Quality } from "game/IObject";
 import { BlackAshCementFlooringDescription, BlackAshCementFlooringTerrainDescription, BlackClayFlooringDescription, BlackClayFlooringTerrainDescription, BlackCobblestoneFlooringDescription, BlackCobblestoneFlooringTerrainDescription, BlackWoodenFlooringDescription, BlackWoodenFlooringTerrainDescription, BlueAshCementFlooringDescription, BlueAshCementFlooringTerrainDescription, BlueClayFlooringDescription, BlueClayFlooringTerrainDescription, BlueCobblestoneFlooringDescription, BlueCobblestoneFlooringTerrainDescription, BlueWoodenFlooringDescription, BlueWoodenFlooringTerrainDescription, GreenAshCementFlooringDescription, GreenAshCementFlooringTerrainDescription, GreenClayFlooringDescription, GreenClayFlooringTerrainDescription, GreenCobblestoneFlooringDescription, GreenCobblestoneFlooringTerrainDescription, GreenWoodenFlooringDescription, GreenWoodenFlooringTerrainDescription, OrangeAshCementFlooringDescription, OrangeAshCementFlooringTerrainDescription, OrangeClayFlooringDescription, OrangeClayFlooringTerrainDescription, OrangeCobblestoneFlooringDescription, OrangeCobblestoneFlooringTerrainDescription, OrangeWoodenFlooringDescription, OrangeWoodenFlooringTerrainDescription, PurpleAshCementFlooringDescription, PurpleAshCementFlooringTerrainDescription, PurpleClayFlooringDescription, PurpleClayFlooringTerrainDescription, PurpleCobblestoneFlooringDescription, PurpleCobblestoneFlooringTerrainDescription, PurpleWoodenFlooringDescription, PurpleWoodenFlooringTerrainDescription, RedAshCementFlooringDescription, RedAshCementFlooringTerrainDescription, RedClayFlooringDescription, RedClayFlooringTerrainDescription, RedCobblestoneFlooringDescription, RedCobblestoneFlooringTerrainDescription, RedWoodenFlooringDescription, RedWoodenFlooringTerrainDescription, WhiteAshCementFlooringDescription, WhiteAshCementFlooringTerrainDescription, WhiteClayFlooringDescription, WhiteClayFlooringTerrainDescription, WhiteCobblestoneFlooringDescription, WhiteCobblestoneFlooringTerrainDescription, WhiteWoodenFlooringDescription, WhiteWoodenFlooringTerrainDescription, YellowAshCementFlooringDescription, YellowAshCementFlooringTerrainDescription, YellowClayFlooringDescription, YellowClayFlooringTerrainDescription, YellowCobblestoneFlooringDescription, YellowCobblestoneFlooringTerrainDescription, YellowWoodenFlooringDescription, YellowWoodenFlooringTerrainDescription } from "./terrains/Terrains";
+import { DyeGroup } from "./dyes/DyeGroup";
 
 
-export default class PigmentDye extends Mod {
+export default class ColorsEverywhere extends Mod {
 
-    @Mod.instance<PigmentDye>("Pigment Dye")
-    public static readonly INSTANCE: PigmentDye;
+    @Mod.instance<ColorsEverywhere>("Colors Everywhere")
+    public static readonly INSTANCE: ColorsEverywhere;
 
 
     ////////////////////////////////////////////////////////////
@@ -84,6 +85,15 @@ export default class PigmentDye extends Mod {
     @Register.itemGroup("BluePigmentIngredientGroup", { ...BluePigmentIngredientGroup })
     public itemBluePigmentIngredientGroup: ItemTypeGroup;
 
+    // New system for 2.10
+
+/*     const itemColors = ["red", "blue", "green"];
+    class Mod {
+        @Register.bulk("item", ...itemColors
+            .map(color => Tuple(`${color}Item`, { weight: 1 })))
+        public readonly items: ItemType[];
+    } */
+
 
     ////////////////////////////////////////////////////////////
     // Register pigments
@@ -115,32 +125,56 @@ export default class PigmentDye extends Mod {
 
 
     ////////////////////////////////////////////////////////////
+    // Register dye group
+    ////////////////////////////////////////////////////////////
+
+    @Register.itemGroup("DyeGroup", { ...DyeGroup })
+    public itemDyeGroup: ItemTypeGroup;
+
+
+    ////////////////////////////////////////////////////////////
     // Register dyes
     ////////////////////////////////////////////////////////////
 
-    @Register.item("WhiteDye", { ...WhiteDyeDescription })
+    @Register.item("WhiteDye", { ...WhiteDyeDescription, groups: [Registry<ColorsEverywhere>().get('itemDyeGroup')] })
     public itemWhiteDye: ItemType;
+    @Register.doodad("WhiteDye", { ...BaseStatsDoodadDye, pickUp: [Registry<ColorsEverywhere>().get('itemWhiteDye')] })
+    public doodadWhiteDye: DoodadType;
 
-    @Register.item("BlackDye", { ...BlackDyeDescription })
+    @Register.item("BlackDye", { ...BlackDyeDescription, groups: [Registry<ColorsEverywhere>().get('itemDyeGroup')] })
     public itemBlackDye: ItemType;
+    @Register.doodad("BlackDye", { ...BaseStatsDoodadDye, pickUp: [Registry<ColorsEverywhere>().get('itemBlackDye')] })
+    public doodadBlackDye: DoodadType;
 
-    @Register.item("RedDye", { ...RedDyeDescription })
+    @Register.item("RedDye", { ...RedDyeDescription, groups: [Registry<ColorsEverywhere>().get('itemDyeGroup')] })
     public itemRedDye: ItemType;
+    @Register.doodad("RedDye", { ...BaseStatsDoodadDye, pickUp: [Registry<ColorsEverywhere>().get('itemRedDye')] })
+    public doodadRedDye: DoodadType;
 
-    @Register.item("YellowDye", { ...YellowDyeDescription })
+    @Register.item("YellowDye", { ...YellowDyeDescription, groups: [Registry<ColorsEverywhere>().get('itemDyeGroup')] })
     public itemYellowDye: ItemType;
+    @Register.doodad("YellowDye", { ...BaseStatsDoodadDye, pickUp: [Registry<ColorsEverywhere>().get('itemYellowDye')] })
+    public doodadYellowDye: DoodadType;
 
-    @Register.item("BlueDye", { ...BlueDyeDescription })
+    @Register.item("BlueDye", { ...BlueDyeDescription, groups: [Registry<ColorsEverywhere>().get('itemDyeGroup')] })
     public itemBlueDye: ItemType;
+    @Register.doodad("BlueDye", { ...BaseStatsDoodadDye, pickUp: [Registry<ColorsEverywhere>().get('itemBlueDye')] })
+    public doodadBlueDye: DoodadType;
 
-    @Register.item("OrangeDye", { ...OrangeDyeDescription })
+    @Register.item("OrangeDye", { ...OrangeDyeDescription, groups: [Registry<ColorsEverywhere>().get('itemDyeGroup')] })
     public itemOrangeDye: ItemType;
+    @Register.doodad("OrangeDye", { ...BaseStatsDoodadDye, pickUp: [Registry<ColorsEverywhere>().get('itemOrangeDye')] })
+    public doodadOrangeDye: DoodadType;
 
-    @Register.item("GreenDye", { ...GreenDyeDescription })
+    @Register.item("GreenDye", { ...GreenDyeDescription, groups: [Registry<ColorsEverywhere>().get('itemDyeGroup')] })
     public itemGreenDye: ItemType;
+    @Register.doodad("GreenDye", { ...BaseStatsDoodadDye, pickUp: [Registry<ColorsEverywhere>().get('itemGreenDye')] })
+    public doodadGreenDye: DoodadType;
 
-    @Register.item("PurpleDye", { ...PurpleDyeDescription })
+    @Register.item("PurpleDye", { ...PurpleDyeDescription, groups: [Registry<ColorsEverywhere>().get('itemDyeGroup')] })
     public itemPurpleDye: ItemType;
+    @Register.doodad("PurpleDye", { ...BaseStatsDoodadDye, pickUp: [Registry<ColorsEverywhere>().get('itemPurpleDye')] })
+    public doodadPurpleDye: DoodadType;
     
 
     ////////////////////////////////////////////////////////////
@@ -187,210 +221,210 @@ export default class PigmentDye extends Mod {
     
     @Register.item("WhiteWoodenChest", { ... WhiteWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemWhiteWoodenChest: ItemType;
-    @Register.doodad("WhiteWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<PigmentDye>().get('itemWhiteWoodenChest')] })
+    @Register.doodad("WhiteWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<ColorsEverywhere>().get('itemWhiteWoodenChest')] })
     public doodadWhiteWoodenChest: DoodadType;
 
     @Register.item("BlackWoodenChest", { ... BlackWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemBlackWoodenChest: ItemType;
-    @Register.doodad("BlackWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<PigmentDye>().get('itemBlackWoodenChest')] })
+    @Register.doodad("BlackWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<ColorsEverywhere>().get('itemBlackWoodenChest')] })
     public doodadBlackWoodenChest: DoodadType;
 
     @Register.item("RedWoodenChest", { ... RedWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemRedWoodenChest: ItemType;
-    @Register.doodad("RedWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<PigmentDye>().get('itemRedWoodenChest')] })
+    @Register.doodad("RedWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<ColorsEverywhere>().get('itemRedWoodenChest')] })
     public doodadRedWoodenChest: DoodadType;
 
     @Register.item("YellowWoodenChest", { ... YellowWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemYellowWoodenChest: ItemType;
-    @Register.doodad("YellowWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<PigmentDye>().get('itemYellowWoodenChest')] })
+    @Register.doodad("YellowWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<ColorsEverywhere>().get('itemYellowWoodenChest')] })
     public doodadYellowWoodenChest: DoodadType;
 
     @Register.item("BlueWoodenChest", { ... BlueWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemBlueWoodenChest: ItemType;
-    @Register.doodad("BlueWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<PigmentDye>().get('itemBlueWoodenChest')] })
+    @Register.doodad("BlueWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<ColorsEverywhere>().get('itemBlueWoodenChest')] })
     public doodadBlueWoodenChest: DoodadType;
 
     @Register.item("OrangeWoodenChest", { ... OrangeWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemOrangeWoodenChest: ItemType;
-    @Register.doodad("OrangeWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<PigmentDye>().get('itemOrangeWoodenChest')] })
+    @Register.doodad("OrangeWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<ColorsEverywhere>().get('itemOrangeWoodenChest')] })
     public doodadOrangeWoodenChest: DoodadType;
 
     @Register.item("GreenWoodenChest", { ... GreenWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemGreenWoodenChest: ItemType;
-    @Register.doodad("GreenWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<PigmentDye>().get('itemGreenWoodenChest')] })
+    @Register.doodad("GreenWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<ColorsEverywhere>().get('itemGreenWoodenChest')] })
     public doodadGreenWoodenChest: DoodadType;
 
     @Register.item("PurpleWoodenChest", { ... PurpleWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemPurpleWoodenChest: ItemType;
-    @Register.doodad("PurpleWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<PigmentDye>().get('itemPurpleWoodenChest')] })
+    @Register.doodad("PurpleWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<ColorsEverywhere>().get('itemPurpleWoodenChest')] })
     public doodadPurpleWoodenChest: DoodadType;
 
     // ------------------------------------------------------------ //
 
     @Register.item("WhiteCopperChest", { ... WhiteCopperChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemWhiteCopperChest: ItemType;
-    @Register.doodad("WhiteCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<PigmentDye>().get('itemWhiteCopperChest')] })
+    @Register.doodad("WhiteCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<ColorsEverywhere>().get('itemWhiteCopperChest')] })
     public doodadWhiteCopperChest: DoodadType;
 
     @Register.item("BlackCopperChest", { ... BlackCopperChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemBlackCopperChest: ItemType;
-    @Register.doodad("BlackCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<PigmentDye>().get('itemBlackCopperChest')] })
+    @Register.doodad("BlackCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<ColorsEverywhere>().get('itemBlackCopperChest')] })
     public doodadBlackCopperChest: DoodadType;
 
     @Register.item("RedCopperChest", { ... RedCopperChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemRedCopperChest: ItemType;
-    @Register.doodad("RedCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<PigmentDye>().get('itemRedCopperChest')] })
+    @Register.doodad("RedCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<ColorsEverywhere>().get('itemRedCopperChest')] })
     public doodadRedCopperChest: DoodadType;
 
     @Register.item("YellowCopperChest", { ... YellowCopperChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemYellowCopperChest: ItemType;
-    @Register.doodad("YellowCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<PigmentDye>().get('itemYellowCopperChest')] })
+    @Register.doodad("YellowCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<ColorsEverywhere>().get('itemYellowCopperChest')] })
     public doodadYellowCopperChest: DoodadType;
 
     @Register.item("BlueCopperChest", { ... BlueCopperChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemBlueCopperChest: ItemType;
-    @Register.doodad("BlueCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<PigmentDye>().get('itemBlueCopperChest')] })
+    @Register.doodad("BlueCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<ColorsEverywhere>().get('itemBlueCopperChest')] })
     public doodadBlueCopperChest: DoodadType;
 
     @Register.item("OrangeCopperChest", { ... OrangeCopperChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemOrangeCopperChest: ItemType;
-    @Register.doodad("OrangeCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<PigmentDye>().get('itemOrangeCopperChest')] })
+    @Register.doodad("OrangeCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<ColorsEverywhere>().get('itemOrangeCopperChest')] })
     public doodadOrangeCopperChest: DoodadType;
 
     @Register.item("GreenCopperChest", { ... GreenCopperChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemGreenCopperChest: ItemType;
-    @Register.doodad("GreenCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<PigmentDye>().get('itemGreenCopperChest')] })
+    @Register.doodad("GreenCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<ColorsEverywhere>().get('itemGreenCopperChest')] })
     public doodadGreenCopperChest: DoodadType;
 
     @Register.item("PurpleCopperChest", { ... PurpleCopperChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemPurpleCopperChest: ItemType;
-    @Register.doodad("PurpleCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<PigmentDye>().get('itemPurpleCopperChest')] })
+    @Register.doodad("PurpleCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<ColorsEverywhere>().get('itemPurpleCopperChest')] })
     public doodadPurpleCopperChest: DoodadType;
 
     // ------------------------------------------------------------ //
 
     @Register.item("WhiteWroughtIronChest", { ... WhiteWroughtIronChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemWhiteWroughtIronChest: ItemType;
-    @Register.doodad("WhiteWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<PigmentDye>().get('itemWhiteWroughtIronChest')] })
+    @Register.doodad("WhiteWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemWhiteWroughtIronChest')] })
     public doodadWhiteWroughtIronChest: DoodadType;
 
     @Register.item("BlackWroughtIronChest", { ... BlackWroughtIronChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemBlackWroughtIronChest: ItemType;
-    @Register.doodad("BlackWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<PigmentDye>().get('itemBlackWroughtIronChest')] })
+    @Register.doodad("BlackWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemBlackWroughtIronChest')] })
     public doodadBlackWroughtIronChest: DoodadType;
 
     @Register.item("RedWroughtIronChest", { ... RedWroughtIronChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemRedWroughtIronChest: ItemType;
-    @Register.doodad("RedWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<PigmentDye>().get('itemRedWroughtIronChest')] })
+    @Register.doodad("RedWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemRedWroughtIronChest')] })
     public doodadRedWroughtIronChest: DoodadType;
 
     @Register.item("YellowWroughtIronChest", { ... YellowWroughtIronChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemYellowWroughtIronChest: ItemType;
-    @Register.doodad("YellowWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<PigmentDye>().get('itemYellowWroughtIronChest')] })
+    @Register.doodad("YellowWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemYellowWroughtIronChest')] })
     public doodadYellowWroughtIronChest: DoodadType;
 
     @Register.item("BlueWroughtIronChest", { ... BlueWroughtIronChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemBlueWroughtIronChest: ItemType;
-    @Register.doodad("BlueWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<PigmentDye>().get('itemBlueWroughtIronChest')] })
+    @Register.doodad("BlueWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemBlueWroughtIronChest')] })
     public doodadBlueWroughtIronChest: DoodadType;
 
     @Register.item("OrangeWroughtIronChest", { ... OrangeWroughtIronChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemOrangeWroughtIronChest: ItemType;
-    @Register.doodad("OrangeWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<PigmentDye>().get('itemOrangeWroughtIronChest')] })
+    @Register.doodad("OrangeWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemOrangeWroughtIronChest')] })
     public doodadOrangeWroughtIronChest: DoodadType;
 
     @Register.item("GreenWroughtIronChest", { ... GreenWroughtIronChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemGreenWroughtIronChest: ItemType;
-    @Register.doodad("GreenWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<PigmentDye>().get('itemGreenWroughtIronChest')] })
+    @Register.doodad("GreenWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemGreenWroughtIronChest')] })
     public doodadGreenWroughtIronChest: DoodadType;
 
     @Register.item("PurpleWroughtIronChest", { ... PurpleWroughtIronChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemPurpleWroughtIronChest: ItemType;
-    @Register.doodad("PurpleWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<PigmentDye>().get('itemPurpleWroughtIronChest')] })
+    @Register.doodad("PurpleWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemPurpleWroughtIronChest')] })
     public doodadPurpleWroughtIronChest: DoodadType;
 
     // ------------------------------------------------------------ //
 
     @Register.item("WhiteIronChest", { ... WhiteIronChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemWhiteIronChest: ItemType;
-    @Register.doodad("WhiteIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<PigmentDye>().get('itemWhiteIronChest')] })
+    @Register.doodad("WhiteIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemWhiteIronChest')] })
     public doodadWhiteIronChest: DoodadType;
 
     @Register.item("BlackIronChest", { ... BlackIronChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemBlackIronChest: ItemType;
-    @Register.doodad("BlackIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<PigmentDye>().get('itemBlackIronChest')] })
+    @Register.doodad("BlackIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemBlackIronChest')] })
     public doodadBlackIronChest: DoodadType;
 
     @Register.item("RedIronChest", { ... RedIronChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemRedIronChest: ItemType;
-    @Register.doodad("RedIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<PigmentDye>().get('itemRedIronChest')] })
+    @Register.doodad("RedIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemRedIronChest')] })
     public doodadRedIronChest: DoodadType;
 
     @Register.item("YellowIronChest", { ... YellowIronChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemYellowIronChest: ItemType;
-    @Register.doodad("YellowIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<PigmentDye>().get('itemYellowIronChest')] })
+    @Register.doodad("YellowIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemYellowIronChest')] })
     public doodadYellowIronChest: DoodadType;
 
     @Register.item("BlueIronChest", { ... BlueIronChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemBlueIronChest: ItemType;
-    @Register.doodad("BlueIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<PigmentDye>().get('itemBlueIronChest')] })
+    @Register.doodad("BlueIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemBlueIronChest')] })
     public doodadBlueIronChest: DoodadType;
 
     @Register.item("OrangeIronChest", { ... OrangeIronChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemOrangeIronChest: ItemType;
-    @Register.doodad("OrangeIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<PigmentDye>().get('itemOrangeIronChest')] })
+    @Register.doodad("OrangeIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemOrangeIronChest')] })
     public doodadOrangeIronChest: DoodadType;
 
     @Register.item("GreenIronChest", { ... GreenIronChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemGreenIronChest: ItemType;
-    @Register.doodad("GreenIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<PigmentDye>().get('itemGreenIronChest')] })
+    @Register.doodad("GreenIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemGreenIronChest')] })
     public doodadGreenIronChest: DoodadType;
 
     @Register.item("PurpleIronChest", { ... PurpleIronChestDescription, groups: [ItemTypeGroup.Storage] })
     public itemPurpleIronChest: ItemType;
-    @Register.doodad("PurpleIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<PigmentDye>().get('itemPurpleIronChest')] })
+    @Register.doodad("PurpleIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemPurpleIronChest')] })
     public doodadPurpleIronChest: DoodadType;
 
     // ----------------------------------------
 
     @Register.item("WhiteStoneWall", { ... WhiteStoneWallDescription, groups: [ItemTypeGroup.Housing] })
     public itemWhiteStoneWall: ItemType;
-    @Register.doodad("WhiteStoneWall", { ...BaseStatsDoodadStoneWall, pickUp: [Registry<PigmentDye>().get('itemWhiteStoneWall')] })
+    @Register.doodad("WhiteStoneWall", { ...BaseStatsDoodadStoneWall, repairItem: Registry<ColorsEverywhere>().get('itemWhiteStoneWall'), pickUp: [Registry<ColorsEverywhere>().get('itemWhiteStoneWall')] })
     public doodadWhiteStoneWall: DoodadType;
 
-    @Register.item("BlackStoneWall", { ... BlackStoneWallDescription, groups: [ItemTypeGroup.Storage] })
+    @Register.item("BlackStoneWall", { ... BlackStoneWallDescription, groups: [ItemTypeGroup.Housing] })
     public itemBlackStoneWall: ItemType;
-    @Register.doodad("BlackStoneWall", { ...BaseStatsDoodadStoneWall, pickUp: [Registry<PigmentDye>().get('itemBlackStoneWall')] })
+    @Register.doodad("BlackStoneWall", { ...BaseStatsDoodadStoneWall, repairItem: Registry<ColorsEverywhere>().get('itemBlackStoneWall'), pickUp: [Registry<ColorsEverywhere>().get('itemBlackStoneWall')] })
     public doodadBlackStoneWall: DoodadType;
 
-    @Register.item("RedStoneWall", { ... RedStoneWallDescription, groups: [ItemTypeGroup.Storage] })
+    @Register.item("RedStoneWall", { ... RedStoneWallDescription, groups: [ItemTypeGroup.Housing] })
     public itemRedStoneWall: ItemType;
-    @Register.doodad("RedStoneWall", { ...BaseStatsDoodadStoneWall, pickUp: [Registry<PigmentDye>().get('itemRedStoneWall')] })
+    @Register.doodad("RedStoneWall", { ...BaseStatsDoodadStoneWall, repairItem: Registry<ColorsEverywhere>().get('itemRedStoneWall'), pickUp: [Registry<ColorsEverywhere>().get('itemRedStoneWall')] })
     public doodadRedStoneWall: DoodadType;
 
-    @Register.item("YellowStoneWall", { ... YellowStoneWallDescription, groups: [ItemTypeGroup.Storage] })
+    @Register.item("YellowStoneWall", { ... YellowStoneWallDescription, groups: [ItemTypeGroup.Housing] })
     public itemYellowStoneWall: ItemType;
-    @Register.doodad("YellowStoneWall", { ...BaseStatsDoodadStoneWall, pickUp: [Registry<PigmentDye>().get('itemYellowStoneWall')] })
+    @Register.doodad("YellowStoneWall", { ...BaseStatsDoodadStoneWall, repairItem: Registry<ColorsEverywhere>().get('itemYellowStoneWall'), pickUp: [Registry<ColorsEverywhere>().get('itemYellowStoneWall')] })
     public doodadYellowStoneWall: DoodadType;
 
-    @Register.item("BlueStoneWall", { ... BlueStoneWallDescription, groups: [ItemTypeGroup.Storage] })
+    @Register.item("BlueStoneWall", { ... BlueStoneWallDescription, groups: [ItemTypeGroup.Housing] })
     public itemBlueStoneWall: ItemType;
-    @Register.doodad("BlueStoneWall", { ...BaseStatsDoodadStoneWall, pickUp: [Registry<PigmentDye>().get('itemBlueStoneWall')] })
+    @Register.doodad("BlueStoneWall", { ...BaseStatsDoodadStoneWall, repairItem: Registry<ColorsEverywhere>().get('itemBlueStoneWall'), pickUp: [Registry<ColorsEverywhere>().get('itemBlueStoneWall')] })
     public doodadBlueStoneWall: DoodadType;
 
-    @Register.item("OrangeStoneWall", { ... OrangeStoneWallDescription, groups: [ItemTypeGroup.Storage] })
+    @Register.item("OrangeStoneWall", { ... OrangeStoneWallDescription, groups: [ItemTypeGroup.Housing] })
     public itemOrangeStoneWall: ItemType;
-    @Register.doodad("OrangeStoneWall", { ...BaseStatsDoodadStoneWall, pickUp: [Registry<PigmentDye>().get('itemOrangeStoneWall')] })
+    @Register.doodad("OrangeStoneWall", { ...BaseStatsDoodadStoneWall, repairItem: Registry<ColorsEverywhere>().get('itemOrangeStoneWall'), pickUp: [Registry<ColorsEverywhere>().get('itemOrangeStoneWall')] })
     public doodadOrangeStoneWall: DoodadType;
 
-    @Register.item("GreenStoneWall", { ... GreenStoneWallDescription, groups: [ItemTypeGroup.Storage] })
+    @Register.item("GreenStoneWall", { ... GreenStoneWallDescription, groups: [ItemTypeGroup.Housing] })
     public itemGreenStoneWall: ItemType;
-    @Register.doodad("GreenStoneWall", { ...BaseStatsDoodadStoneWall, pickUp: [Registry<PigmentDye>().get('itemGreenStoneWall')] })
+    @Register.doodad("GreenStoneWall", { ...BaseStatsDoodadStoneWall, repairItem: Registry<ColorsEverywhere>().get('itemGreenStoneWall'), pickUp: [Registry<ColorsEverywhere>().get('itemGreenStoneWall')] })
     public doodadGreenStoneWall: DoodadType;
 
-    @Register.item("PurpleStoneWall", { ... PurpleStoneWallDescription, groups: [ItemTypeGroup.Storage] })
+    @Register.item("PurpleStoneWall", { ... PurpleStoneWallDescription, groups: [ItemTypeGroup.Housing] })
     public itemPurpleStoneWall: ItemType;
-    @Register.doodad("PurpleStoneWall", { ...BaseStatsDoodadStoneWall, pickUp: [Registry<PigmentDye>().get('itemPurpleStoneWall')] })
+    @Register.doodad("PurpleStoneWall", { ...BaseStatsDoodadStoneWall, repairItem: Registry<ColorsEverywhere>().get('itemPurpleStoneWall'), pickUp: [Registry<ColorsEverywhere>().get('itemPurpleStoneWall')] })
     public doodadPurpleStoneWall: DoodadType;
 
 
@@ -566,6 +600,14 @@ export default class PigmentDye extends Mod {
 
 
     ////////////////////////////////////////////////////////////
+    // Register equipment
+    ////////////////////////////////////////////////////////////
+
+    @Register.item("RedLeatherTunic")
+    public itemRedLeatherTunic: ItemType;
+
+
+    ////////////////////////////////////////////////////////////
     // Register messages
     ////////////////////////////////////////////////////////////
 
@@ -574,6 +616,9 @@ export default class PigmentDye extends Mod {
     
     @Register.message("NoWaterSource")
     public readonly messageNoWaterSource: Message;
+
+    @Register.message("NoDyeSource")
+    public readonly messageNoDyeSource: Message;
 
     @Register.message("NoDyeAllowed")
     public readonly messageNoDyeAllowed: Message;
@@ -633,7 +678,7 @@ export default class PigmentDye extends Mod {
             DoodadType.WroughtIronChest,
             DoodadType.IronChest,
             DoodadType.CopperChest,
-            // DoodadType.StoneWall,
+            DoodadType.StoneWall,
             this.doodadWhiteWoodenChest,
             this.doodadBlackWoodenChest,
             this.doodadRedWoodenChest,
@@ -665,15 +710,15 @@ export default class PigmentDye extends Mod {
             this.doodadBlueIronChest,
             this.doodadOrangeIronChest,
             this.doodadGreenIronChest,
-            this.doodadPurpleIronChest
-            /* this.doodadWhiteStoneWall,
+            this.doodadPurpleIronChest,
+            this.doodadWhiteStoneWall,
             this.doodadBlackStoneWall,
             this.doodadRedStoneWall,
             this.doodadYellowStoneWall,
             this.doodadBlueStoneWall,
             this.doodadOrangeStoneWall,
             this.doodadGreenStoneWall,
-            this.doodadPurpleStoneWall */
+            this.doodadPurpleStoneWall
         ];
       }
 
@@ -681,15 +726,18 @@ export default class PigmentDye extends Mod {
 		.setUsableBy(EntityType.Player)
 		.setHandler((action, item) => {
 
+            // TODO
+            // - Trigger dialog for overlapping doodad/terrain options
+            // - Carry item quality on paintbrush/items
+
 			const player = action.executor;
             const tile = player.getFacingTile();
             const tilePosition = player.getFacingPoint();
             const tileDoodad = tile.doodad;
             const tileTerrain = TileHelpers.getType(tile);
 
-
-            const doodadTypeList = PigmentDye.INSTANCE.getDoodadList();
-            const terrainTypeList = PigmentDye.INSTANCE.getTerrainList();
+            const doodadTypeList = ColorsEverywhere.INSTANCE.getDoodadList();
+            const terrainTypeList = ColorsEverywhere.INSTANCE.getTerrainList();
 
             const itemName = item.getName(false,1,false,false).toString();
             const itemSplitName = itemName.split(' ').shift();
@@ -712,13 +760,13 @@ export default class PigmentDye extends Mod {
 
                 // Can't paint it the same color
                 if (keyName?.includes(colorName)) { 
-                    player.messages.source(Source.Action).send(PigmentDye.INSTANCE.messageNoSameColor);
+                    player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoSameColor);
                     return;
                 }
 
                 // Painting over the paint
-                if (keyName?.includes('ModPigmentDye')) { 
-                    const removedModName = keyName.replace('ModPigmentDye', '');
+                if (keyName?.includes('ModColorsEverywhere')) { 
+                    const removedModName = keyName.replace('ModColorsEverywhere', '');
                     const colorArray = ['White', 'Black', 'Red', 'Yellow', 'Blue', 'Orange', 'Green', 'Purple'];
                     colorArray.forEach( val => {
                         if (keyName?.includes(val)) { 
@@ -730,14 +778,14 @@ export default class PigmentDye extends Mod {
                 game.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, particleColor(color));
 
                 if (doodadType) {
-                    const name = `doodad${colorName}${keyName}` as keyof PigmentDye;
-                    const changedTypeName = PigmentDye.INSTANCE[name] as DoodadType;
+                    const name = `doodad${colorName}${keyName}` as keyof ColorsEverywhere;
+                    const changedTypeName = ColorsEverywhere.INSTANCE[name] as DoodadType;
                     tileDoodad?.changeType(changedTypeName);
                 }
 
                 if (terrainType) {
-                    const name = `terrain${colorName}${keyName}` as keyof PigmentDye;
-                    const changedTypeName = PigmentDye.INSTANCE[name] as TerrainType;
+                    const name = `terrain${colorName}${keyName}` as keyof ColorsEverywhere;
+                    const changedTypeName = ColorsEverywhere.INSTANCE[name] as TerrainType;
                     game.changeTile(changedTypeName, tilePosition.x, tilePosition.y, tilePosition.z, false)
                 }
 
@@ -753,7 +801,7 @@ export default class PigmentDye extends Mod {
                     usePaintAction(itemColorName, undefined, tileTerrain);
                 }
             } else {
-                player.messages.source(Source.Action).send(PigmentDye.INSTANCE.messageNoDyeAllowed);
+                player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoDyeAllowed);
             }
 
 			game.passTurn(player);
@@ -773,8 +821,8 @@ export default class PigmentDye extends Mod {
             const tileDoodad = tile.doodad;
             const tileTerrain = TileHelpers.getType(tile);
 
-            const doodadTypeList = PigmentDye.INSTANCE.getDoodadList();
-            const terrainTypeList = PigmentDye.INSTANCE.getTerrainList();
+            const doodadTypeList = ColorsEverywhere.INSTANCE.getDoodadList();
+            const terrainTypeList = ColorsEverywhere.INSTANCE.getTerrainList();
 
             function useRemovePaintAction(doodadType?: DoodadType, terrainType?: TerrainType) {
 
@@ -790,8 +838,8 @@ export default class PigmentDye extends Mod {
                 }
 
                 // Remove paint
-                if (keyName?.includes('ModPigmentDye')) { 
-                    const removedModName = keyName.replace('ModPigmentDye', '');
+                if (keyName?.includes('ModColorsEverywhere')) { 
+                    const removedModName = keyName.replace('ModColorsEverywhere', '');
                     const colorArray = ['White', 'Black', 'Red', 'Yellow', 'Blue', 'Orange', 'Green', 'Purple'];
                     colorArray.forEach( val => {
                         if (keyName?.includes(val)) { 
@@ -826,7 +874,7 @@ export default class PigmentDye extends Mod {
                     useRemovePaintAction(undefined, tileTerrain);
                 }
             } else {
-                player.messages.source(Source.Action).send(PigmentDye.INSTANCE.messageNoDyeAllowed);
+                player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoDyeAllowed);
             }
 
 			game.passTurn(player);
@@ -844,7 +892,7 @@ export default class PigmentDye extends Mod {
             const tile = player.getFacingTile();
             const tileDoodad = tile.doodad;
             const terrainType = TileHelpers.getType(tile);
-            const cleanBrush = PigmentDye.INSTANCE.itemPaintbrush;
+            const cleanBrush = ColorsEverywhere.INSTANCE.itemPaintbrush;
 
             function cleanIt() {
                 game.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, particleColor('blue'));
@@ -869,7 +917,7 @@ export default class PigmentDye extends Mod {
                 ) {
                     cleanIt();
                 } else {
-                    player.messages.source(Source.Action).send(PigmentDye.INSTANCE.messageNoWaterSource);
+                    player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoWaterSource);
                 }
             }
 			game.passTurn(player);
@@ -877,14 +925,40 @@ export default class PigmentDye extends Mod {
         
     public readonly actionCleanPaintbrush: ActionType;
 
+    // ------------------------------------------------------------ //
+
+    @Register.action("DyeItem", new Action(ActionArgument.Item)
+        .setUsableBy(EntityType.Player)
+        .setHandler((action, item) => {
+
+            const player = action.executor;
+            const tile = player.getFacingTile();
+            const tileDoodad = tile.doodad;
+
+            if (tileDoodad?.type !== ColorsEverywhere.INSTANCE.doodadRedDye) {
+                player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoDyeSource);
+            } else {
+                game.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, particleColor('red'));
+                item.changeInto(ColorsEverywhere.INSTANCE.itemRedLeatherTunic);
+                tileDoodad.damage();
+            }
+
+        }))
+
+    public readonly actionDyeItem: ActionType;
+
     
     ////////////////////////////////////////////////////////////
     // Overrides
     ////////////////////////////////////////////////////////////
 
     private milkThistleOrig: IItemDescription;
+    private leatherTunicOrig: IItemDescription;
     
     @Override public onLoad() {
+
+        // Milk Thistle
+
         this.milkThistleOrig = itemDescriptions[ItemType.MilkThistleFlowers];
         const milkThistle = itemDescriptions[ItemType.MilkThistleFlowers];
 
@@ -899,10 +973,26 @@ export default class PigmentDye extends Mod {
                 reputation: 2
             };
         }
+
+        // Leather Tunic
+
+        this.leatherTunicOrig = itemDescriptions[ItemType.LeatherTunic];
+        const leatherTunic = itemDescriptions[ItemType.LeatherTunic];
+
+        // Repeat colors
+        let redLeatherTunic = itemDescriptions[ColorsEverywhere.INSTANCE.itemRedLeatherTunic];
+
+        if (leatherTunic) {
+            // Append dye action
+            !leatherTunic.use ? leatherTunic.use = [ColorsEverywhere.INSTANCE.actionDyeItem] : undefined;
+            // Clone item stats for each color
+            Object.assign(redLeatherTunic, leatherTunic);
+        }
     }
 
     @Override public onUnload() {
         itemDescriptions[ItemType.MilkThistleFlowers] = this.milkThistleOrig;
+        itemDescriptions[ItemType.LeatherTunic] = this.leatherTunicOrig;
     }
 
     @Override @HookMethod
@@ -922,6 +1012,7 @@ export default class PigmentDye extends Mod {
             localPlayer.createItemInInventory(ItemType.MilkThistleFlowers);
             localPlayer.createItemInInventory(ItemType.ClayJugOfUnpurifiedFreshWater);
             localPlayer.createItemInInventory(ItemType.LargeRock);
+            localPlayer.createItemInInventory(ItemType.LeatherTunic);
             localPlayer.createItemInInventory(this.itemRedPaintbrush);
             localPlayer.createItemInInventory(this.itemYellowPaintbrush);
             localPlayer.createItemInInventory(this.itemWhitePaintbrush);
@@ -929,13 +1020,18 @@ export default class PigmentDye extends Mod {
             localPlayer.createItemInInventory(this.itemOrangePaintbrush);
             localPlayer.createItemInInventory(this.itemBluePaintbrush);
             localPlayer.createItemInInventory(this.itemPurplePaintbrush);
+            localPlayer.createItemInInventory(ItemType.LeatherTunic, Quality.Exceptional);
             localPlayer.createItemInInventory(this.itemGreenPaintbrush, Quality.Exceptional);
             localPlayer.createItemInInventory(ItemType.Ectoplasm);
-            localPlayer.createItemInInventory(ItemType.CobblestoneFlooring);
-            localPlayer.createItemInInventory(ItemType.CobblestoneFlooring);
-            localPlayer.createItemInInventory(ItemType.CobblestoneFlooring);
-            localPlayer.createItemInInventory(ItemType.CobblestoneFlooring);
-            localPlayer.createItemInInventory(ItemType.CobblestoneFlooring);
+            localPlayer.createItemInInventory(ItemType.StoneWall);
+            localPlayer.createItemInInventory(ItemType.StoneWall);
+            localPlayer.createItemInInventory(this.itemRedLeatherTunic);
+            localPlayer.createItemInInventory(this.itemWhiteStoneWall);
+            localPlayer.createItemInInventory(this.itemWhiteStoneWall);
+            localPlayer.createItemInInventory(this.itemWhiteStoneWall);
+            localPlayer.createItemInInventory(this.itemRedDye);
+            localPlayer.createItemInInventory(this.itemWhiteDye);
+            localPlayer.createItemInInventory(this.itemPurpleDye);
             localPlayer.createItemInInventory(this.itemWhiteCobblestoneFlooring);
 		}
 	}

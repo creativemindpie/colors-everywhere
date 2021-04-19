@@ -1,6 +1,6 @@
-import { ItemType } from "item/IItem";
+import { ItemType } from "game/item/IItem";
 import { Registry } from "mod/ModRegistry";
-import PigmentDye from "src/PigmentDye";
+import ColorsEverywhere from "src/ColorsEverywhere";
 
 export const WhitePigmentIngredientGroup = {
     default: ItemType.TalcumPowder,
@@ -20,24 +20,24 @@ export const BlackPigmentIngredientGroup = {
 }
 
 export const RedPigmentIngredientGroup = {
-    default: Registry<PigmentDye>().get("itemRose"),
+    default: Registry<ColorsEverywhere>().get("itemRose"),
     types: [
-        Registry<PigmentDye>().get("itemRose")
+        Registry<ColorsEverywhere>().get("itemRose")
     ]
 }
 
 export const YellowPigmentIngredientGroup = {
-    default: Registry<PigmentDye>().get("itemSunflower"),
+    default: Registry<ColorsEverywhere>().get("itemSunflower"),
     types: [
-        Registry<PigmentDye>().get("itemSunflower"),
+        Registry<ColorsEverywhere>().get("itemSunflower"),
         ItemType.ArcticPoppies,
         ItemType.Beggarticks
     ]
 }
 
 export const BluePigmentIngredientGroup = {
-    default: Registry<PigmentDye>().get("itemCornflower"),
+    default: Registry<ColorsEverywhere>().get("itemCornflower"),
     types: [
-        Registry<PigmentDye>().get("itemCornflower")
+        Registry<ColorsEverywhere>().get("itemCornflower")
     ]
 }

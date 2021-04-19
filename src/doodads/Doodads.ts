@@ -1,7 +1,7 @@
-import { ActionType } from "entity/action/IAction";
-import { IItemDescription } from "item/IItem";
+import { ActionType } from "game/entity/action/IAction";
+import { IItemDescription } from "game/item/IItem";
 import { Registry } from "mod/ModRegistry";
-import PigmentDye from "src/PigmentDye";
+import ColorsEverywhere from "src/ColorsEverywhere";
 
 // Wooden Chests
 
@@ -9,72 +9,72 @@ export const WhiteWoodenChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [10,11],
     weight: 10,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadWhiteWoodenChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadWhiteWoodenChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadWhiteWoodenChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadWhiteWoodenChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadWhiteWoodenChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadWhiteWoodenChest')
 }
 
 export const BlackWoodenChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [10,11],
     weight: 10,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadBlackWoodenChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadBlackWoodenChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadBlackWoodenChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadBlackWoodenChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadBlackWoodenChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadBlackWoodenChest')
 }
 
 export const RedWoodenChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [10,11],
     weight: 10,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadRedWoodenChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadRedWoodenChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadRedWoodenChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadRedWoodenChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadRedWoodenChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadRedWoodenChest')
 }
 
 export const YellowWoodenChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [10,11],
     weight: 10,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadYellowWoodenChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadYellowWoodenChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadYellowWoodenChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadYellowWoodenChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadYellowWoodenChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadYellowWoodenChest')
 }
 
 export const BlueWoodenChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [10,11],
     weight: 10,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadBlueWoodenChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadBlueWoodenChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadBlueWoodenChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadBlueWoodenChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadBlueWoodenChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadBlueWoodenChest')
 }
 
 export const OrangeWoodenChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [10,11],
     weight: 10,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadOrangeWoodenChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadOrangeWoodenChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadOrangeWoodenChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadOrangeWoodenChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadOrangeWoodenChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadOrangeWoodenChest')
 }
 
 export const GreenWoodenChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [10,11],
     weight: 10,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadGreenWoodenChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadGreenWoodenChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadGreenWoodenChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadGreenWoodenChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadGreenWoodenChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadGreenWoodenChest')
 }
 
 export const PurpleWoodenChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [10,11],
     weight: 10,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadPurpleWoodenChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadPurpleWoodenChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadPurpleWoodenChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadPurpleWoodenChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadPurpleWoodenChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadPurpleWoodenChest')
 }
 
 
@@ -84,72 +84,72 @@ export const WhiteCopperChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [7,11],
     weight: 7,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadWhiteCopperChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadWhiteCopperChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadWhiteCopperChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadWhiteCopperChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadWhiteCopperChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadWhiteCopperChest')
 }
 
 export const BlackCopperChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [7,11],
     weight: 7,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadBlackCopperChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadBlackCopperChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadBlackCopperChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadBlackCopperChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadBlackCopperChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadBlackCopperChest')
 }
 
 export const RedCopperChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [7,11],
     weight: 7,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadRedCopperChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadRedCopperChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadRedCopperChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadRedCopperChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadRedCopperChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadRedCopperChest')
 }
 
 export const YellowCopperChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [7,11],
     weight: 7,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadYellowCopperChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadYellowCopperChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadYellowCopperChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadYellowCopperChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadYellowCopperChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadYellowCopperChest')
 }
 
 export const BlueCopperChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [7,11],
     weight: 7,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadBlueCopperChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadBlueCopperChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadBlueCopperChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadBlueCopperChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadBlueCopperChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadBlueCopperChest')
 }
 
 export const OrangeCopperChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [7,11],
     weight: 7,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadOrangeCopperChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadOrangeCopperChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadOrangeCopperChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadOrangeCopperChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadOrangeCopperChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadOrangeCopperChest')
 }
 
 export const GreenCopperChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [7,11],
     weight: 7,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadGreenCopperChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadGreenCopperChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadGreenCopperChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadGreenCopperChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadGreenCopperChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadGreenCopperChest')
 }
 
 export const PurpleCopperChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [7,11],
     weight: 7,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadPurpleCopperChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadPurpleCopperChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadPurpleCopperChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadPurpleCopperChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadPurpleCopperChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadPurpleCopperChest')
 }
 
 
@@ -159,72 +159,72 @@ export const WhiteWroughtIronChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [15,20],
     weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadWhiteWroughtIronChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadWhiteWroughtIronChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadWhiteWroughtIronChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadWhiteWroughtIronChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadWhiteWroughtIronChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadWhiteWroughtIronChest')
 }
 
 export const BlackWroughtIronChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [15,20],
     weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadBlackWroughtIronChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadBlackWroughtIronChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadBlackWroughtIronChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadBlackWroughtIronChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadBlackWroughtIronChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadBlackWroughtIronChest')
 }
 
 export const RedWroughtIronChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [15,20],
     weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadRedWroughtIronChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadRedWroughtIronChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadRedWroughtIronChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadRedWroughtIronChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadRedWroughtIronChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadRedWroughtIronChest')
 }
 
 export const YellowWroughtIronChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [15,20],
     weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadYellowWroughtIronChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadYellowWroughtIronChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadYellowWroughtIronChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadYellowWroughtIronChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadYellowWroughtIronChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadYellowWroughtIronChest')
 }
 
 export const BlueWroughtIronChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [15,20],
     weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadBlueWroughtIronChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadBlueWroughtIronChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadBlueWroughtIronChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadBlueWroughtIronChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadBlueWroughtIronChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadBlueWroughtIronChest')
 }
 
 export const OrangeWroughtIronChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [15,20],
     weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadOrangeWroughtIronChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadOrangeWroughtIronChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadOrangeWroughtIronChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadOrangeWroughtIronChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadOrangeWroughtIronChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadOrangeWroughtIronChest')
 }
 
 export const GreenWroughtIronChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [15,20],
     weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadGreenWroughtIronChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadGreenWroughtIronChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadGreenWroughtIronChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadGreenWroughtIronChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadGreenWroughtIronChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadGreenWroughtIronChest')
 }
 
 export const PurpleWroughtIronChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [15,20],
     weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadPurpleWroughtIronChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadPurpleWroughtIronChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadPurpleWroughtIronChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadPurpleWroughtIronChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadPurpleWroughtIronChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadPurpleWroughtIronChest')
 }
 
 
@@ -234,142 +234,120 @@ export const WhiteIronChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [15,20],
     weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadWhiteIronChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadWhiteIronChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadWhiteIronChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadWhiteIronChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadWhiteIronChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadWhiteIronChest')
 }
 
 export const BlackIronChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [15,20],
     weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadBlackIronChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadBlackIronChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadBlackIronChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadBlackIronChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadBlackIronChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadBlackIronChest')
 }
 
 export const RedIronChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [15,20],
     weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadRedIronChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadRedIronChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadRedIronChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadRedIronChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadRedIronChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadRedIronChest')
 }
 
 export const YellowIronChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [15,20],
     weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadYellowIronChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadYellowIronChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadYellowIronChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadYellowIronChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadYellowIronChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadYellowIronChest')
 }
 
 export const BlueIronChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [15,20],
     weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadBlueIronChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadBlueIronChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadBlueIronChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadBlueIronChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadBlueIronChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadBlueIronChest')
 }
 
 export const OrangeIronChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [15,20],
     weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadOrangeIronChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadOrangeIronChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadOrangeIronChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadOrangeIronChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadOrangeIronChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadOrangeIronChest')
 }
 
 export const GreenIronChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [15,20],
     weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadGreenIronChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadGreenIronChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadGreenIronChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadGreenIronChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadGreenIronChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadGreenIronChest')
 }
 
 export const PurpleIronChestDescription: IItemDescription = {
     use: [ActionType.Build],
     weightRange: [15,20],
     weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadPurpleIronChest')},
-    doodadContainer: Registry<PigmentDye>().get('doodadPurpleIronChest'),
-    placeDownType: Registry<PigmentDye>().get('doodadPurpleIronChest')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadPurpleIronChest')},
+    doodadContainer: Registry<ColorsEverywhere>().get('doodadPurpleIronChest'),
+    placeDownType: Registry<ColorsEverywhere>().get('doodadPurpleIronChest')
 }
 
 // Stone Wall
 
 export const WhiteStoneWallDescription: IItemDescription = {
     use: [ActionType.Build],
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadWhiteStoneWall')},
-    doodadContainer: Registry<PigmentDye>().get('doodadWhiteStoneWall'),
-    placeDownType: Registry<PigmentDye>().get('doodadWhiteStoneWall')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadWhiteStoneWall')},
+    placeDownType: Registry<ColorsEverywhere>().get('doodadWhiteStoneWall')
 }
 
 export const BlackStoneWallDescription: IItemDescription = {
     use: [ActionType.Build],
-    weightRange: [15,20],
-    weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadBlackStoneWall')},
-    doodadContainer: Registry<PigmentDye>().get('doodadBlackStoneWall'),
-    placeDownType: Registry<PigmentDye>().get('doodadBlackStoneWall')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadBlackStoneWall')},
+    placeDownType: Registry<ColorsEverywhere>().get('doodadBlackStoneWall')
 }
 
 export const RedStoneWallDescription: IItemDescription = {
     use: [ActionType.Build],
-    weightRange: [15,20],
-    weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadRedStoneWall')},
-    doodadContainer: Registry<PigmentDye>().get('doodadRedStoneWall'),
-    placeDownType: Registry<PigmentDye>().get('doodadRedStoneWall')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadRedStoneWall')},
+    placeDownType: Registry<ColorsEverywhere>().get('doodadRedStoneWall')
 }
 
 export const YellowStoneWallDescription: IItemDescription = {
     use: [ActionType.Build],
-    weightRange: [15,20],
-    weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadYellowStoneWall')},
-    doodadContainer: Registry<PigmentDye>().get('doodadYellowStoneWall'),
-    placeDownType: Registry<PigmentDye>().get('doodadYellowStoneWall')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadYellowStoneWall')},
+    placeDownType: Registry<ColorsEverywhere>().get('doodadYellowStoneWall')
 }
 
 export const BlueStoneWallDescription: IItemDescription = {
     use: [ActionType.Build],
-    weightRange: [15,20],
-    weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadBlueStoneWall')},
-    doodadContainer: Registry<PigmentDye>().get('doodadBlueStoneWall'),
-    placeDownType: Registry<PigmentDye>().get('doodadBlueStoneWall')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadBlueStoneWall')},
+    placeDownType: Registry<ColorsEverywhere>().get('doodadBlueStoneWall')
 }
 
 export const OrangeStoneWallDescription: IItemDescription = {
     use: [ActionType.Build],
-    weightRange: [15,20],
-    weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadOrangeStoneWall')},
-    doodadContainer: Registry<PigmentDye>().get('doodadOrangeStoneWall'),
-    placeDownType: Registry<PigmentDye>().get('doodadOrangeStoneWall')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadOrangeStoneWall')},
+    placeDownType: Registry<ColorsEverywhere>().get('doodadOrangeStoneWall')
 }
 
 export const GreenStoneWallDescription: IItemDescription = {
     use: [ActionType.Build],
-    weightRange: [15,20],
-    weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadGreenStoneWall')},
-    doodadContainer: Registry<PigmentDye>().get('doodadGreenStoneWall'),
-    placeDownType: Registry<PigmentDye>().get('doodadGreenStoneWall')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadGreenStoneWall')},
+    placeDownType: Registry<ColorsEverywhere>().get('doodadGreenStoneWall')
 }
 
 export const PurpleStoneWallDescription: IItemDescription = {
     use: [ActionType.Build],
-    weightRange: [15,20],
-    weight: 15,
-    onUse: { [ActionType.Build] : Registry<PigmentDye>().get('doodadPurpleStoneWall')},
-    doodadContainer: Registry<PigmentDye>().get('doodadPurpleStoneWall'),
-    placeDownType: Registry<PigmentDye>().get('doodadPurpleStoneWall')
+    onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get('doodadPurpleStoneWall')},
+    placeDownType: Registry<ColorsEverywhere>().get('doodadPurpleStoneWall')
 }

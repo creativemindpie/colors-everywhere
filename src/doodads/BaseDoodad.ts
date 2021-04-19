@@ -30,8 +30,12 @@ export const BaseStatsDoodadStoneWall = {
     blockMove: true,
     canBreak: true,
     blockJump: true,
-    repairItem: 64,
     reduceDurabilityOnGather: true,
-    disableDrop: true,
     isWall: true
+}
+
+export const BaseStatsDoodadDye = {
+    blockMove: true,
+    isTall: true,
+    reduceDurabilityOnGather: true
 }

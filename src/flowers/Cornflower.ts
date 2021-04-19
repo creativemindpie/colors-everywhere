@@ -1,12 +1,12 @@
-import { GrowingStage } from "doodad/IDoodad";
-import { ActionType } from "entity/action/IAction";
-import { SkillType } from "entity/IHuman";
-import { BiomeType } from "game/IBiome";
+import { GrowingStage } from "game/doodad/IDoodad";
+import { ActionType } from "game/entity/action/IAction";
+import { SkillType } from "game/entity/IHuman";
+import { BiomeType } from "game/biome/IBiome";
 import { WorldZ } from "game/WorldZ";
-import { ItemType, ItemTypeGroup } from "item/IItem";
+import { ItemType, ItemTypeGroup } from "game/item/IItem";
 import { Registry } from "mod/ModRegistry";
-import { TerrainType } from "tile/ITerrain";
-import PigmentDye from "../PigmentDye";
+import { TerrainType } from "game/tile/ITerrain";
+import ColorsEverywhere from "../ColorsEverywhere";
 
 export const CornflowerDescription = {
     use: [ActionType.Eat],
@@ -17,7 +17,7 @@ export const CornflowerDescription = {
 export const CornflowerSeedsDescription = {
     use: [ActionType.Plant, ActionType.Eat],
     weight: 0.1,
-    onUse:  { [ActionType.Plant] : Registry<PigmentDye>().get('doodadCornflower') },
+    onUse:  { [ActionType.Plant] : Registry<ColorsEverywhere>().get('doodadCornflower') },
     groups: [ItemTypeGroup.Seed]
 }
 
@@ -28,20 +28,20 @@ export const CornflowerDoodadDescription = {
             { type: ItemType.PlantRoots },
         ],
         [GrowingStage.Budding]: [
-            { type: Registry<PigmentDye>().get('itemCornflower') },
+            { type: Registry<ColorsEverywhere>().get('itemCornflower') },
             { type: ItemType.PlantRoots },
         ],
     },
     harvest: {
         [GrowingStage.Flowering]: [
-            { type: Registry<PigmentDye>().get('itemCornflower') },
-            { type: Registry<PigmentDye>().get('itemCornflower') },
+            { type: Registry<ColorsEverywhere>().get('itemCornflower') },
+            { type: Registry<ColorsEverywhere>().get('itemCornflower') },
         ],
         [GrowingStage.Ripening]: [
-            { type: Registry<PigmentDye>().get('itemCornflowerSeeds') },
-            { type: Registry<PigmentDye>().get('itemCornflower') },
-            { type: Registry<PigmentDye>().get('itemCornflower'), chance: 15 },
-            { type: Registry<PigmentDye>().get('itemCornflower') },
+            { type: Registry<ColorsEverywhere>().get('itemCornflowerSeeds') },
+            { type: Registry<ColorsEverywhere>().get('itemCornflower') },
+            { type: Registry<ColorsEverywhere>().get('itemCornflower'), chance: 15 },
+            { type: Registry<ColorsEverywhere>().get('itemCornflower') },
         ],
     },
     skillUse: SkillType.Botany,

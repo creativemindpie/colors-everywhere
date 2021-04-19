@@ -1,15 +1,15 @@
-import { SkillType } from "entity/IHuman";
-import { IItemDescription, ItemTypeGroup, RecipeLevel } from "item/IItem";
-import { RecipeComponent } from "item/Items";
+import { SkillType } from "game/entity/IHuman";
+import { IItemDescription, ItemTypeGroup, RecipeLevel } from "game/item/IItem";
+import { RecipeComponent } from "game/item/Items";
 import { Registry } from "mod/ModRegistry";
-import PigmentDye from "src/PigmentDye";
+import ColorsEverywhere from "src/ColorsEverywhere";
 
 export const WhitePigmentDescription: IItemDescription = {
     weight: 0.5,
     recipe: {
         components: [
             RecipeComponent(ItemTypeGroup.MortarAndPestle,1,0),
-            RecipeComponent(Registry<PigmentDye>().get("itemWhitePigmentIngredientGroup"),1,1)
+            RecipeComponent(Registry<ColorsEverywhere>().get("itemWhitePigmentIngredientGroup"),1,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
@@ -22,7 +22,7 @@ export const BlackPigmentDescription: IItemDescription = {
     recipe: {
         components: [
             RecipeComponent(ItemTypeGroup.MortarAndPestle,1,0),
-            RecipeComponent(Registry<PigmentDye>().get("itemBlackPigmentIngredientGroup"),1,1)
+            RecipeComponent(Registry<ColorsEverywhere>().get("itemBlackPigmentIngredientGroup"),1,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
@@ -35,7 +35,7 @@ export const RedPigmentDescription: IItemDescription = {
     recipe: {
         components: [
             RecipeComponent(ItemTypeGroup.MortarAndPestle,1,0),
-            RecipeComponent(Registry<PigmentDye>().get("itemRedPigmentIngredientGroup"),1,1)
+            RecipeComponent(Registry<ColorsEverywhere>().get("itemRedPigmentIngredientGroup"),1,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
@@ -48,7 +48,7 @@ export const YellowPigmentDescription: IItemDescription = {
     recipe: {
         components: [
             RecipeComponent(ItemTypeGroup.MortarAndPestle,1,0),
-            RecipeComponent(Registry<PigmentDye>().get("itemYellowPigmentIngredientGroup"),1,1)
+            RecipeComponent(Registry<ColorsEverywhere>().get("itemYellowPigmentIngredientGroup"),1,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
@@ -61,7 +61,7 @@ export const BluePigmentDescription: IItemDescription = {
     recipe: {
         components: [
             RecipeComponent(ItemTypeGroup.MortarAndPestle,1,0),
-            RecipeComponent(Registry<PigmentDye>().get("itemBluePigmentIngredientGroup"),1,1)
+            RecipeComponent(Registry<ColorsEverywhere>().get("itemBluePigmentIngredientGroup"),1,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
@@ -74,8 +74,8 @@ export const OrangePigmentDescription: IItemDescription = {
     recipe: {
         components: [
             RecipeComponent(ItemTypeGroup.MortarAndPestle,1,0),
-            RecipeComponent(Registry<PigmentDye>().get("itemRedPigment"),1,1),
-            RecipeComponent(Registry<PigmentDye>().get("itemYellowPigment"),1,1)
+            RecipeComponent(Registry<ColorsEverywhere>().get("itemRedPigment"),1,1),
+            RecipeComponent(Registry<ColorsEverywhere>().get("itemYellowPigment"),1,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
@@ -88,8 +88,8 @@ export const GreenPigmentDescription: IItemDescription = {
     recipe: {
         components: [
             RecipeComponent(ItemTypeGroup.MortarAndPestle,1,0),
-            RecipeComponent(Registry<PigmentDye>().get("itemYellowPigment"),1,1),
-            RecipeComponent(Registry<PigmentDye>().get("itemBluePigment"),1,1)
+            RecipeComponent(Registry<ColorsEverywhere>().get("itemYellowPigment"),1,1),
+            RecipeComponent(Registry<ColorsEverywhere>().get("itemBluePigment"),1,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
@@ -102,8 +102,8 @@ export const PurplePigmentDescription: IItemDescription = {
     recipe: {
         components: [
             RecipeComponent(ItemTypeGroup.MortarAndPestle,1,0),
-            RecipeComponent(Registry<PigmentDye>().get("itemRedPigment"),1,1),
-            RecipeComponent(Registry<PigmentDye>().get("itemBluePigment"),1,1)
+            RecipeComponent(Registry<ColorsEverywhere>().get("itemRedPigment"),1,1),
+            RecipeComponent(Registry<ColorsEverywhere>().get("itemBluePigment"),1,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,

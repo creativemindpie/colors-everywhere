@@ -1,12 +1,12 @@
 {
-	"name": "Pigment Dye",
+	"name": "Colors Everywhere",
 	"description": "Creates a blue flower resource to be gathered, creating base pigments of Red, Yellow, and Blue that can be mixed to create other pigments. Dyes can then be created with the pigment colors and applied to chests, armor, etc.",
 	"version": "1.0.0",
 	"author": "Tek",
 	"tags": ["Doodad", "Item", "Terrain"],
-	"file": "out/PigmentDye",
+	"file": "out/ColorsEverywhere",
 	"allowUnlockingMilestones": true,
 	"multiplayer": "compatible",
 	"languages": ["lang/english"],
-	"waywardVersion": "2.9.6-beta"
+	"waywardVersion": "2.10.1-beta"
 }
