@@ -5,8 +5,7 @@
 	"author": "Tek",
 	"tags": ["Doodad", "Item", "Terrain"],
 	"file": "out/ColorsEverywhere",
-	"allowUnlockingMilestones": true,
 	"multiplayer": "compatible",
 	"languages": ["lang/english"],
-	"waywardVersion": "2.10.1-beta"
+	"waywardVersion": "2.10.2-beta"
 }

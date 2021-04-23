@@ -48,7 +48,7 @@ export const WhitePaintbrushDescription: IItemDescription = {
     recipe: {
         components: [
             RecipeComponent(Registry<ColorsEverywhere>().get("itemPaintbrush"),1,1),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemWhiteDye"),1,0,1)
+            // RecipeComponent(Registry<ColorsEverywhere>().get("itemWhiteDye"),1,0,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,

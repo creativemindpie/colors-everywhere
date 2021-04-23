@@ -14,7 +14,9 @@ export function particleColor(color: string): IRGB {
 
 }
 
-// Colors
+export const bulkColors = ["White","Black","Red","Yellow","Blue","Orange","Green","Purple"] as const;
+
+// RGB Colors
 export const rgbColors = [
     { name: 'whiteRGB', value: { r: 255, g: 255, b: 255 } },
     { name: 'blackRGB', value: { r: 16, g: 16, b: 16 } },
