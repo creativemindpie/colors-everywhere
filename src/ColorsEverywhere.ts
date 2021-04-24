@@ -27,15 +27,6 @@ import { BlackAshCementFlooringDescription, BlackAshCementFlooringTerrainDescrip
 import { Tuple } from "utilities/collection/Arrays"; 
 import { WhitePigmentDescription, BlackPigmentDescription, RedPigmentDescription, YellowPigmentDescription, BluePigmentDescription, OrangePigmentDescription, GreenPigmentDescription, PurplePigmentDescription } from "./pigments/Pigments";
 
-
-// function getPigment<C extends string>(color: C) {
-//     return `item${color}Pigment` as `item${C}Pigment`;
-// }
-
-// function getDoodad<C extends string>(color: C) {
-//     return `doodad${color}Dye` as `doodad${C}Dye`;
-// }
-
 export enum Colors {
     White,
     Black,
@@ -47,36 +38,9 @@ export enum Colors {
     Purple
 }
 
-const pigmentRecipes: Partial<Record<Colors, Colors[]>> = {
-    [Colors.White] : [Colors.White],
-    [Colors.Black] : [Colors.Black],
-    [Colors.Red] : [Colors.Red],
-    [Colors.Yellow] : [Colors.Yellow],
-    [Colors.Blue] : [Colors.Blue],
-    [Colors.Orange] : [Colors.Orange],
-    [Colors.Green] : [Colors.Green],
-    [Colors.Purple] : [Colors.Purple]
-  };
-
-
-function getPigmentRecipe(color: Colors) {
-    const pigmentRecipe = pigmentRecipes[color];
-    if (pigmentRecipes && pigmentRecipe) 
-        return pigmentRecipe.map(ingredientColor =>
-        RecipeComponent(Registry<ColorsEverywhere>().get(`items`, ingredientColor),1,1));
-
-    return [];
+function getPigment(color: Colors) {
+    return `item${Colors[color]}Pigment` as `item${keyof typeof Colors}Pigment`;
 }
-
-// function getDyeRecipe(color: Colors) {
-//     const pigmentRecipe = pigmentRecipes[color];
-//     if (pigmentRecipes && pigmentRecipe) 
-//         return pigmentRecipe.map(ingredientColor => 
-//             Registry<ColorsEverywhere>().get(`doodads`, ingredientColor)
-//         );
-
-//     return [];
-// }
 
 function getItemDyeDescription(color: Colors): IItemDescription {
     return {
@@ -84,8 +48,8 @@ function getItemDyeDescription(color: Colors): IItemDescription {
         recipe: {
             components: [
                 RecipeComponent(ItemTypeGroup.Liquid,1,1),
-                ...getPigmentRecipe(color),
-                RecipeComponent(Registry<ColorsEverywhere>().get("itemStoneBowl"),1,1)
+                RecipeComponent(Registry<ColorsEverywhere>("Colors Everywhere").get( getPigment(color) ),1,1),
+                RecipeComponent(Registry<ColorsEverywhere>("Colors Everywhere").get("itemStoneBowl"),1,1)
             ],
             skill: SkillType.Chemistry,
             level: RecipeLevel.Simple,
@@ -93,8 +57,8 @@ function getItemDyeDescription(color: Colors): IItemDescription {
             reputation: 2
         },
         use: [ActionType.Build],
-        onUse: { [ActionType.Build] : Registry<ColorsEverywhere>().get(`doodads`, color) },
-        placeDownType: Registry<ColorsEverywhere>().get(`doodads`, color)
+        onUse: { [ActionType.Build] : Registry<ColorsEverywhere>("Colors Everywhere").get(`doodads`, color) },
+        placeDownType: Registry<ColorsEverywhere>("Colors Everywhere").get(`doodads`, color)
     };
   }
 
@@ -103,7 +67,7 @@ function getDoodadDyeDescription(color: Colors): IDoodadDescription {
         blockMove: true,
         isTall: true,
         reduceDurabilityOnGather: true,
-        //pickUp: [ColorsEverywhere.INSTANCE[dyeName] as ItemType]
+        pickUp: [Registry<ColorsEverywhere>("Colors Everywhere").get(`items`, color)]
     }
 }
 
@@ -212,64 +176,6 @@ export default class ColorsEverywhere extends Mod {
     // Items
     @Register.bulk("item", ...Enums.values(Colors).map(color => Tuple(`${Colors[color]}Dye`, getItemDyeDescription(color) )))
     public readonly items: ItemType[];
-
-    public doodadWhiteDye: DoodadType;
-    public doodadBlackDye: DoodadType;
-    public doodadRedDye: DoodadType;
-    public doodadYellowDye: DoodadType;
-    public doodadBlueDye: DoodadType;
-    public doodadOrangeDye: DoodadType;
-    public doodadGreenDye: DoodadType;
-    public doodadPurpleDye: DoodadType;
-
-    public itemWhiteDye: ItemType;
-    public itemBlackDye: ItemType;
-    public itemRedDye: ItemType;
-    public itemYellowDye: ItemType;
-    public itemBlueDye: ItemType;
-    public itemOrangeDye: ItemType;
-    public itemGreenDye: ItemType;
-    public itemPurpleDye: ItemType;
-
-    // @Register.item("WhiteDye", { ...WhiteDyeDescription, groups: [Registry<ColorsEverywhere>().get('itemDyeGroup')] })
-    // public itemWhiteDye: ItemType;
-    // @Register.doodad("WhiteDye", { ...BaseStatsDoodadDye, pickUp: [Registry<ColorsEverywhere>().get('itemWhiteDye')] })
-    // public doodadWhiteDye: DoodadType;
-
-    // @Register.item("BlackDye", { ...BlackDyeDescription, groups: [Registry<ColorsEverywhere>().get('itemDyeGroup')] })
-    // public itemBlackDye: ItemType;
-    // @Register.doodad("BlackDye", { ...BaseStatsDoodadDye, pickUp: [Registry<ColorsEverywhere>().get('itemBlackDye')] })
-    // public doodadBlackDye: DoodadType;
-
-    // @Register.item("RedDye", { ...RedDyeDescription, groups: [Registry<ColorsEverywhere>().get('itemDyeGroup')] })
-    // public itemRedDye: ItemType;
-    // @Register.doodad("RedDye", { ...BaseStatsDoodadDye, pickUp: [Registry<ColorsEverywhere>().get('itemRedDye')] })
-    // public doodadRedDye: DoodadType;
-
-    // @Register.item("YellowDye", { ...YellowDyeDescription, groups: [Registry<ColorsEverywhere>().get('itemDyeGroup')] })
-    // public itemYellowDye: ItemType;
-    // @Register.doodad("YellowDye", { ...BaseStatsDoodadDye, pickUp: [Registry<ColorsEverywhere>().get('itemYellowDye')] })
-    // public doodadYellowDye: DoodadType;
-
-    // @Register.item("BlueDye", { ...BlueDyeDescription, groups: [Registry<ColorsEverywhere>().get('itemDyeGroup')] })
-    // public itemBlueDye: ItemType;
-    // @Register.doodad("BlueDye", { ...BaseStatsDoodadDye, pickUp: [Registry<ColorsEverywhere>().get('itemBlueDye')] })
-    // public doodadBlueDye: DoodadType;
-
-    // @Register.item("OrangeDye", { ...OrangeDyeDescription, groups: [Registry<ColorsEverywhere>().get('itemDyeGroup')] })
-    // public itemOrangeDye: ItemType;
-    // @Register.doodad("OrangeDye", { ...BaseStatsDoodadDye, pickUp: [Registry<ColorsEverywhere>().get('itemOrangeDye')] })
-    // public doodadOrangeDye: DoodadType;
-
-    // @Register.item("GreenDye", { ...GreenDyeDescription, groups: [Registry<ColorsEverywhere>().get('itemDyeGroup')] })
-    // public itemGreenDye: ItemType;
-    // @Register.doodad("GreenDye", { ...BaseStatsDoodadDye, pickUp: [Registry<ColorsEverywhere>().get('itemGreenDye')] })
-    // public doodadGreenDye: DoodadType;
-
-    // @Register.item("PurpleDye", { ...PurpleDyeDescription, groups: [Registry<ColorsEverywhere>().get('itemDyeGroup')] })
-    // public itemPurpleDye: ItemType;
-    // @Register.doodad("PurpleDye", { ...BaseStatsDoodadDye, pickUp: [Registry<ColorsEverywhere>().get('itemPurpleDye')] })
-    // public doodadPurpleDye: DoodadType;
     
 
     ////////////////////////////////////////////////////////////
@@ -1030,7 +936,7 @@ export default class ColorsEverywhere extends Mod {
             const tile = player.getFacingTile();
             const tileDoodad = tile.doodad;
 
-            if (tileDoodad?.type !== ColorsEverywhere.INSTANCE.doodadRedDye) {
+            if (tileDoodad?.type !== 10046) {
                 player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoDyeSource);
             } else {
                 game.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, particleColor('red'));
@@ -1123,9 +1029,8 @@ export default class ColorsEverywhere extends Mod {
             localPlayer.createItemInInventory(this.itemWhiteStoneWall);
             localPlayer.createItemInInventory(this.itemWhiteStoneWall);
             localPlayer.createItemInInventory(this.itemWhiteStoneWall);
-            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemPurpleDye);
-            // localPlayer.createItemInInventory(this.itemWhiteDye);
-            // localPlayer.createItemInInventory(this.itemPurpleDye);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.items[Colors.Purple]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.items[Colors.Red]);
             localPlayer.createItemInInventory(this.itemWhiteCobblestoneFlooring);
 		}
 	}

@@ -48,7 +48,7 @@ export const WhitePaintbrushDescription: IItemDescription = {
     recipe: {
         components: [
             RecipeComponent(Registry<ColorsEverywhere>().get("itemPaintbrush"),1,1),
-            // RecipeComponent(Registry<ColorsEverywhere>().get("itemWhiteDye"),1,0,1)
+            // RecipeComponent(Registry<ColorsEverywhere>("Colors Everywhere").get(`items`, Colors.White),1,0,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
@@ -65,7 +65,7 @@ export const BlackPaintbrushDescription: IItemDescription = {
     recipe: {
         components: [
             RecipeComponent(Registry<ColorsEverywhere>().get("itemPaintbrush"),1,1),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemBlackDye"),1,0,1)
+            //RecipeComponent(Registry<ColorsEverywhere>().get(`items`, Colors.Black),1,0,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
@@ -82,7 +82,7 @@ export const RedPaintbrushDescription: IItemDescription = {
     recipe: {
         components: [
             RecipeComponent(Registry<ColorsEverywhere>().get("itemPaintbrush"),1,1),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemRedDye"),1,0,1)
+            //RecipeComponent(Registry<ColorsEverywhere>().get(`items`, Colors.Red),1,0,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
@@ -99,7 +99,7 @@ export const YellowPaintbrushDescription: IItemDescription = {
     recipe: {
         components: [
             RecipeComponent(Registry<ColorsEverywhere>().get("itemPaintbrush"),1,1),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemYellowDye"),1,0,1)
+            //RecipeComponent(Registry<ColorsEverywhere>().get(`items`, Colors.Yellow),1,0,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
@@ -116,7 +116,7 @@ export const BluePaintbrushDescription: IItemDescription = {
     recipe: {
         components: [
             RecipeComponent(Registry<ColorsEverywhere>().get("itemPaintbrush"),1,1),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemBlueDye"),1,0,1)
+            //RecipeComponent(Registry<ColorsEverywhere>().get(`items`, Colors.Blue),1,0,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
@@ -133,7 +133,7 @@ export const OrangePaintbrushDescription: IItemDescription = {
     recipe: {
         components: [
             RecipeComponent(Registry<ColorsEverywhere>().get("itemPaintbrush"),1,1),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemOrangeDye"),1,0,1)
+            //RecipeComponent(Registry<ColorsEverywhere>().get(`items`, Colors.Orange),1,0,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
@@ -150,7 +150,7 @@ export const GreenPaintbrushDescription: IItemDescription = {
     recipe: {
         components: [
             RecipeComponent(Registry<ColorsEverywhere>().get("itemPaintbrush"),1,1),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemRedDye"),1,0,1)
+            //RecipeComponent(Registry<ColorsEverywhere>().get(`items`, Colors.Green),1,0,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
@@ -167,7 +167,7 @@ export const PurplePaintbrushDescription: IItemDescription = {
     recipe: {
         components: [
             RecipeComponent(Registry<ColorsEverywhere>().get("itemPaintbrush"),1,1),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemPurpleDye"),1,0,1)
+            //RecipeComponent(Registry<ColorsEverywhere>().get(`items`, Colors.Purple),1,0,1)
         ],
         skill: SkillType.Chemistry,
         level: RecipeLevel.Simple,
