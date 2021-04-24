@@ -1,43 +1,42 @@
-import { ItemType } from "game/item/IItem";
+import { IItemGroupDescription, ItemType, ItemTypeGroup } from "game/item/IItem";
 import { Registry } from "mod/ModRegistry";
-import ColorsEverywhere from "src/ColorsEverywhere";
+import ColorsEverywhere from "../ColorsEverywhere";
+import { Colors, MOD_NAME } from "../IColorsEverywhere";
 
-export const WhitePigmentIngredientGroup = {
-    default: ItemType.TalcumPowder,
-    types: [
+const ingredients: Partial<Record<Colors, (ItemType | ItemTypeGroup)[]>> = {
+    [Colors.White]: [
         ItemType.TalcumPowder,
         ItemType.BoneMeal,
         ItemType.LimestonePowder
-    ]
-}
-
-export const BlackPigmentIngredientGroup = {
-    default: ItemType.Charcoal,
-    types: [
+    ],
+    [Colors.Black]: [
         ItemType.Charcoal,
         ItemType.PileOfAsh
-    ]
-}
-
-export const RedPigmentIngredientGroup = {
-    default: Registry<ColorsEverywhere>().get("itemRose"),
-    types: [
-        Registry<ColorsEverywhere>().get("itemRose")
-    ]
-}
-
-export const YellowPigmentIngredientGroup = {
-    default: Registry<ColorsEverywhere>().get("itemSunflower"),
-    types: [
-        Registry<ColorsEverywhere>().get("itemSunflower"),
+    ],
+    [Colors.Red]: [
+        Registry<ColorsEverywhere>(MOD_NAME).get("itemRose")
+    ],
+    [Colors.Yellow]: [
+        Registry<ColorsEverywhere>(MOD_NAME).get("itemSunflower"),
         ItemType.ArcticPoppies,
         ItemType.Beggarticks
+    ],
+    [Colors.Blue]: [
+        Registry<ColorsEverywhere>(MOD_NAME).get("itemCornflower")
     ]
-}
+};
 
-export const BluePigmentIngredientGroup = {
-    default: Registry<ColorsEverywhere>().get("itemCornflower"),
-    types: [
-        Registry<ColorsEverywhere>().get("itemCornflower")
-    ]
+export function getPigmentIngredientGroupDescription (color: Colors): IItemGroupDescription {
+    const itemsInGroup = ingredients[color];
+    if (itemsInGroup?.length) {
+        return {
+            default: itemsInGroup[0],
+            types: itemsInGroup
+        };
+    }
+
+    return {
+        default: ItemType.None,
+        types: []
+    };
 }

@@ -1,112 +1,37 @@
 import { SkillType } from "game/entity/IHuman";
-import { IItemDescription, ItemTypeGroup, RecipeLevel } from "game/item/IItem";
+import { IItemDescription, ItemType, ItemTypeGroup, RecipeLevel } from "game/item/IItem";
 import { RecipeComponent } from "game/item/Items";
 import { Registry } from "mod/ModRegistry";
-import ColorsEverywhere from "src/ColorsEverywhere";
+import ColorsEverywhere from "../ColorsEverywhere";
+import { Colors, MOD_NAME } from "../IColorsEverywhere";
 
-export const WhitePigmentDescription: IItemDescription = {
-    weight: 0.5,
-    recipe: {
-        components: [
-            RecipeComponent(ItemTypeGroup.MortarAndPestle,1,0),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemWhitePigmentIngredientGroup"),1,1)
-        ],
-        skill: SkillType.Chemistry,
-        level: RecipeLevel.Simple,
-        reputation: 2
-    }
-}
+const recipes: Partial<Record<Colors, Colors[]>> = {
+    [Colors.Orange]: [Colors.Red, Colors.Yellow],
+    [Colors.Green]: [Colors.Blue, Colors.Yellow],
+    [Colors.Purple]: [Colors.Blue, Colors.Red],
+};
 
-export const BlackPigmentDescription: IItemDescription = {
-    weight: 0.5,
-    recipe: {
-        components: [
-            RecipeComponent(ItemTypeGroup.MortarAndPestle,1,0),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemBlackPigmentIngredientGroup"),1,1)
-        ],
-        skill: SkillType.Chemistry,
-        level: RecipeLevel.Simple,
-        reputation: 2
+export function getPigmentDescription (color: Colors): IItemDescription {
+    const ingredients: (ItemType | ItemTypeGroup)[] = [];
+    const recipe = recipes[color];
+    if (recipe) {
+        ingredients.push(...recipe.map(color =>
+            Registry<ColorsEverywhere>(MOD_NAME).get("itemPigments", color)));
+    } else {
+        ingredients.push(Registry<ColorsEverywhere>(MOD_NAME).get("itemPigmentIngredientGroups", color));
     }
-}
 
-export const RedPigmentDescription: IItemDescription = {
-    weight: 0.5,
-    recipe: {
-        components: [
-            RecipeComponent(ItemTypeGroup.MortarAndPestle,1,0),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemRedPigmentIngredientGroup"),1,1)
-        ],
-        skill: SkillType.Chemistry,
-        level: RecipeLevel.Simple,
-        reputation: 2
-    }
-}
-
-export const YellowPigmentDescription: IItemDescription = {
-    weight: 0.5,
-    recipe: {
-        components: [
-            RecipeComponent(ItemTypeGroup.MortarAndPestle,1,0),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemYellowPigmentIngredientGroup"),1,1)
-        ],
-        skill: SkillType.Chemistry,
-        level: RecipeLevel.Simple,
-        reputation: 2
-    }
-}
-
-export const BluePigmentDescription: IItemDescription = {
-    weight: 0.5,
-    recipe: {
-        components: [
-            RecipeComponent(ItemTypeGroup.MortarAndPestle,1,0),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemBluePigmentIngredientGroup"),1,1)
-        ],
-        skill: SkillType.Chemistry,
-        level: RecipeLevel.Simple,
-        reputation: 2
-    }
-}
-
-export const OrangePigmentDescription: IItemDescription = {
-    weight: 0.5,
-    recipe: {
-        components: [
-            RecipeComponent(ItemTypeGroup.MortarAndPestle,1,0),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemRedPigment"),1,1),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemYellowPigment"),1,1)
-        ],
-        skill: SkillType.Chemistry,
-        level: RecipeLevel.Simple,
-        reputation: 2
-    }
-}
-
-export const GreenPigmentDescription: IItemDescription = {
-    weight: 0.5,
-    recipe: {
-        components: [
-            RecipeComponent(ItemTypeGroup.MortarAndPestle,1,0),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemYellowPigment"),1,1),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemBluePigment"),1,1)
-        ],
-        skill: SkillType.Chemistry,
-        level: RecipeLevel.Simple,
-        reputation: 2
-    }
-}
-
-export const PurplePigmentDescription: IItemDescription = {
-    weight: 0.5,
-    recipe: {
-        components: [
-            RecipeComponent(ItemTypeGroup.MortarAndPestle,1,0),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemRedPigment"),1,1),
-            RecipeComponent(Registry<ColorsEverywhere>().get("itemBluePigment"),1,1)
-        ],
-        skill: SkillType.Chemistry,
-        level: RecipeLevel.Simple,
-        reputation: 2
-    }
+    return {
+        weight: 0.5,
+        recipe: {
+            components: [
+                RecipeComponent(ItemTypeGroup.MortarAndPestle, 1, 0),
+                ...ingredients.map(ingredient =>
+                    RecipeComponent(ingredient, 1, 1))
+            ],
+            skill: SkillType.Chemistry,
+            level: RecipeLevel.Simple,
+            reputation: 2
+        }
+    };
 }
