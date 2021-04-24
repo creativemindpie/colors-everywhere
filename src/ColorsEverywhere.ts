@@ -1,23 +1,24 @@
-import { DoodadType, IDoodadDescription } from "game/doodad/IDoodad";
+import { DoodadType } from "game/doodad/IDoodad";
 import { Action } from "game/entity/action/Action";
 import { ActionArgument, ActionType } from "game/entity/action/IAction";
 import { EntityType } from "game/entity/IEntity";
 import { SkillType } from "game/entity/IHuman";
 import { Source } from "game/entity/player/IMessageManager";
 import { Quality } from "game/IObject";
-import { IItemDescription, ItemType, ItemTypeGroup, RecipeLevel } from "game/item/IItem";
-import { itemDescriptions, RecipeComponent } from "game/item/Items";
+import { IItemDescription, ItemType, ItemTypeGroup } from "game/item/IItem";
+import { itemDescriptions } from "game/item/Items";
 import { TerrainType, TerrainTypeGroup } from "game/tile/ITerrain";
 import Message from "language/dictionary/Message";
 import { HookMethod } from "mod/IHookHost";
 import Mod from "mod/Mod";
 import Register, { Registry } from "mod/ModRegistry";
-// import { DyeGroup } from "./dyes/DyeGroup";
 import { Tuple } from "utilities/collection/Arrays";
 import Enums from "utilities/enum/Enums";
 import TileHelpers from "utilities/game/TileHelpers";
 import { BaseStatsDoodadCopperChest, BaseStatsDoodadIronChest, BaseStatsDoodadStoneWall, BaseStatsDoodadWoodenChest, BaseStatsDoodadWroughtIronChest } from "./doodads/BaseDoodad";
 import { BlackCopperChestDescription, BlackIronChestDescription, BlackStoneWallDescription, BlackWoodenChestDescription, BlackWroughtIronChestDescription, BlueCopperChestDescription, BlueIronChestDescription, BlueStoneWallDescription, BlueWoodenChestDescription, BlueWroughtIronChestDescription, GreenCopperChestDescription, GreenIronChestDescription, GreenStoneWallDescription, GreenWoodenChestDescription, GreenWroughtIronChestDescription, OrangeCopperChestDescription, OrangeIronChestDescription, OrangeStoneWallDescription, OrangeWoodenChestDescription, OrangeWroughtIronChestDescription, PurpleCopperChestDescription, PurpleIronChestDescription, PurpleStoneWallDescription, PurpleWoodenChestDescription, PurpleWroughtIronChestDescription, RedCopperChestDescription, RedIronChestDescription, RedStoneWallDescription, RedWoodenChestDescription, RedWroughtIronChestDescription, WhiteCopperChestDescription, WhiteIronChestDescription, WhiteStoneWallDescription, WhiteWoodenChestDescription, WhiteWroughtIronChestDescription, YellowCopperChestDescription, YellowIronChestDescription, YellowStoneWallDescription, YellowWoodenChestDescription, YellowWroughtIronChestDescription } from "./doodads/Doodads";
+import { DyeGroup } from "./dyes/DyeGroup";
+import { getDoodadDyeDescription, getItemDyeDescription } from "./dyes/Dyes";
 import { CornflowerDescription, CornflowerDoodadDescription, CornflowerSeedsDescription } from "./flowers/Cornflower";
 import { RoseDescription, RoseDoodadDescription, RoseSeedsDescription } from "./flowers/Rose";
 import { SunflowerDescription, SunflowerDoodadDescription, SunflowerSeedsDescription } from "./flowers/Sunflower";
@@ -25,37 +26,8 @@ import { Colors, MOD_NAME } from "./IColorsEverywhere";
 import { getPigmentIngredientGroupDescription } from "./pigments/PigmentGroups";
 import { getPigmentDescription } from "./pigments/Pigments";
 import { BlackAshCementFlooringDescription, BlackAshCementFlooringTerrainDescription, BlackClayFlooringDescription, BlackClayFlooringTerrainDescription, BlackCobblestoneFlooringDescription, BlackCobblestoneFlooringTerrainDescription, BlackWoodenFlooringDescription, BlackWoodenFlooringTerrainDescription, BlueAshCementFlooringDescription, BlueAshCementFlooringTerrainDescription, BlueClayFlooringDescription, BlueClayFlooringTerrainDescription, BlueCobblestoneFlooringDescription, BlueCobblestoneFlooringTerrainDescription, BlueWoodenFlooringDescription, BlueWoodenFlooringTerrainDescription, GreenAshCementFlooringDescription, GreenAshCementFlooringTerrainDescription, GreenClayFlooringDescription, GreenClayFlooringTerrainDescription, GreenCobblestoneFlooringDescription, GreenCobblestoneFlooringTerrainDescription, GreenWoodenFlooringDescription, GreenWoodenFlooringTerrainDescription, OrangeAshCementFlooringDescription, OrangeAshCementFlooringTerrainDescription, OrangeClayFlooringDescription, OrangeClayFlooringTerrainDescription, OrangeCobblestoneFlooringDescription, OrangeCobblestoneFlooringTerrainDescription, OrangeWoodenFlooringDescription, OrangeWoodenFlooringTerrainDescription, PurpleAshCementFlooringDescription, PurpleAshCementFlooringTerrainDescription, PurpleClayFlooringDescription, PurpleClayFlooringTerrainDescription, PurpleCobblestoneFlooringDescription, PurpleCobblestoneFlooringTerrainDescription, PurpleWoodenFlooringDescription, PurpleWoodenFlooringTerrainDescription, RedAshCementFlooringDescription, RedAshCementFlooringTerrainDescription, RedClayFlooringDescription, RedClayFlooringTerrainDescription, RedCobblestoneFlooringDescription, RedCobblestoneFlooringTerrainDescription, RedWoodenFlooringDescription, RedWoodenFlooringTerrainDescription, WhiteAshCementFlooringDescription, WhiteAshCementFlooringTerrainDescription, WhiteClayFlooringDescription, WhiteClayFlooringTerrainDescription, WhiteCobblestoneFlooringDescription, WhiteCobblestoneFlooringTerrainDescription, WhiteWoodenFlooringDescription, WhiteWoodenFlooringTerrainDescription, YellowAshCementFlooringDescription, YellowAshCementFlooringTerrainDescription, YellowClayFlooringDescription, YellowClayFlooringTerrainDescription, YellowCobblestoneFlooringDescription, YellowCobblestoneFlooringTerrainDescription, YellowWoodenFlooringDescription, YellowWoodenFlooringTerrainDescription } from "./terrains/Terrains";
-import { BlackPaintbrushDescription, BluePaintbrushDescription, DyeRemoverDescription, GreenPaintbrushDescription, OrangePaintbrushDescription, PaintbrushDescription, PurplePaintbrushDescription, RedPaintbrushDescription, StoneBowlDescription, WhitePaintbrushDescription, YellowPaintbrushDescription } from "./tools/Tools";
+import {DyeRemoverDescription, getItemPaintbrushDescription, PaintbrushDescription, StoneBowlDescription } from "./tools/Tools";
 import { particleColor } from "./utils/Utils";
-
-function getItemDyeDescription (color: Colors): IItemDescription {
-    return {
-        weight: 0.5,
-        recipe: {
-            components: [
-                RecipeComponent(ItemTypeGroup.Liquid, 1, 1),
-                RecipeComponent(Registry<ColorsEverywhere>(MOD_NAME).get("itemPigments", color), 1, 1),
-                RecipeComponent(Registry<ColorsEverywhere>(MOD_NAME).get("itemStoneBowl"), 1, 1)
-            ],
-            skill: SkillType.Chemistry,
-            level: RecipeLevel.Simple,
-            requiresFire: true,
-            reputation: 2
-        },
-        use: [ActionType.Build],
-        onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get(`doodads`, color) },
-        placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get(`doodads`, color)
-    };
-}
-
-function getDoodadDyeDescription (color: Colors): IDoodadDescription {
-    return {
-        blockMove: true,
-        isTall: true,
-        reduceDurabilityOnGather: true,
-        pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get(`items`, color)]
-    }
-}
 
 export default class ColorsEverywhere extends Mod {
 
@@ -101,13 +73,14 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("itemGroup", ...Enums.values(Colors)
         .map(color => Tuple(`item${Colors[color]}PigmentIngredientGroup`, getPigmentIngredientGroupDescription(color))))
     public itemPigmentIngredientGroups: ItemTypeGroup[];
+    
 
     ////////////////////////////////////////////////////////////
     // Register pigments
     ////////////////////////////////////////////////////////////
 
     @Register.bulk("item", ...Enums.values(Colors)
-        .map(color => Tuple(`item${Colors[color]}Pigment`, getPigmentDescription(color))))
+        .map(color => Tuple(`${Colors[color]}Pigment`, getPigmentDescription(color))))
     public itemPigments: ItemType[];
 
 
@@ -115,8 +88,8 @@ export default class ColorsEverywhere extends Mod {
     // Register dye group
     ////////////////////////////////////////////////////////////
 
-    // @Register.itemGroup("DyeGroup", { ...DyeGroup })
-    // public itemDyeGroup: ItemTypeGroup;
+    @Register.itemGroup("DyeGroup", { ...DyeGroup })
+    public itemDyeGroup: ItemTypeGroup;
 
 
     ////////////////////////////////////////////////////////////
@@ -125,15 +98,15 @@ export default class ColorsEverywhere extends Mod {
 
     // // Doodads
     @Register.bulk("doodad", ...Enums.values(Colors).map(color => Tuple(`${Colors[color]}Dye`, getDoodadDyeDescription(color))))
-    public readonly doodads: DoodadType[];
+    public readonly doodadsDyes: DoodadType[];
 
     // Items
     @Register.bulk("item", ...Enums.values(Colors).map(color => Tuple(`${Colors[color]}Dye`, getItemDyeDescription(color))))
-    public readonly items: ItemType[];
+    public readonly itemsDyes: ItemType[];
 
 
     ////////////////////////////////////////////////////////////
-    // Register tools - W,B,R,Y,B,O,G,P
+    // Register tools
     ////////////////////////////////////////////////////////////
 
     @Register.item("StoneBowl", { ...StoneBowlDescription })
@@ -145,29 +118,9 @@ export default class ColorsEverywhere extends Mod {
     @Register.item("Paintbrush", { ...PaintbrushDescription })
     public itemPaintbrush: ItemType;
 
-    @Register.item("WhitePaintbrush", { ...WhitePaintbrushDescription })
-    public itemWhitePaintbrush: ItemType;
-
-    @Register.item("BlackPaintbrush", { ...BlackPaintbrushDescription })
-    public itemBlackPaintbrush: ItemType;
-
-    @Register.item("RedPaintbrush", { ...RedPaintbrushDescription })
-    public itemRedPaintbrush: ItemType;
-
-    @Register.item("YellowPaintbrush", { ...YellowPaintbrushDescription })
-    public itemYellowPaintbrush: ItemType;
-
-    @Register.item("BluePaintbrush", { ...BluePaintbrushDescription })
-    public itemBluePaintbrush: ItemType;
-
-    @Register.item("OrangePaintbrush", { ...OrangePaintbrushDescription })
-    public itemOrangePaintbrush: ItemType;
-
-    @Register.item("GreenPaintbrush", { ...GreenPaintbrushDescription })
-    public itemGreenPaintbrush: ItemType;
-
-    @Register.item("PurplePaintbrush", { ...PurplePaintbrushDescription })
-    public itemPurplePaintbrush: ItemType;
+    // Color Paintbrushes
+    @Register.bulk("item", ...Enums.values(Colors).map(color => Tuple(`${Colors[color]}Paintbrush`, getItemPaintbrushDescription(color))))
+    public readonly itemsPaintbrushes: ItemType[];
 
 
     ////////////////////////////////////////////////////////////
@@ -890,7 +843,7 @@ export default class ColorsEverywhere extends Mod {
             const tile = player.getFacingTile();
             const tileDoodad = tile.doodad;
 
-            if (tileDoodad?.type !== ColorsEverywhere.INSTANCE.doodads[Colors.Red]) {
+            if (tileDoodad?.type !== ColorsEverywhere.INSTANCE.doodadsDyes[Colors.Red]) {
                 player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoDyeSource);
             } else {
                 game.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, particleColor('red'));
@@ -967,15 +920,15 @@ export default class ColorsEverywhere extends Mod {
             localPlayer.createItemInInventory(ItemType.ClayJugOfUnpurifiedFreshWater);
             localPlayer.createItemInInventory(ItemType.LargeRock);
             localPlayer.createItemInInventory(ItemType.LeatherTunic);
-            localPlayer.createItemInInventory(this.itemRedPaintbrush);
-            localPlayer.createItemInInventory(this.itemYellowPaintbrush);
-            localPlayer.createItemInInventory(this.itemWhitePaintbrush);
-            localPlayer.createItemInInventory(this.itemBlackPaintbrush);
-            localPlayer.createItemInInventory(this.itemOrangePaintbrush);
-            localPlayer.createItemInInventory(this.itemBluePaintbrush);
-            localPlayer.createItemInInventory(this.itemPurplePaintbrush);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsPaintbrushes[Colors.Red]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsPaintbrushes[Colors.Yellow]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsPaintbrushes[Colors.White]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsPaintbrushes[Colors.Black]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsPaintbrushes[Colors.Orange]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsPaintbrushes[Colors.Blue]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsPaintbrushes[Colors.Purple]);
             localPlayer.createItemInInventory(ItemType.LeatherTunic, Quality.Exceptional);
-            localPlayer.createItemInInventory(this.itemGreenPaintbrush, Quality.Exceptional);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsPaintbrushes[Colors.Green], Quality.Exceptional);
             localPlayer.createItemInInventory(ItemType.Ectoplasm);
             localPlayer.createItemInInventory(ItemType.StoneWall);
             localPlayer.createItemInInventory(ItemType.StoneWall);
@@ -983,8 +936,8 @@ export default class ColorsEverywhere extends Mod {
             localPlayer.createItemInInventory(this.itemWhiteStoneWall);
             localPlayer.createItemInInventory(this.itemWhiteStoneWall);
             localPlayer.createItemInInventory(this.itemWhiteStoneWall);
-            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.items[Colors.Purple]);
-            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.items[Colors.Red]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsDyes[Colors.Purple]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsDyes[Colors.Red]);
             localPlayer.createItemInInventory(this.itemWhiteCobblestoneFlooring);
         }
     }

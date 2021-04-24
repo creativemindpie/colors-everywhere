@@ -134,10 +134,10 @@
 		},
 		"message": {
 			"modColorsEverywherePaintbrushNotDirty": "{#428cfb: The paintbrush is already clean.}",
-			"modColorsEverywhereNoWaterSource": "{#f00: You need water to do that.}",
-			"modColorsEverywhereNoDyeSource": "{#f00: You need to be near dye to do that.}",
-			"modColorsEverywhereNoSameColor": "{#f00: That just feels like a waste of dye, doesn't it...}",
-			"modColorsEverywhereNoDyeAllowed": "{#f00: You swipe your brush frantically in the air, dying... nothing.}"
+			"modColorsEverywhereNoWaterSource": "{#ff0000: You need water to do that.}",
+			"modColorsEverywhereNoDyeSource": "{#ff0000: You need to be near dye to do that.}",
+			"modColorsEverywhereNoSameColor": "{#ff0000: That just feels like a waste of dye, doesn't it...}",
+			"modColorsEverywhereNoDyeAllowed": "{#ff0000: You swipe your brush frantically in the air, dying... nothing.}"
 		}
 	}
 }

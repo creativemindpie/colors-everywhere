@@ -1,16 +1,17 @@
-// import { Registry } from "mod/ModRegistry";
-// import ColorsEverywhere from "src/ColorsEverywhere";
+import { Registry } from "mod/ModRegistry";
+import ColorsEverywhere from "../ColorsEverywhere";
+import { Colors, MOD_NAME } from "../IColorsEverywhere";
 
-// export const DyeGroup = {
-//     default: Registry<ColorsEverywhere>().get("itemWhiteDye"),
-//     types: [
-//         Registry<ColorsEverywhere>().get("itemWhiteDye"),
-//         Registry<ColorsEverywhere>().get("itemBlackDye"),
-//         Registry<ColorsEverywhere>().get("itemRedDye"),
-//         Registry<ColorsEverywhere>().get("itemYellowDye"),
-//         Registry<ColorsEverywhere>().get("itemBlueDye"),
-//         Registry<ColorsEverywhere>().get("itemOrangeDye"),
-//         Registry<ColorsEverywhere>().get("itemPurpleDye"),
-//         Registry<ColorsEverywhere>().get("itemGreenDye")
-//     ]
-// }
+export const DyeGroup = {
+    default: Registry<ColorsEverywhere>("Colors Everywhere").get(`itemsDyes`, Colors.White),
+    types: [
+        Registry<ColorsEverywhere>(MOD_NAME).get(`itemsDyes`, Colors.White),
+        Registry<ColorsEverywhere>(MOD_NAME).get(`itemsDyes`, Colors.Black),
+        Registry<ColorsEverywhere>(MOD_NAME).get(`itemsDyes`, Colors.Red),
+        Registry<ColorsEverywhere>(MOD_NAME).get(`itemsDyes`, Colors.Yellow),
+        Registry<ColorsEverywhere>(MOD_NAME).get(`itemsDyes`, Colors.Blue),
+        Registry<ColorsEverywhere>(MOD_NAME).get(`itemsDyes`, Colors.Orange),
+        Registry<ColorsEverywhere>(MOD_NAME).get(`itemsDyes`, Colors.Green),
+        Registry<ColorsEverywhere>(MOD_NAME).get(`itemsDyes`, Colors.Purple)
+    ]
+}
