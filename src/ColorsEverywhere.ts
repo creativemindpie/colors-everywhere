@@ -7,6 +7,7 @@ import { Source } from "game/entity/player/IMessageManager";
 import { Quality } from "game/IObject";
 import { IItemDescription, ItemType, ItemTypeGroup } from "game/item/IItem";
 import { itemDescriptions } from "game/item/Items";
+import { doodadDescriptions } from "game/doodad/Doodads";
 import { TerrainType, TerrainTypeGroup } from "game/tile/ITerrain";
 import Message from "language/dictionary/Message";
 import { HookMethod } from "mod/IHookHost";
@@ -15,8 +16,6 @@ import Register, { Registry } from "mod/ModRegistry";
 import { Tuple } from "utilities/collection/Arrays";
 import Enums from "utilities/enum/Enums";
 import TileHelpers from "utilities/game/TileHelpers";
-import { BaseStatsDoodadCopperChest, BaseStatsDoodadIronChest, BaseStatsDoodadStoneWall, BaseStatsDoodadWoodenChest, BaseStatsDoodadWroughtIronChest } from "./doodads/BaseDoodad";
-import { BlackCopperChestDescription, BlackIronChestDescription, BlackWoodenChestDescription, BlackWroughtIronChestDescription, BlueCopperChestDescription, BlueIronChestDescription, BlueWoodenChestDescription, BlueWroughtIronChestDescription, GreenCopperChestDescription, GreenIronChestDescription, GreenWoodenChestDescription, GreenWroughtIronChestDescription, OrangeCopperChestDescription, OrangeIronChestDescription, OrangeWoodenChestDescription, OrangeWroughtIronChestDescription, PurpleCopperChestDescription, PurpleIronChestDescription, PurpleWoodenChestDescription, PurpleWroughtIronChestDescription, RedCopperChestDescription, RedIronChestDescription, RedWoodenChestDescription, RedWroughtIronChestDescription, WhiteCopperChestDescription, WhiteIronChestDescription, WhiteWoodenChestDescription, WhiteWroughtIronChestDescription, YellowCopperChestDescription, YellowIronChestDescription, YellowWoodenChestDescription, YellowWroughtIronChestDescription } from "./doodads/Doodads";
 import { DyeGroup } from "./dyes/DyeGroup";
 import { getDoodadDyeDescription, getItemDyeDescription } from "./dyes/Dyes";
 import { CornflowerDescription, CornflowerDoodadDescription, CornflowerSeedsDescription } from "./flowers/Cornflower";
@@ -25,9 +24,9 @@ import { SunflowerDescription, SunflowerDoodadDescription, SunflowerSeedsDescrip
 import { Colors, MOD_NAME } from "./IColorsEverywhere";
 import { getPigmentIngredientGroupDescription } from "./pigments/PigmentGroups";
 import { getPigmentDescription } from "./pigments/Pigments";
-import { BlackAshCementFlooringDescription, BlackAshCementFlooringTerrainDescription, BlackClayFlooringDescription, BlackClayFlooringTerrainDescription, BlackCobblestoneFlooringDescription, BlackCobblestoneFlooringTerrainDescription, BlackWoodenFlooringDescription, BlackWoodenFlooringTerrainDescription, BlueAshCementFlooringDescription, BlueAshCementFlooringTerrainDescription, BlueClayFlooringDescription, BlueClayFlooringTerrainDescription, BlueCobblestoneFlooringDescription, BlueCobblestoneFlooringTerrainDescription, BlueWoodenFlooringDescription, BlueWoodenFlooringTerrainDescription, GreenAshCementFlooringDescription, GreenAshCementFlooringTerrainDescription, GreenClayFlooringDescription, GreenClayFlooringTerrainDescription, GreenCobblestoneFlooringDescription, GreenCobblestoneFlooringTerrainDescription, GreenWoodenFlooringDescription, GreenWoodenFlooringTerrainDescription, OrangeAshCementFlooringDescription, OrangeAshCementFlooringTerrainDescription, OrangeClayFlooringDescription, OrangeClayFlooringTerrainDescription, OrangeCobblestoneFlooringDescription, OrangeCobblestoneFlooringTerrainDescription, OrangeWoodenFlooringDescription, OrangeWoodenFlooringTerrainDescription, PurpleAshCementFlooringDescription, PurpleAshCementFlooringTerrainDescription, PurpleClayFlooringDescription, PurpleClayFlooringTerrainDescription, PurpleCobblestoneFlooringDescription, PurpleCobblestoneFlooringTerrainDescription, PurpleWoodenFlooringDescription, PurpleWoodenFlooringTerrainDescription, RedAshCementFlooringDescription, RedAshCementFlooringTerrainDescription, RedClayFlooringDescription, RedClayFlooringTerrainDescription, RedCobblestoneFlooringDescription, RedCobblestoneFlooringTerrainDescription, RedWoodenFlooringDescription, RedWoodenFlooringTerrainDescription, WhiteAshCementFlooringDescription, WhiteAshCementFlooringTerrainDescription, WhiteClayFlooringDescription, WhiteClayFlooringTerrainDescription, WhiteCobblestoneFlooringDescription, WhiteCobblestoneFlooringTerrainDescription, WhiteWoodenFlooringDescription, WhiteWoodenFlooringTerrainDescription, YellowAshCementFlooringDescription, YellowAshCementFlooringTerrainDescription, YellowClayFlooringDescription, YellowClayFlooringTerrainDescription, YellowCobblestoneFlooringDescription, YellowCobblestoneFlooringTerrainDescription, YellowWoodenFlooringDescription, YellowWoodenFlooringTerrainDescription } from "./terrains/Terrains";
 import { DyeRemoverDescription, getItemPaintbrushDescription, PaintbrushDescription, StoneBowlDescription } from "./tools/Tools";
 import { rgbColors } from "./utils/Utils";
+import terrainDescriptions from "game/tile/Terrains";
 
 type ItemRegistrations = PickValues<ColorsEverywhere, (ItemType | ItemTypeGroup)[]>;
 const itemBulkRegistrations: (keyof ItemRegistrations)[] = [
@@ -35,17 +34,56 @@ const itemBulkRegistrations: (keyof ItemRegistrations)[] = [
     "itemPigments",
     "itemsDyes",
     "itemsPaintbrushes",
-    "itemsStoneWalls"
+    "itemsWoodenChests",
+    "itemsCopperChests",
+    "itemsWroughtIronChests",
+    "itemsIronChests",
+    "itemsTinChests",
+    "itemsBronzeChests",
+    "itemsOrnateWoodenChests",
+    "itemsStoneWalls",
+    "itemsWoodenWalls",
+    "itemsWoodenGates",
+    "itemsWoodenDoors",
+    "itemsWoodenFences",
+    "itemsWoodenGates",
+    "itemsCobblestoneFlooring",
+    "itemsWoodenFlooring",
+    "itemsClayFlooring",
+    "itemsAshCementFlooring",
+    "itemsClayWalls",
+    "itemsAshCementWalls",
+    "itemsLeatherTunics"
 ];
 
 type DoodadRegistrations = PickValues<ColorsEverywhere, (DoodadType | DoodadTypeGroup)[]>;
 const doodadBulkRegistrations: (keyof DoodadRegistrations)[] = [
     "doodadsDyes",
-    "doodadsStoneWalls"
+    "doodadsWoodenChests",
+    "doodadsCopperChests",
+    "doodadsWroughtIronChests",
+    "doodadsIronChests",
+    "doodadsTinChests",
+    "doodadsBronzeChests",
+    "doodadsOrnateWoodenChests",
+    "doodadsStoneWalls",
+    "doodadsWoodenWalls",
+    "doodadsWoodenGates",
+    "doodadsWoodenDoors",
+    "doodadsWoodenDoorsOpen",
+    "doodadsWoodenFences",
+    "doodadsWoodenGates",
+    "doodadsWoodenGatesOpen",
+    "doodadsClayWalls",
+    "doodadsAshCementWalls"
 ];
 
 type TerrainRegistrations = PickValues<ColorsEverywhere, TerrainType[]>;
 const terrainBulkRegistrations: (keyof TerrainRegistrations)[] = [
+    "terrainsCobblestoneFlooring",
+    "terrainsWoodenFlooring",
+    "terrainsClayFlooring",
+    "terrainsAshCementFlooring"
 ];
 
 export default class ColorsEverywhere extends Mod {
@@ -143,371 +181,410 @@ export default class ColorsEverywhere extends Mod {
 
 
     ////////////////////////////////////////////////////////////
-    // Register doodads - W,B,R,Y,B,O,G,P
+    // Register chests
     ////////////////////////////////////////////////////////////
 
-    @Register.item("WhiteWoodenChest", { ...WhiteWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemWhiteWoodenChest: ItemType;
-    @Register.doodad("WhiteWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<ColorsEverywhere>().get('itemWhiteWoodenChest')] })
-    public doodadWhiteWoodenChest: DoodadType;
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}WoodenChest`, {
+            ...itemDescriptions[ItemType.WoodenChest],
+            use: [ActionType.Build],
+            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenChests", color) },
+            doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsWoodenChests`, color),
+            placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenChests", color),
+            groups: [ItemTypeGroup.Storage]
+        })))
+    public itemsWoodenChests: ItemType[];
 
-    @Register.item("BlackWoodenChest", { ...BlackWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemBlackWoodenChest: ItemType;
-    @Register.doodad("BlackWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<ColorsEverywhere>().get('itemBlackWoodenChest')] })
-    public doodadBlackWoodenChest: DoodadType;
+    @Register.bulk("doodad", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}WoodenChest`, {
+            ...doodadDescriptions[DoodadType.WoodenChest],
+            repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsWoodenChests", color),
+            pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsWoodenChests", color)]
+        })))
+    public doodadsWoodenChests: DoodadType[];
 
-    @Register.item("RedWoodenChest", { ...RedWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemRedWoodenChest: ItemType;
-    @Register.doodad("RedWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<ColorsEverywhere>().get('itemRedWoodenChest')] })
-    public doodadRedWoodenChest: DoodadType;
+    ////////////////////////////////////////////////////////////
 
-    @Register.item("YellowWoodenChest", { ...YellowWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemYellowWoodenChest: ItemType;
-    @Register.doodad("YellowWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<ColorsEverywhere>().get('itemYellowWoodenChest')] })
-    public doodadYellowWoodenChest: DoodadType;
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}CopperChest`, {
+            ...itemDescriptions[ItemType.CopperChest],
+            use: [ActionType.Build],
+            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsCopperChests", color) },
+            doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsCopperChests`, color),
+            placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsCopperChests", color),
+            groups: [ItemTypeGroup.Storage]
+        })))
+    public itemsCopperChests: ItemType[];
 
-    @Register.item("BlueWoodenChest", { ...BlueWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemBlueWoodenChest: ItemType;
-    @Register.doodad("BlueWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<ColorsEverywhere>().get('itemBlueWoodenChest')] })
-    public doodadBlueWoodenChest: DoodadType;
+    @Register.bulk("doodad", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}CopperChest`, {
+            ...doodadDescriptions[DoodadType.CopperChest],
+            repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsCopperChests", color),
+            pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsCopperChests", color)]
+        })))
+    public doodadsCopperChests: DoodadType[];
 
-    @Register.item("OrangeWoodenChest", { ...OrangeWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemOrangeWoodenChest: ItemType;
-    @Register.doodad("OrangeWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<ColorsEverywhere>().get('itemOrangeWoodenChest')] })
-    public doodadOrangeWoodenChest: DoodadType;
+    ////////////////////////////////////////////////////////////
 
-    @Register.item("GreenWoodenChest", { ...GreenWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemGreenWoodenChest: ItemType;
-    @Register.doodad("GreenWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<ColorsEverywhere>().get('itemGreenWoodenChest')] })
-    public doodadGreenWoodenChest: DoodadType;
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}WroughtIronChest`, {
+            ...itemDescriptions[ItemType.WroughtIronChest],
+            use: [ActionType.Build],
+            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWroughtIronChests", color) },
+            doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsWroughtIronChests`, color),
+            placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWroughtIronChests", color),
+            groups: [ItemTypeGroup.Storage]
+        })))
+    public itemsWroughtIronChests: ItemType[];
 
-    @Register.item("PurpleWoodenChest", { ...PurpleWoodenChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemPurpleWoodenChest: ItemType;
-    @Register.doodad("PurpleWoodenChest", { ...BaseStatsDoodadWoodenChest, pickUp: [Registry<ColorsEverywhere>().get('itemPurpleWoodenChest')] })
-    public doodadPurpleWoodenChest: DoodadType;
+    @Register.bulk("doodad", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}WroughtIronChest`, {
+            ...doodadDescriptions[DoodadType.WroughtIronChest],
+            repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsWroughtIronChests", color),
+            pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsWroughtIronChests", color)]
+        })))
+    public doodadsWroughtIronChests: DoodadType[];
 
-    // ------------------------------------------------------------ //
+    ////////////////////////////////////////////////////////////
 
-    @Register.item("WhiteCopperChest", { ...WhiteCopperChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemWhiteCopperChest: ItemType;
-    @Register.doodad("WhiteCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<ColorsEverywhere>().get('itemWhiteCopperChest')] })
-    public doodadWhiteCopperChest: DoodadType;
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}IronChest`, {
+            ...itemDescriptions[ItemType.IronChest],
+            use: [ActionType.Build],
+            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsIronChests", color) },
+            doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsIronChests`, color),
+            placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsIronChests", color),
+            groups: [ItemTypeGroup.Storage]
+        })))
+    public itemsIronChests: ItemType[];
 
-    @Register.item("BlackCopperChest", { ...BlackCopperChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemBlackCopperChest: ItemType;
-    @Register.doodad("BlackCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<ColorsEverywhere>().get('itemBlackCopperChest')] })
-    public doodadBlackCopperChest: DoodadType;
+    @Register.bulk("doodad", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}IronChest`, {
+            ...doodadDescriptions[DoodadType.IronChest],
+            repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsIronChests", color),
+            pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsIronChests", color)]
+        })))
+    public doodadsIronChests: DoodadType[];
 
-    @Register.item("RedCopperChest", { ...RedCopperChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemRedCopperChest: ItemType;
-    @Register.doodad("RedCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<ColorsEverywhere>().get('itemRedCopperChest')] })
-    public doodadRedCopperChest: DoodadType;
+    ////////////////////////////////////////////////////////////
 
-    @Register.item("YellowCopperChest", { ...YellowCopperChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemYellowCopperChest: ItemType;
-    @Register.doodad("YellowCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<ColorsEverywhere>().get('itemYellowCopperChest')] })
-    public doodadYellowCopperChest: DoodadType;
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}TinChest`, {
+            ...itemDescriptions[ItemType.TinChest],
+            use: [ActionType.Build],
+            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsTinChests", color) },
+            doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsTinChests`, color),
+            placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsTinChests", color),
+            groups: [ItemTypeGroup.Storage]
+        })))
+    public itemsTinChests: ItemType[];
 
-    @Register.item("BlueCopperChest", { ...BlueCopperChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemBlueCopperChest: ItemType;
-    @Register.doodad("BlueCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<ColorsEverywhere>().get('itemBlueCopperChest')] })
-    public doodadBlueCopperChest: DoodadType;
+    @Register.bulk("doodad", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}TinChest`, {
+            ...doodadDescriptions[DoodadType.TinChest],
+            repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsTinChests", color),
+            pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsTinChests", color)]
+        })))
+    public doodadsTinChests: DoodadType[];
 
-    @Register.item("OrangeCopperChest", { ...OrangeCopperChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemOrangeCopperChest: ItemType;
-    @Register.doodad("OrangeCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<ColorsEverywhere>().get('itemOrangeCopperChest')] })
-    public doodadOrangeCopperChest: DoodadType;
+    ////////////////////////////////////////////////////////////
 
-    @Register.item("GreenCopperChest", { ...GreenCopperChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemGreenCopperChest: ItemType;
-    @Register.doodad("GreenCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<ColorsEverywhere>().get('itemGreenCopperChest')] })
-    public doodadGreenCopperChest: DoodadType;
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}BronzeChest`, {
+            ...itemDescriptions[ItemType.BronzeChest],
+            use: [ActionType.Build],
+            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsBronzeChests", color) },
+            doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsBronzeChests`, color),
+            placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsBronzeChests", color),
+            groups: [ItemTypeGroup.Storage]
+        })))
+    public itemsBronzeChests: ItemType[];
 
-    @Register.item("PurpleCopperChest", { ...PurpleCopperChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemPurpleCopperChest: ItemType;
-    @Register.doodad("PurpleCopperChest", { ...BaseStatsDoodadCopperChest, pickUp: [Registry<ColorsEverywhere>().get('itemPurpleCopperChest')] })
-    public doodadPurpleCopperChest: DoodadType;
+    @Register.bulk("doodad", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}BronzeChest`, {
+            ...doodadDescriptions[DoodadType.BronzeChest],
+            repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsBronzeChests", color),
+            pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsBronzeChests", color)]
+        })))
+    public doodadsBronzeChests: DoodadType[];
 
-    // ------------------------------------------------------------ //
+    ////////////////////////////////////////////////////////////
 
-    @Register.item("WhiteWroughtIronChest", { ...WhiteWroughtIronChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemWhiteWroughtIronChest: ItemType;
-    @Register.doodad("WhiteWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemWhiteWroughtIronChest')] })
-    public doodadWhiteWroughtIronChest: DoodadType;
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}OrnateWoodenChest`, {
+            ...itemDescriptions[ItemType.OrnateWoodenChest],
+            use: [ActionType.Build],
+            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsOrnateWoodenChests", color) },
+            doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsOrnateWoodenChests`, color),
+            placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsOrnateWoodenChests", color),
+            groups: [ItemTypeGroup.Storage]
+        })))
+    public itemsOrnateWoodenChests: ItemType[];
 
-    @Register.item("BlackWroughtIronChest", { ...BlackWroughtIronChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemBlackWroughtIronChest: ItemType;
-    @Register.doodad("BlackWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemBlackWroughtIronChest')] })
-    public doodadBlackWroughtIronChest: DoodadType;
+    @Register.bulk("doodad", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}OrnateWoodenChest`, {
+            ...doodadDescriptions[DoodadType.OrnateWoodenChest],
+            repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsOrnateWoodenChests", color),
+            pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsOrnateWoodenChests", color)]
+        })))
+    public doodadsOrnateWoodenChests: DoodadType[];
 
-    @Register.item("RedWroughtIronChest", { ...RedWroughtIronChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemRedWroughtIronChest: ItemType;
-    @Register.doodad("RedWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemRedWroughtIronChest')] })
-    public doodadRedWroughtIronChest: DoodadType;
-
-    @Register.item("YellowWroughtIronChest", { ...YellowWroughtIronChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemYellowWroughtIronChest: ItemType;
-    @Register.doodad("YellowWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemYellowWroughtIronChest')] })
-    public doodadYellowWroughtIronChest: DoodadType;
-
-    @Register.item("BlueWroughtIronChest", { ...BlueWroughtIronChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemBlueWroughtIronChest: ItemType;
-    @Register.doodad("BlueWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemBlueWroughtIronChest')] })
-    public doodadBlueWroughtIronChest: DoodadType;
-
-    @Register.item("OrangeWroughtIronChest", { ...OrangeWroughtIronChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemOrangeWroughtIronChest: ItemType;
-    @Register.doodad("OrangeWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemOrangeWroughtIronChest')] })
-    public doodadOrangeWroughtIronChest: DoodadType;
-
-    @Register.item("GreenWroughtIronChest", { ...GreenWroughtIronChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemGreenWroughtIronChest: ItemType;
-    @Register.doodad("GreenWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemGreenWroughtIronChest')] })
-    public doodadGreenWroughtIronChest: DoodadType;
-
-    @Register.item("PurpleWroughtIronChest", { ...PurpleWroughtIronChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemPurpleWroughtIronChest: ItemType;
-    @Register.doodad("PurpleWroughtIronChest", { ...BaseStatsDoodadWroughtIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemPurpleWroughtIronChest')] })
-    public doodadPurpleWroughtIronChest: DoodadType;
-
-    // ------------------------------------------------------------ //
-
-    @Register.item("WhiteIronChest", { ...WhiteIronChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemWhiteIronChest: ItemType;
-    @Register.doodad("WhiteIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemWhiteIronChest')] })
-    public doodadWhiteIronChest: DoodadType;
-
-    @Register.item("BlackIronChest", { ...BlackIronChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemBlackIronChest: ItemType;
-    @Register.doodad("BlackIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemBlackIronChest')] })
-    public doodadBlackIronChest: DoodadType;
-
-    @Register.item("RedIronChest", { ...RedIronChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemRedIronChest: ItemType;
-    @Register.doodad("RedIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemRedIronChest')] })
-    public doodadRedIronChest: DoodadType;
-
-    @Register.item("YellowIronChest", { ...YellowIronChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemYellowIronChest: ItemType;
-    @Register.doodad("YellowIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemYellowIronChest')] })
-    public doodadYellowIronChest: DoodadType;
-
-    @Register.item("BlueIronChest", { ...BlueIronChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemBlueIronChest: ItemType;
-    @Register.doodad("BlueIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemBlueIronChest')] })
-    public doodadBlueIronChest: DoodadType;
-
-    @Register.item("OrangeIronChest", { ...OrangeIronChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemOrangeIronChest: ItemType;
-    @Register.doodad("OrangeIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemOrangeIronChest')] })
-    public doodadOrangeIronChest: DoodadType;
-
-    @Register.item("GreenIronChest", { ...GreenIronChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemGreenIronChest: ItemType;
-    @Register.doodad("GreenIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemGreenIronChest')] })
-    public doodadGreenIronChest: DoodadType;
-
-    @Register.item("PurpleIronChest", { ...PurpleIronChestDescription, groups: [ItemTypeGroup.Storage] })
-    public itemPurpleIronChest: ItemType;
-    @Register.doodad("PurpleIronChest", { ...BaseStatsDoodadIronChest, pickUp: [Registry<ColorsEverywhere>().get('itemPurpleIronChest')] })
-    public doodadPurpleIronChest: DoodadType;
-
-    // ----------------------------------------
+    ////////////////////////////////////////////////////////////
+    // Register walls
+    ////////////////////////////////////////////////////////////
 
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}StoneWall`, {
+            ...itemDescriptions[ItemType.StoneWall],
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsStoneWalls", color) },
-            placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsStoneWalls", color)
+            placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsStoneWalls", color),
+            groups: [ItemTypeGroup.Housing]
         })))
     public itemsStoneWalls: ItemType[];
 
     @Register.bulk("doodad", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}StoneWall`, {
-            ...BaseStatsDoodadStoneWall,
+            ...doodadDescriptions[DoodadType.StoneWall],
             repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsStoneWalls", color),
             pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsStoneWalls", color)]
         })))
     public doodadsStoneWalls: DoodadType[];
+
+    ////////////////////////////////////////////////////////////
+
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}ClayWall`, {
+            ...itemDescriptions[ItemType.ClayWall],
+            use: [ActionType.Build],
+            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsClayWalls", color) },
+            placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsClayWalls", color),
+            groups: [ItemTypeGroup.Housing]
+        })))
+    public itemsClayWalls: ItemType[];
+
+    @Register.bulk("doodad", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}ClayWall`, {
+            ...doodadDescriptions[DoodadType.ClayWall],
+            repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsClayWalls", color),
+            pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsClayWalls", color)]
+        })))
+    public doodadsClayWalls: DoodadType[];
+
+    ////////////////////////////////////////////////////////////
+
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}AshCementWall`, {
+            ...itemDescriptions[ItemType.AshCementWall],
+            use: [ActionType.Build],
+            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsAshCementWalls", color) },
+            placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsAshCementWalls", color),
+            groups: [ItemTypeGroup.Housing]
+        })))
+    public itemsAshCementWalls: ItemType[];
+
+    @Register.bulk("doodad", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}AshCementWall`, {
+            ...doodadDescriptions[DoodadType.AshCementWall],
+            repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsAshCementWalls", color),
+            pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsAshCementWalls", color)]
+        })))
+    public doodadsAshCementWalls: DoodadType[];
+
+    ////////////////////////////////////////////////////////////
+
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}WoodenWall`, {
+            ...itemDescriptions[ItemType.WoodenWall],
+            use: [ActionType.Build],
+            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenWalls", color) },
+            placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenWalls", color),
+            groups: [ItemTypeGroup.Housing]
+        })))
+    public itemsWoodenWalls: ItemType[];
+
+    @Register.bulk("doodad", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}WoodenWall`, {
+            ...doodadDescriptions[DoodadType.WoodenWall],
+            repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsWoodenWalls", color),
+            pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsWoodenWalls", color)]
+        })))
+    public doodadsWoodenWalls: DoodadType[];
+
+    ////////////////////////////////////////////////////////////
+
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}WoodenGate`, {
+            ...itemDescriptions[ItemType.WoodenGate],
+            use: [ActionType.Build],
+            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenGates", color) },
+            placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenGates", color),
+            groups: [ItemTypeGroup.Housing]
+        })))
+    public itemsWoodenGates: ItemType[];
+
+    @Register.bulk("doodad", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}WoodenGate`, {
+            ...doodadDescriptions[DoodadType.WoodenGate],
+            doorToggled: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenGatesOpen", color),
+            repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsWoodenGates", color),
+            pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsWoodenGates", color)]
+        })))
+    public doodadsWoodenGates: DoodadType[];
+
+    @Register.bulk("doodad", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}WoodenGateOpen`, {
+            ...doodadDescriptions[DoodadType.WoodenGateOpen],
+            doorToggled: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenGates", color),
+            repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsWoodenGates", color),
+            pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsWoodenGates", color)]
+        })))
+    public doodadsWoodenGatesOpen: DoodadType[];
+
+    ////////////////////////////////////////////////////////////
+
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}WoodenDoor`, {
+            ...itemDescriptions[ItemType.WoodenDoor],
+            use: [ActionType.Build],
+            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenDoors", color) },
+            placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenDoors", color),
+            groups: [ItemTypeGroup.Housing]
+        })))
+    public itemsWoodenDoors: ItemType[];
+
+    @Register.bulk("doodad", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}WoodenDoor`, {
+            ...doodadDescriptions[DoodadType.WoodenDoor],
+            doorToggled: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenDoorsOpen", color),
+            repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsWoodenDoors", color),
+            pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsWoodenDoors", color)]
+        })))
+    public doodadsWoodenDoors: DoodadType[];
+
+    @Register.bulk("doodad", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}WoodenDoorOpen`, {
+            ...doodadDescriptions[DoodadType.WoodenDoorOpen],
+            doorToggled: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenDoors", color),
+            repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsWoodenDoors", color),
+            pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsWoodenDoors", color)]
+        })))
+    public doodadsWoodenDoorsOpen: DoodadType[];
+
+    ////////////////////////////////////////////////////////////
+
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}WoodenFence`, {
+            ...itemDescriptions[ItemType.WoodenFence],
+            use: [ActionType.Build],
+            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenFences", color) },
+            placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenFences", color),
+            groups: [ItemTypeGroup.Housing]
+        })))
+    public itemsWoodenFences: ItemType[];
+
+    @Register.bulk("doodad", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}WoodenFence`, {
+            ...doodadDescriptions[DoodadType.WoodenFence],
+            repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsWoodenFences", color),
+            pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsWoodenFences", color)]
+        })))
+    public doodadsWoodenFences: DoodadType[];
 
 
     ////////////////////////////////////////////////////////////
     // Register terrains
     ////////////////////////////////////////////////////////////
 
-    @Register.item("WhiteCobblestoneFlooring", { ...WhiteCobblestoneFlooringDescription })
-    public itemWhiteCobblestoneFlooring: ItemType;
-    @Register.terrain("WhiteCobblestoneFlooring", { ...WhiteCobblestoneFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainWhiteCobblestoneFlooring: TerrainType;
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}CobblestoneFlooring`, {
+            ...itemDescriptions[ItemType.CobblestoneFlooring],
+            use: [ActionType.SetDown],
+            onUse: { [ActionType.SetDown]: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsCobblestoneFlooring`, color) },
+            groups: [ItemTypeGroup.Housing]
+        })))
+    public itemsCobblestoneFlooring: ItemType[];
 
-    @Register.item("BlackCobblestoneFlooring", { ...BlackCobblestoneFlooringDescription })
-    public itemBlackCobblestoneFlooring: ItemType;
-    @Register.terrain("BlackCobblestoneFlooring", { ...BlackCobblestoneFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainBlackCobblestoneFlooring: TerrainType;
+    @Register.bulk("terrain", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}CobblestoneFlooring`, {
+            ...terrainDescriptions[TerrainType.CobblestoneFlooring],
+            baseTerrain: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsCobblestoneFlooring`, color),
+            terrainType: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsCobblestoneFlooring`, color),
+            groups: [TerrainTypeGroup.Flooring]
+        })))
+    public terrainsCobblestoneFlooring: TerrainType[];
 
-    @Register.item("RedCobblestoneFlooring", { ...RedCobblestoneFlooringDescription })
-    public itemRedCobblestoneFlooring: ItemType;
-    @Register.terrain("RedCobblestoneFlooring", { ...RedCobblestoneFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainRedCobblestoneFlooring: TerrainType;
+    ////////////////////////////////////////////////////////////
 
-    @Register.item("YellowCobblestoneFlooring", { ...YellowCobblestoneFlooringDescription })
-    public itemYellowCobblestoneFlooring: ItemType;
-    @Register.terrain("YellowCobblestoneFlooring", { ...YellowCobblestoneFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainYellowCobblestoneFlooring: TerrainType;
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}WoodenFlooring`, {
+            ...itemDescriptions[ItemType.WoodenFlooring],
+            use: [ActionType.SetDown],
+            onUse: { [ActionType.SetDown]: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsWoodenFlooring`, color) },
+            groups: [ItemTypeGroup.Housing]
+        })))
+    public itemsWoodenFlooring: ItemType[];
 
-    @Register.item("BlueCobblestoneFlooring", { ...BlueCobblestoneFlooringDescription })
-    public itemBlueCobblestoneFlooring: ItemType;
-    @Register.terrain("BlueCobblestoneFlooring", { ...BlueCobblestoneFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainBlueCobblestoneFlooring: TerrainType;
+    @Register.bulk("terrain", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}WoodenFlooring`, {
+            ...terrainDescriptions[TerrainType.WoodenFlooring],
+            baseTerrain: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsWoodenFlooring`, color),
+            terrainType: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsWoodenFlooring`, color),
+            groups: [TerrainTypeGroup.Flooring]
+        })))
+    public terrainsWoodenFlooring: TerrainType[];
 
-    @Register.item("OrangeCobblestoneFlooring", { ...OrangeCobblestoneFlooringDescription })
-    public itemOrangeCobblestoneFlooring: ItemType;
-    @Register.terrain("OrangeCobblestoneFlooring", { ...OrangeCobblestoneFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainOrangeCobblestoneFlooring: TerrainType;
+    ////////////////////////////////////////////////////////////
 
-    @Register.item("GreenCobblestoneFlooring", { ...GreenCobblestoneFlooringDescription })
-    public itemGreenCobblestoneFlooring: ItemType;
-    @Register.terrain("GreenCobblestoneFlooring", { ...GreenCobblestoneFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainGreenCobblestoneFlooring: TerrainType;
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}ClayFlooring`, {
+            ...itemDescriptions[ItemType.ClayFlooring],
+            use: [ActionType.SetDown],
+            onUse: { [ActionType.SetDown]: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsClayFlooring`, color) },
+            groups: [ItemTypeGroup.Housing]
+        })))
+    public itemsClayFlooring: ItemType[];
 
-    @Register.item("PurpleCobblestoneFlooring", { ...PurpleCobblestoneFlooringDescription })
-    public itemPurpleCobblestoneFlooring: ItemType;
-    @Register.terrain("PurpleCobblestoneFlooring", { ...PurpleCobblestoneFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainPurpleCobblestoneFlooring: TerrainType;
+    @Register.bulk("terrain", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}ClayFlooring`, {
+            ...terrainDescriptions[TerrainType.ClayFlooring],
+            baseTerrain: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsClayFlooring`, color),
+            terrainType: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsClayFlooring`, color),
+            groups: [TerrainTypeGroup.Flooring]
+        })))
+    public terrainsClayFlooring: TerrainType[];
 
-    // ----------------------------------------
+    ////////////////////////////////////////////////////////////
 
-    @Register.item("WhiteWoodenFlooring", { ...WhiteWoodenFlooringDescription })
-    public itemWhiteWoodenFlooring: ItemType;
-    @Register.terrain("WhiteWoodenFlooring", { ...WhiteWoodenFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainWhiteWoodenFlooring: TerrainType;
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}AshCementFlooring`, {
+            ...itemDescriptions[ItemType.AshCementFlooring],
+            use: [ActionType.SetDown],
+            onUse: { [ActionType.SetDown]: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsAshCementFlooring`, color) },
+            groups: [ItemTypeGroup.Housing]
+        })))
+    public itemsAshCementFlooring: ItemType[];
 
-    @Register.item("BlackWoodenFlooring", { ...BlackWoodenFlooringDescription })
-    public itemBlackWoodenFlooring: ItemType;
-    @Register.terrain("BlackWoodenFlooring", { ...BlackWoodenFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainBlackWoodenFlooring: TerrainType;
-
-    @Register.item("RedWoodenFlooring", { ...RedWoodenFlooringDescription })
-    public itemRedWoodenFlooring: ItemType;
-    @Register.terrain("RedWoodenFlooring", { ...RedWoodenFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainRedWoodenFlooring: TerrainType;
-
-    @Register.item("YellowWoodenFlooring", { ...YellowWoodenFlooringDescription })
-    public itemYellowWoodenFlooring: ItemType;
-    @Register.terrain("YellowWoodenFlooring", { ...YellowWoodenFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainYellowWoodenFlooring: TerrainType;
-
-    @Register.item("BlueWoodenFlooring", { ...BlueWoodenFlooringDescription })
-    public itemBlueWoodenFlooring: ItemType;
-    @Register.terrain("BlueWoodenFlooring", { ...BlueWoodenFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainBlueWoodenFlooring: TerrainType;
-
-    @Register.item("OrangeWoodenFlooring", { ...OrangeWoodenFlooringDescription })
-    public itemOrangeWoodenFlooring: ItemType;
-    @Register.terrain("OrangeWoodenFlooring", { ...OrangeWoodenFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainOrangeWoodenFlooring: TerrainType;
-
-    @Register.item("GreenWoodenFlooring", { ...GreenWoodenFlooringDescription })
-    public itemGreenWoodenFlooring: ItemType;
-    @Register.terrain("GreenWoodenFlooring", { ...GreenWoodenFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainGreenWoodenFlooring: TerrainType;
-
-    @Register.item("PurpleWoodenFlooring", { ...PurpleWoodenFlooringDescription })
-    public itemPurpleWoodenFlooring: ItemType;
-    @Register.terrain("PurpleWoodenFlooring", { ...PurpleWoodenFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainPurpleWoodenFlooring: TerrainType;
-
-    // ----------------------------------------
-
-    @Register.item("WhiteClayFlooring", { ...WhiteClayFlooringDescription })
-    public itemWhiteClayFlooring: ItemType;
-    @Register.terrain("WhiteClayFlooring", { ...WhiteClayFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainWhiteClayFlooring: TerrainType;
-
-    @Register.item("BlackClayFlooring", { ...BlackClayFlooringDescription })
-    public itemBlackClayFlooring: ItemType;
-    @Register.terrain("BlackClayFlooring", { ...BlackClayFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainBlackClayFlooring: TerrainType;
-
-    @Register.item("RedClayFlooring", { ...RedClayFlooringDescription })
-    public itemRedClayFlooring: ItemType;
-    @Register.terrain("RedClayFlooring", { ...RedClayFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainRedClayFlooring: TerrainType;
-
-    @Register.item("YellowClayFlooring", { ...YellowClayFlooringDescription })
-    public itemYellowClayFlooring: ItemType;
-    @Register.terrain("YellowClayFlooring", { ...YellowClayFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainYellowClayFlooring: TerrainType;
-
-    @Register.item("BlueClayFlooring", { ...BlueClayFlooringDescription })
-    public itemBlueClayFlooring: ItemType;
-    @Register.terrain("BlueClayFlooring", { ...BlueClayFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainBlueClayFlooring: TerrainType;
-
-    @Register.item("OrangeClayFlooring", { ...OrangeClayFlooringDescription })
-    public itemOrangeClayFlooring: ItemType;
-    @Register.terrain("OrangeClayFlooring", { ...OrangeClayFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainOrangeClayFlooring: TerrainType;
-
-    @Register.item("GreenClayFlooring", { ...GreenClayFlooringDescription })
-    public itemGreenClayFlooring: ItemType;
-    @Register.terrain("GreenClayFlooring", { ...GreenClayFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainGreenClayFlooring: TerrainType;
-
-    @Register.item("PurpleClayFlooring", { ...PurpleClayFlooringDescription })
-    public itemPurpleClayFlooring: ItemType;
-    @Register.terrain("PurpleClayFlooring", { ...PurpleClayFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainPurpleClayFlooring: TerrainType;
-
-    // ----------------------------------------
-
-    @Register.item("WhiteAshCementFlooring", { ...WhiteAshCementFlooringDescription })
-    public itemWhiteAshCementFlooring: ItemType;
-    @Register.terrain("WhiteAshCementFlooring", { ...WhiteAshCementFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainWhiteAshCementFlooring: TerrainType;
-
-    @Register.item("BlackAshCementFlooring", { ...BlackAshCementFlooringDescription })
-    public itemBlackAshCementFlooring: ItemType;
-    @Register.terrain("BlackAshCementFlooring", { ...BlackAshCementFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainBlackAshCementFlooring: TerrainType;
-
-    @Register.item("RedAshCementFlooring", { ...RedAshCementFlooringDescription })
-    public itemRedAshCementFlooring: ItemType;
-    @Register.terrain("RedAshCementFlooring", { ...RedAshCementFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainRedAshCementFlooring: TerrainType;
-
-    @Register.item("YellowAshCementFlooring", { ...YellowAshCementFlooringDescription })
-    public itemYellowAshCementFlooring: ItemType;
-    @Register.terrain("YellowAshCementFlooring", { ...YellowAshCementFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainYellowAshCementFlooring: TerrainType;
-
-    @Register.item("BlueAshCementFlooring", { ...BlueAshCementFlooringDescription })
-    public itemBlueAshCementFlooring: ItemType;
-    @Register.terrain("BlueAshCementFlooring", { ...BlueAshCementFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainBlueAshCementFlooring: TerrainType;
-
-    @Register.item("OrangeAshCementFlooring", { ...OrangeAshCementFlooringDescription })
-    public itemOrangeAshCementFlooring: ItemType;
-    @Register.terrain("OrangeAshCementFlooring", { ...OrangeAshCementFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainOrangeAshCementFlooring: TerrainType;
-
-    @Register.item("GreenAshCementFlooring", { ...GreenAshCementFlooringDescription })
-    public itemGreenAshCementFlooring: ItemType;
-    @Register.terrain("GreenAshCementFlooring", { ...GreenAshCementFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainGreenAshCementFlooring: TerrainType;
-
-    @Register.item("PurpleAshCementFlooring", { ...PurpleAshCementFlooringDescription })
-    public itemPurpleAshCementFlooring: ItemType;
-    @Register.terrain("PurpleAshCementFlooring", { ...PurpleAshCementFlooringTerrainDescription, group: [TerrainTypeGroup.Flooring] })
-    public terrainPurpleAshCementFlooring: TerrainType;
-
+    @Register.bulk("terrain", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}AshCementFlooring`, {
+            ...terrainDescriptions[TerrainType.AshCementFlooring],
+            baseTerrain: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsAshCementFlooring`, color),
+            terrainType: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsAshCementFlooring`, color),
+            groups: [TerrainTypeGroup.Flooring]
+        })))
+    public terrainsAshCementFlooring: TerrainType[];
 
     ////////////////////////////////////////////////////////////
     // Register equipment
     ////////////////////////////////////////////////////////////
 
-    @Register.item("RedLeatherTunic")
-    public itemRedLeatherTunic: ItemType;
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}LeatherTunic`, {
+            ...itemDescriptions[ItemType.LeatherTunic],
+            use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+            groups: [ItemTypeGroup.Equipment]
+        })))
+    public itemsLeatherTunics: ItemType[];
 
 
     ////////////////////////////////////////////////////////////
@@ -536,85 +613,61 @@ export default class ColorsEverywhere extends Mod {
 
     public getTerrainList (): TerrainType[] {
         return [
+            ...this.terrainsCobblestoneFlooring,
+            ...this.terrainsWoodenFlooring,
+            ...this.terrainsClayFlooring,
+            ...this.terrainsAshCementFlooring
+        ]
+    }
+
+    public getVanillaTerrainList (): TerrainType[] {
+        return [
             TerrainType.CobblestoneFlooring,
             TerrainType.WoodenFlooring,
             TerrainType.ClayFlooring,
-            TerrainType.AshCementFlooring,
-            this.terrainWhiteCobblestoneFlooring,
-            this.terrainBlackCobblestoneFlooring,
-            this.terrainRedCobblestoneFlooring,
-            this.terrainYellowCobblestoneFlooring,
-            this.terrainBlueCobblestoneFlooring,
-            this.terrainOrangeCobblestoneFlooring,
-            this.terrainGreenCobblestoneFlooring,
-            this.terrainPurpleCobblestoneFlooring,
-            this.terrainWhiteWoodenFlooring,
-            this.terrainBlackWoodenFlooring,
-            this.terrainRedWoodenFlooring,
-            this.terrainYellowWoodenFlooring,
-            this.terrainBlueWoodenFlooring,
-            this.terrainOrangeWoodenFlooring,
-            this.terrainGreenWoodenFlooring,
-            this.terrainPurpleWoodenFlooring,
-            this.terrainWhiteClayFlooring,
-            this.terrainBlackClayFlooring,
-            this.terrainRedClayFlooring,
-            this.terrainYellowClayFlooring,
-            this.terrainBlueClayFlooring,
-            this.terrainOrangeClayFlooring,
-            this.terrainGreenClayFlooring,
-            this.terrainPurpleClayFlooring,
-            this.terrainWhiteAshCementFlooring,
-            this.terrainBlackAshCementFlooring,
-            this.terrainRedAshCementFlooring,
-            this.terrainYellowAshCementFlooring,
-            this.terrainBlueAshCementFlooring,
-            this.terrainOrangeAshCementFlooring,
-            this.terrainGreenAshCementFlooring,
-            this.terrainPurpleAshCementFlooring
+            TerrainType.AshCementFlooring
         ]
     }
 
     public getDoodadList (): DoodadType[] {
         return [
+            ...this.doodadsWoodenChests,
+            ...this.doodadsCopperChests,
+            ...this.doodadsWroughtIronChests,
+            ...this.doodadsIronChests,
+            ...this.doodadsTinChests,
+            ...this.doodadsBronzeChests,
+            ...this.doodadsOrnateWoodenChests,
+            ...this.doodadsStoneWalls,
+            ...this.doodadsWoodenWalls,
+            ...this.doodadsWoodenFences,
+            ...this.doodadsWoodenDoors,
+            ...this.doodadsWoodenDoorsOpen,
+            ...this.doodadsWoodenGates,
+            ...this.doodadsWoodenGatesOpen,
+            ...this.doodadsClayWalls,
+            ...this.doodadsAshCementWalls
+        ];
+    }
+
+    public getVanillaDoodadList (): DoodadType[] {
+        return [
             DoodadType.WoodenChest,
+            DoodadType.CopperChest,
             DoodadType.WroughtIronChest,
             DoodadType.IronChest,
-            DoodadType.CopperChest,
+            DoodadType.TinChest,
+            DoodadType.BronzeChest,
+            DoodadType.OrnateWoodenChest,
             DoodadType.StoneWall,
-            this.doodadWhiteWoodenChest,
-            this.doodadBlackWoodenChest,
-            this.doodadRedWoodenChest,
-            this.doodadYellowWoodenChest,
-            this.doodadBlueWoodenChest,
-            this.doodadOrangeWoodenChest,
-            this.doodadGreenWoodenChest,
-            this.doodadPurpleWoodenChest,
-            this.doodadWhiteCopperChest,
-            this.doodadBlackCopperChest,
-            this.doodadRedCopperChest,
-            this.doodadYellowCopperChest,
-            this.doodadBlueCopperChest,
-            this.doodadOrangeCopperChest,
-            this.doodadGreenCopperChest,
-            this.doodadPurpleCopperChest,
-            this.doodadWhiteWroughtIronChest,
-            this.doodadBlackWroughtIronChest,
-            this.doodadRedWroughtIronChest,
-            this.doodadYellowWroughtIronChest,
-            this.doodadBlueWroughtIronChest,
-            this.doodadOrangeWroughtIronChest,
-            this.doodadGreenWroughtIronChest,
-            this.doodadPurpleWroughtIronChest,
-            this.doodadWhiteIronChest,
-            this.doodadBlackIronChest,
-            this.doodadRedIronChest,
-            this.doodadYellowIronChest,
-            this.doodadBlueIronChest,
-            this.doodadOrangeIronChest,
-            this.doodadGreenIronChest,
-            this.doodadPurpleIronChest,
-            ...this.doodadsStoneWalls
+            DoodadType.WoodenWall,
+            DoodadType.WoodenDoor,
+            DoodadType.WoodenDoorOpen,
+            DoodadType.WoodenFence,
+            DoodadType.WoodenGate,
+            DoodadType.WoodenGateOpen,
+            DoodadType.ClayWall,
+            DoodadType.AshCementWall
         ];
     }
 
@@ -634,7 +687,9 @@ export default class ColorsEverywhere extends Mod {
 
             const ths = ColorsEverywhere.INSTANCE;
             const doodadTypeList = ths.getDoodadList();
+            const doodadVanillaTypeList = ths.getVanillaDoodadList();
             const terrainTypeList = ths.getTerrainList();
+            const terrainVanillaTypeList = ths.getVanillaTerrainList();
 
             const color = ths.getItemColor(item.type);
 
@@ -657,20 +712,91 @@ export default class ColorsEverywhere extends Mod {
                 }
 
                 // Painting over the paint
-
                 game.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[color]);
 
                 if (doodadType) {
                     const doodadBulkRegistration = ths.getDoodadBulkRegistration(doodadType);
-                    if (doodadBulkRegistration) {
+                    if (doodadBulkRegistration ) {
                         tileDoodad?.changeType(doodadBulkRegistration[color]);
+                    } else {
+                        doodadVanillaTypeList.map(() => {
+                            
+                            doodadType === DoodadType.WoodenChest ? 
+                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWoodenChests[color]) : null
+
+                            doodadType === DoodadType.CopperChest ? 
+                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsCopperChests[color]) : null
+
+                            doodadType === DoodadType.WroughtIronChest ? 
+                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWroughtIronChests[color]) : null
+                            
+                            doodadType === DoodadType.IronChest ? 
+                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsIronChests[color]) : null
+
+                            doodadType === DoodadType.TinChest ? 
+                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsTinChests[color]) : null
+
+                            doodadType === DoodadType.BronzeChest ? 
+                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsBronzeChests[color]) : null
+
+                            doodadType === DoodadType.OrnateWoodenChest ? 
+                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsOrnateWoodenChests[color]) : null
+
+                            doodadType === DoodadType.StoneWall ? 
+                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsStoneWalls[color]) : null
+
+                            doodadType === DoodadType.ClayWall ? 
+                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsClayWalls[color]) : null
+
+                            doodadType === DoodadType.AshCementWall ? 
+                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsAshCementWalls[color]) : null
+
+                            doodadType === DoodadType.WoodenWall ? 
+                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWoodenWalls[color]) : null
+
+                            doodadType === DoodadType.WoodenFence ? 
+                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWoodenFences[color]) : null
+
+                            doodadType === DoodadType.WoodenDoorOpen ? 
+                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWoodenDoorsOpen[color]) : null
+
+                            doodadType === DoodadType.WoodenGate ? 
+                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWoodenGates[color]) : null
+
+                            doodadType === DoodadType.WoodenGateOpen ? 
+                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWoodenGatesOpen[color]) : null
+
+                        })
                     }
+                } else {
+                    // Implied wooden door since index is 0
+                    tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWoodenDoors[color])
                 }
 
                 if (terrainType) {
                     const terrainBulkRegistration = ths.getTerrainBulkRegistration(terrainType);
                     if (terrainBulkRegistration) {
                         game.changeTile(terrainBulkRegistration[color], tilePosition.x, tilePosition.y, tilePosition.z, false)
+                    } else {
+                        terrainVanillaTypeList.map(() => {
+
+                            function changeTile(newTileInfo: TerrainType) {
+                                return game.changeTile(newTileInfo, tilePosition.x, tilePosition.y, tilePosition.z, false)
+                            }
+
+                            terrainType === TerrainType.CobblestoneFlooring ? 
+                            changeTile(ColorsEverywhere.INSTANCE.terrainsCobblestoneFlooring[color]) : null
+
+                            terrainType === TerrainType.WoodenFlooring ? 
+                            changeTile(ColorsEverywhere.INSTANCE.terrainsWoodenFlooring[color]) : null
+
+                            terrainType === TerrainType.ClayFlooring ? 
+                            changeTile(ColorsEverywhere.INSTANCE.terrainsClayFlooring[color]) : null
+
+                            terrainType === TerrainType.AshCementFlooring ? 
+                            changeTile(ColorsEverywhere.INSTANCE.terrainsAshCementFlooring[color]) : null
+
+                        })
                     }
                 }
 
@@ -678,10 +804,12 @@ export default class ColorsEverywhere extends Mod {
             }
 
             if (tileDoodad || tileTerrain) {
-                if (tileDoodad && doodadTypeList.includes(tileDoodad.type)) {
-                    usePaintAction(color, tileDoodad?.type);
+                if (tileDoodad) {
+                    if (doodadTypeList.includes(tileDoodad!.type) || doodadVanillaTypeList.includes(tileDoodad!.type)) {
+                        usePaintAction(color, tileDoodad?.type);
+                    }
                 }
-                if (tileTerrain && terrainTypeList.includes(tileTerrain)) {
+                if ((tileTerrain && terrainTypeList.includes(tileTerrain)) || (tileTerrain && terrainVanillaTypeList.includes(tileTerrain))) {
                     usePaintAction(color, undefined, tileTerrain);
                 }
             } else {
@@ -811,6 +939,18 @@ export default class ColorsEverywhere extends Mod {
 
     // ------------------------------------------------------------ //
 
+    public getDyeList (): DoodadType[] {
+        return [
+            ...this.doodadsDyes
+        ];
+    }
+
+    public getVanillaEquipment (): ItemType[] {
+        return [
+            ItemType.LeatherTunic
+        ];
+    }
+
     @Register.action("DyeItem", new Action(ActionArgument.Item)
         .setUsableBy(EntityType.Player)
         .setHandler((action, item) => {
@@ -818,14 +958,56 @@ export default class ColorsEverywhere extends Mod {
             const player = action.executor;
             const tile = player.getFacingTile();
             const tileDoodad = tile.doodad;
+            const itemType = item.type;
+            const ths = ColorsEverywhere.INSTANCE;
+            const dyeTubs = ths.getDyeList();
+            const vanillaEquipment = ths.getVanillaEquipment();
+            const color = ths.getItemColor(item.type);
 
-            if (tileDoodad?.type !== ColorsEverywhere.INSTANCE.doodadsDyes[Colors.Red]) {
-                player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoDyeSource);
-            } else {
-                game.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[Colors.Red]);
-                item.changeInto(ColorsEverywhere.INSTANCE.itemRedLeatherTunic);
-                tileDoodad.damage();
+            function applyDye (color: Colors, doodadType?: DoodadType, itemType?: ItemType) {
+
+                let existingColor!: Colors;
+
+                if (doodadType) {
+                    existingColor = ths.getDoodadColor(doodadType);
+                }
+
+                // Can't dye it the same color
+                if (color === existingColor) {
+                    player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoSameColor);
+                    return;
+                }
+
+                // Painting over the paint
+                game.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[existingColor]);
+
+                if (doodadType && itemType) {
+                    const doodadColor = ths.getDoodadColor(doodadType);
+                    const itemBulkRegistrations = ths.getItemBulkRegistration(itemType);
+                    if (itemBulkRegistrations ) {
+                        item.changeInto(itemBulkRegistrations[doodadColor]);
+                        tileDoodad!.damage();
+                    } else {
+                        vanillaEquipment.map(() => {
+
+                            itemType === ItemType.LeatherTunic ?
+                            item.changeInto(ColorsEverywhere.INSTANCE.itemsLeatherTunics[doodadColor]) : null
+
+                        })
+                    }
+                }
+
             }
+
+            if (tileDoodad) {
+                if (dyeTubs.includes(tileDoodad!.type)) {
+                    applyDye(color, tileDoodad?.type, itemType);
+                }
+            } else {
+                player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoDyeSource);
+            }
+
+            game.passTurn(player);
 
         }))
 
@@ -846,8 +1028,6 @@ export default class ColorsEverywhere extends Mod {
         this.milkThistleOrig = itemDescriptions[ItemType.MilkThistleFlowers];
         const milkThistle = itemDescriptions[ItemType.MilkThistleFlowers];
 
-        // const purple = this.items.filter(v => v'itemPurplePigment'));
-
         if (milkThistle && milkThistle.dismantle === undefined) {
             milkThistle.dismantle = {
                 items: [{
@@ -861,19 +1041,14 @@ export default class ColorsEverywhere extends Mod {
         }
 
         // Leather Tunic
-
         this.leatherTunicOrig = itemDescriptions[ItemType.LeatherTunic];
         const leatherTunic = itemDescriptions[ItemType.LeatherTunic];
-
-        // Repeat colors
-        let redLeatherTunic = itemDescriptions[ColorsEverywhere.INSTANCE.itemRedLeatherTunic];
 
         if (leatherTunic) {
             // Append dye action
             !leatherTunic.use ? leatherTunic.use = [ColorsEverywhere.INSTANCE.actionDyeItem] : undefined;
-            // Clone item stats for each color
-            Object.assign(redLeatherTunic, leatherTunic);
         }
+
     }
 
     @Override public onUnload () {
@@ -908,18 +1083,45 @@ export default class ColorsEverywhere extends Mod {
             localPlayer.createItemInInventory(ItemType.Ectoplasm);
             localPlayer.createItemInInventory(ItemType.StoneWall);
             localPlayer.createItemInInventory(ItemType.StoneWall);
-            localPlayer.createItemInInventory(this.itemRedLeatherTunic);
+            localPlayer.createItemInInventory(ItemType.CopperChest);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsLeatherTunics[Colors.Red]);
             localPlayer.createItemInInventory(this.itemsStoneWalls[Colors.White]);
             localPlayer.createItemInInventory(this.itemsStoneWalls[Colors.White]);
             localPlayer.createItemInInventory(this.itemsStoneWalls[Colors.White]);
+            localPlayer.createItemInInventory(this.itemsWoodenWalls[Colors.White]);
+            localPlayer.createItemInInventory(this.itemsWoodenWalls[Colors.Black]);
+            localPlayer.createItemInInventory(this.itemsWoodenWalls[Colors.Red]);
             localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsDyes[Colors.Purple]);
             localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsDyes[Colors.Red]);
-            localPlayer.createItemInInventory(this.itemWhiteCobblestoneFlooring);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemDyeRemover);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsCobblestoneFlooring[Colors.Blue]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsCobblestoneFlooring[Colors.White]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsCobblestoneFlooring[Colors.Red]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsWoodenFlooring[Colors.Blue]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsWoodenFlooring[Colors.White]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsWoodenFlooring[Colors.Red]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsClayFlooring[Colors.Blue]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsClayFlooring[Colors.White]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsAshCementFlooring[Colors.Red]);
+            localPlayer.createItemInInventory(ItemType.WoodenDoor);
+            localPlayer.createItemInInventory(ItemType.WoodenGate);
+            localPlayer.createItemInInventory(ItemType.WoodenFence);
+            localPlayer.createItemInInventory(ItemType.WoodenFence);
+            localPlayer.createItemInInventory(ItemType.WoodenFence);
+            localPlayer.createItemInInventory(ItemType.ClayWall);
+            localPlayer.createItemInInventory(ItemType.AshCementWall);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsWoodenDoors[Colors.Green]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsWoodenFences[Colors.Green]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsWoodenGates[Colors.Green]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsClayWalls[Colors.Green]);
+            localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsAshCementWalls[Colors.Green]);
         }
     }
 
-    // ignore that this isn't used, you'll need it later i bet
-    // @ts-ignore
+    ////////////////////////////////////////////////////////////
+    // Chiri is amazing section ;D
+    ////////////////////////////////////////////////////////////
+
     private getItemBulkRegistration<R extends ItemType | ItemTypeGroup> (registration: R) {
         for (const key of itemBulkRegistrations) {
             const value = this[key as keyof this] as any as (ItemType | ItemTypeGroup)[];
@@ -934,7 +1136,7 @@ export default class ColorsEverywhere extends Mod {
 
     private getItemColor<R extends ItemType | ItemTypeGroup> (registration: R, registrationKey?: keyof PickValues<ColorsEverywhere, R[]>): Colors {
         if (registrationKey) {
-            return (this[registrationKey] as R[]).indexOf(registration);
+            return (this[registrationKey] as any as R[] ).indexOf(registration);
         }
 
         for (const key of itemBulkRegistrations) {
@@ -963,7 +1165,7 @@ export default class ColorsEverywhere extends Mod {
 
     private getDoodadColor<R extends DoodadType | DoodadTypeGroup> (registration: R, registrationKey?: keyof PickValues<ColorsEverywhere, R[]>): Colors {
         if (registrationKey) {
-            return (this[registrationKey] as R[]).indexOf(registration);
+            return (this[registrationKey] as any as R[]).indexOf(registration);
         }
 
         for (const key of doodadBulkRegistrations) {
@@ -990,11 +1192,7 @@ export default class ColorsEverywhere extends Mod {
         return undefined;
     }
 
-    private getTileColor (registration: TerrainType, registrationKey?: keyof PickValues<ColorsEverywhere, TerrainType[]>): Colors {
-        if (registrationKey) {
-            // remove the "as any"s when there's a TerrainType bulk registration
-            return ((this as any)[registrationKey as any] as TerrainType[]).indexOf(registration);
-        }
+    private getTileColor (registration: TerrainType): Colors {
 
         for (const key of terrainBulkRegistrations) {
             const value = this[key as keyof this] as any as TerrainType[];
