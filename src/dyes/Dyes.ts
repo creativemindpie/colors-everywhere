@@ -31,7 +31,7 @@ export function getDoodadDyeDescription (color: Colors): IDoodadDescription {
     return {
         blockMove: true,
         isTall: true,
-        reduceDurabilityOnGather: false,
+        reduceDurabilityOnGather: true,
         pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get(`itemsDyes`, color)]
     }
 }

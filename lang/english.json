@@ -133,11 +133,11 @@
 			"modColorsEverywhereCleanPaintbrush": ["Clean Paintbrush", "Remove the dye from your brush."]
 		},
 		"message": {
-			"modColorsEverywherePaintbrushNotDirty": "{#428cfb: The paintbrush is already clean.}",
-			"modColorsEverywhereNoWaterSource": "{#ff0000: You need water to do that.}",
-			"modColorsEverywhereNoDyeSource": "{#ff0000: You need to be near dye to do that.}",
-			"modColorsEverywhereNoSameColor": "{#ff0000: That just feels like a waste of dye, doesn't it...}",
-			"modColorsEverywhereNoDyeAllowed": "{#ff0000: You swipe your brush frantically in the air, dying... nothing.}"
+			"modColorsEverywherePaintbrushNotDirty": "{#--text-secondary: The paintbrush is already clean.}",
+			"modColorsEverywhereNoWaterSource": "{#--color-message-bad: You need water to do that.}",
+			"modColorsEverywhereNoDyeSource": "{#--color-message-bad: You need to be near dye to do that.}",
+			"modColorsEverywhereNoSameColor": "{#--color-message-attack: That just feels like a waste of dye, doesn't it...}",
+			"modColorsEverywhereNoDyeAllowed": "{#--color-message-bad: You swipe your brush frantically in the air, dying absolutely nothing.}"
 		}
 	}
 }

@@ -3,9 +3,9 @@
 	"description": "Creates a blue flower resource to be gathered, creating base pigments of Red, Yellow, and Blue that can be mixed to create other pigments. Dyes can then be created with the pigment colors and applied to chests, armor, etc.",
 	"version": "1.0.0",
 	"author": "Tek",
-	"tags": ["Doodad", "Item", "Terrain"],
+	"tags": ["Doodad", "Item", "Terrain", "Character"],
 	"file": "out/ColorsEverywhere",
 	"multiplayer": "compatible",
 	"languages": ["lang/english"],
-	"waywardVersion": "2.10.7-beta"
+	"waywardVersion": "2.10.8-beta"
 }

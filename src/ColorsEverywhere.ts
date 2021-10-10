@@ -53,7 +53,8 @@ const itemBulkRegistrations: (keyof ItemRegistrations)[] = [
     "itemsAshCementFlooring",
     "itemsClayWalls",
     "itemsAshCementWalls",
-    "itemsLeatherTunics"
+    "itemsLeatherTunics",
+    "itemsLeatherBelts"
 ];
 
 type DoodadRegistrations = PickValues<ColorsEverywhere, (DoodadType | DoodadTypeGroup)[]>;
@@ -187,6 +188,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}WoodenChest`, {
             ...itemDescriptions[ItemType.WoodenChest],
+            recipe: undefined,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenChests", color) },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsWoodenChests`, color),
@@ -208,6 +210,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}CopperChest`, {
             ...itemDescriptions[ItemType.CopperChest],
+            recipe: undefined,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsCopperChests", color) },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsCopperChests`, color),
@@ -229,6 +232,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}WroughtIronChest`, {
             ...itemDescriptions[ItemType.WroughtIronChest],
+            recipe: undefined,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWroughtIronChests", color) },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsWroughtIronChests`, color),
@@ -250,6 +254,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}IronChest`, {
             ...itemDescriptions[ItemType.IronChest],
+            recipe: undefined,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsIronChests", color) },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsIronChests`, color),
@@ -271,6 +276,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}TinChest`, {
             ...itemDescriptions[ItemType.TinChest],
+            recipe: undefined,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsTinChests", color) },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsTinChests`, color),
@@ -292,6 +298,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}BronzeChest`, {
             ...itemDescriptions[ItemType.BronzeChest],
+            recipe: undefined,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsBronzeChests", color) },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsBronzeChests`, color),
@@ -313,6 +320,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}OrnateWoodenChest`, {
             ...itemDescriptions[ItemType.OrnateWoodenChest],
+            recipe: undefined,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsOrnateWoodenChests", color) },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsOrnateWoodenChests`, color),
@@ -336,6 +344,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}StoneWall`, {
             ...itemDescriptions[ItemType.StoneWall],
+            recipe: undefined,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsStoneWalls", color) },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsStoneWalls", color),
@@ -356,6 +365,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}ClayWall`, {
             ...itemDescriptions[ItemType.ClayWall],
+            recipe: undefined,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsClayWalls", color) },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsClayWalls", color),
@@ -376,6 +386,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}AshCementWall`, {
             ...itemDescriptions[ItemType.AshCementWall],
+            recipe: undefined,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsAshCementWalls", color) },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsAshCementWalls", color),
@@ -396,6 +407,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}WoodenWall`, {
             ...itemDescriptions[ItemType.WoodenWall],
+            recipe: undefined,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenWalls", color) },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenWalls", color),
@@ -416,6 +428,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}WoodenGate`, {
             ...itemDescriptions[ItemType.WoodenGate],
+            recipe: undefined,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenGates", color) },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenGates", color),
@@ -446,6 +459,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}WoodenDoor`, {
             ...itemDescriptions[ItemType.WoodenDoor],
+            recipe: undefined,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenDoors", color) },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenDoors", color),
@@ -476,6 +490,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}WoodenFence`, {
             ...itemDescriptions[ItemType.WoodenFence],
+            recipe: undefined,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenFences", color) },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenFences", color),
@@ -499,6 +514,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}CobblestoneFlooring`, {
             ...itemDescriptions[ItemType.CobblestoneFlooring],
+            recipe: undefined,
             use: [ActionType.SetDown],
             onUse: { [ActionType.SetDown]: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsCobblestoneFlooring`, color) },
             groups: [ItemTypeGroup.Housing]
@@ -519,6 +535,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}WoodenFlooring`, {
             ...itemDescriptions[ItemType.WoodenFlooring],
+            recipe: undefined,
             use: [ActionType.SetDown],
             onUse: { [ActionType.SetDown]: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsWoodenFlooring`, color) },
             groups: [ItemTypeGroup.Housing]
@@ -539,6 +556,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}ClayFlooring`, {
             ...itemDescriptions[ItemType.ClayFlooring],
+            recipe: undefined,
             use: [ActionType.SetDown],
             onUse: { [ActionType.SetDown]: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsClayFlooring`, color) },
             groups: [ItemTypeGroup.Housing]
@@ -559,6 +577,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}AshCementFlooring`, {
             ...itemDescriptions[ItemType.AshCementFlooring],
+            recipe: undefined,
             use: [ActionType.SetDown],
             onUse: { [ActionType.SetDown]: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsAshCementFlooring`, color) },
             groups: [ItemTypeGroup.Housing]
@@ -581,10 +600,20 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}LeatherTunic`, {
             ...itemDescriptions[ItemType.LeatherTunic],
+            recipe: undefined,
             use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
             groups: [ItemTypeGroup.Equipment]
         })))
     public itemsLeatherTunics: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+        .map(color => Tuple(`${Colors[color]}LeatherBelt`, {
+            ...itemDescriptions[ItemType.LeatherBelt],
+            recipe: undefined,
+            use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+            groups: [ItemTypeGroup.Equipment]
+        })))
+    public itemsLeatherBelts: ItemType[];
 
 
     ////////////////////////////////////////////////////////////
@@ -611,64 +640,34 @@ export default class ColorsEverywhere extends Mod {
     // Register actions
     ////////////////////////////////////////////////////////////
 
-    public getTerrainList (): TerrainType[] {
+    public mappedTerrains() {
         return [
-            ...this.terrainsCobblestoneFlooring,
-            ...this.terrainsWoodenFlooring,
-            ...this.terrainsClayFlooring,
-            ...this.terrainsAshCementFlooring
+            { vanilla: TerrainType.CobblestoneFlooring, registered: [...this.terrainsCobblestoneFlooring] },
+            { vanilla: TerrainType.WoodenFlooring, registered: [...this.terrainsWoodenFlooring] },
+            { vanilla: TerrainType.ClayFlooring, registered: [...this.terrainsClayFlooring] },
+            { vanilla: TerrainType.AshCementFlooring, registered: [...this.terrainsAshCementFlooring] }
         ]
     }
 
-    public getVanillaTerrainList (): TerrainType[] {
+    public mappedDoodads() {
         return [
-            TerrainType.CobblestoneFlooring,
-            TerrainType.WoodenFlooring,
-            TerrainType.ClayFlooring,
-            TerrainType.AshCementFlooring
+            { vanilla: DoodadType.WoodenChest, registered: [...this.doodadsWoodenChests] },
+            { vanilla: DoodadType.CopperChest, registered: [...this.doodadsCopperChests] },
+            { vanilla: DoodadType.WroughtIronChest, registered: [...this.doodadsWroughtIronChests] },
+            { vanilla: DoodadType.IronChest, registered: [...this.doodadsIronChests] },
+            { vanilla: DoodadType.TinChest, registered: [...this.doodadsTinChests] },
+            { vanilla: DoodadType.BronzeChest, registered: [...this.doodadsBronzeChests] },
+            { vanilla: DoodadType.OrnateWoodenChest, registered: [...this.doodadsOrnateWoodenChests] },
+            { vanilla: DoodadType.StoneWall, registered: [...this.doodadsStoneWalls] },
+            { vanilla: DoodadType.WoodenWall, registered: [...this.doodadsWoodenWalls] },
+            { vanilla: DoodadType.WoodenDoor, registered: [...this.doodadsWoodenDoors] },
+            { vanilla: DoodadType.WoodenDoorOpen, registered: [...this.doodadsWoodenDoorsOpen] },
+            { vanilla: DoodadType.WoodenFence, registered: [...this.doodadsWoodenFences] },
+            { vanilla: DoodadType.WoodenGate, registered: [...this.doodadsWoodenGates] },
+            { vanilla: DoodadType.WoodenGateOpen, registered: [...this.doodadsWoodenGatesOpen] },
+            { vanilla: DoodadType.ClayWall, registered: [...this.doodadsClayWalls] },
+            { vanilla: DoodadType.AshCementWall, registered: [...this.doodadsAshCementWalls] }
         ]
-    }
-
-    public getDoodadList (): DoodadType[] {
-        return [
-            ...this.doodadsWoodenChests,
-            ...this.doodadsCopperChests,
-            ...this.doodadsWroughtIronChests,
-            ...this.doodadsIronChests,
-            ...this.doodadsTinChests,
-            ...this.doodadsBronzeChests,
-            ...this.doodadsOrnateWoodenChests,
-            ...this.doodadsStoneWalls,
-            ...this.doodadsWoodenWalls,
-            ...this.doodadsWoodenFences,
-            ...this.doodadsWoodenDoors,
-            ...this.doodadsWoodenDoorsOpen,
-            ...this.doodadsWoodenGates,
-            ...this.doodadsWoodenGatesOpen,
-            ...this.doodadsClayWalls,
-            ...this.doodadsAshCementWalls
-        ];
-    }
-
-    public getVanillaDoodadList (): DoodadType[] {
-        return [
-            DoodadType.WoodenChest,
-            DoodadType.CopperChest,
-            DoodadType.WroughtIronChest,
-            DoodadType.IronChest,
-            DoodadType.TinChest,
-            DoodadType.BronzeChest,
-            DoodadType.OrnateWoodenChest,
-            DoodadType.StoneWall,
-            DoodadType.WoodenWall,
-            DoodadType.WoodenDoor,
-            DoodadType.WoodenDoorOpen,
-            DoodadType.WoodenFence,
-            DoodadType.WoodenGate,
-            DoodadType.WoodenGateOpen,
-            DoodadType.ClayWall,
-            DoodadType.AshCementWall
-        ];
     }
 
     @Register.action("Paint", new Action(ActionArgument.ItemNearby)
@@ -677,7 +676,6 @@ export default class ColorsEverywhere extends Mod {
 
             // TODO
             // - Trigger dialog for overlapping doodad/terrain options
-            // - Carry item quality on paintbrush/items
 
             const player = action.executor;
             const tile = player.getFacingTile();
@@ -686,11 +684,8 @@ export default class ColorsEverywhere extends Mod {
             const tileTerrain = TileHelpers.getType(tile);
 
             const ths = ColorsEverywhere.INSTANCE;
-            const doodadTypeList = ths.getDoodadList();
-            const doodadVanillaTypeList = ths.getVanillaDoodadList();
-            const terrainTypeList = ths.getTerrainList();
-            const terrainVanillaTypeList = ths.getVanillaTerrainList();
-
+            const mappedDoodads = ths.mappedDoodads();
+            const mappedTerrains = ths.mappedTerrains();
             const color = ths.getItemColor(item.type);
 
             function usePaintAction (color: Colors, doodadType?: DoodadType, terrainType?: TerrainType) {
@@ -704,7 +699,6 @@ export default class ColorsEverywhere extends Mod {
                     existingColor = ths.getTileColor(terrainType);
                 }
 
-
                 // Can't paint it the same color
                 if (color === existingColor) {
                     player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoSameColor);
@@ -714,103 +708,62 @@ export default class ColorsEverywhere extends Mod {
                 // Painting over the paint
                 game.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[color]);
 
-                if (doodadType) {
+                if (doodadType && !terrainType) {
                     const doodadBulkRegistration = ths.getDoodadBulkRegistration(doodadType);
                     if (doodadBulkRegistration ) {
                         tileDoodad?.changeType(doodadBulkRegistration[color]);
+                        item.returns();
                     } else {
-                        doodadVanillaTypeList.map(() => {
-                            
-                            doodadType === DoodadType.WoodenChest ? 
-                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWoodenChests[color]) : null
-
-                            doodadType === DoodadType.CopperChest ? 
-                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsCopperChests[color]) : null
-
-                            doodadType === DoodadType.WroughtIronChest ? 
-                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWroughtIronChests[color]) : null
-                            
-                            doodadType === DoodadType.IronChest ? 
-                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsIronChests[color]) : null
-
-                            doodadType === DoodadType.TinChest ? 
-                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsTinChests[color]) : null
-
-                            doodadType === DoodadType.BronzeChest ? 
-                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsBronzeChests[color]) : null
-
-                            doodadType === DoodadType.OrnateWoodenChest ? 
-                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsOrnateWoodenChests[color]) : null
-
-                            doodadType === DoodadType.StoneWall ? 
-                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsStoneWalls[color]) : null
-
-                            doodadType === DoodadType.ClayWall ? 
-                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsClayWalls[color]) : null
-
-                            doodadType === DoodadType.AshCementWall ? 
-                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsAshCementWalls[color]) : null
-
-                            doodadType === DoodadType.WoodenWall ? 
-                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWoodenWalls[color]) : null
-
-                            doodadType === DoodadType.WoodenFence ? 
-                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWoodenFences[color]) : null
-
-                            doodadType === DoodadType.WoodenDoorOpen ? 
-                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWoodenDoorsOpen[color]) : null
-
-                            doodadType === DoodadType.WoodenGate ? 
-                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWoodenGates[color]) : null
-
-                            doodadType === DoodadType.WoodenGateOpen ? 
-                            tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWoodenGatesOpen[color]) : null
-
+                        mappedDoodads.map(vanillaType => {
+                            if (doodadType === vanillaType.vanilla) {
+                                tileDoodad?.changeType(vanillaType.registered[color]);
+                                item.returns();
+                            }
                         })
                     }
                 } else {
-                    // Implied wooden door since index is 0
-                    tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWoodenDoors[color])
+                    if (!terrainType) {
+                        // Implied wooden door since index is 0
+                        tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWoodenDoors[color]);
+                        item.returns();
+                    }
                 }
 
-                if (terrainType) {
+                if (terrainType && !doodadType) {
                     const terrainBulkRegistration = ths.getTerrainBulkRegistration(terrainType);
                     if (terrainBulkRegistration) {
-                        game.changeTile(terrainBulkRegistration[color], tilePosition.x, tilePosition.y, tilePosition.z, false)
+                        game.changeTile(terrainBulkRegistration[color], tilePosition.x, tilePosition.y, tilePosition.z, false);
+                        item.returns();
                     } else {
-                        terrainVanillaTypeList.map(() => {
+                        mappedTerrains.map(vanillaType => {
 
                             function changeTile(newTileInfo: TerrainType) {
                                 return game.changeTile(newTileInfo, tilePosition.x, tilePosition.y, tilePosition.z, false)
                             }
 
-                            terrainType === TerrainType.CobblestoneFlooring ? 
-                            changeTile(ColorsEverywhere.INSTANCE.terrainsCobblestoneFlooring[color]) : null
-
-                            terrainType === TerrainType.WoodenFlooring ? 
-                            changeTile(ColorsEverywhere.INSTANCE.terrainsWoodenFlooring[color]) : null
-
-                            terrainType === TerrainType.ClayFlooring ? 
-                            changeTile(ColorsEverywhere.INSTANCE.terrainsClayFlooring[color]) : null
-
-                            terrainType === TerrainType.AshCementFlooring ? 
-                            changeTile(ColorsEverywhere.INSTANCE.terrainsAshCementFlooring[color]) : null
+                            if (terrainType === vanillaType.vanilla) {
+                                changeTile(vanillaType.registered[color]);
+                                item.returns();
+                            }
 
                         })
                     }
                 }
 
-                item.returns();
             }
 
             if (tileDoodad || tileTerrain) {
                 if (tileDoodad) {
-                    if (doodadTypeList.includes(tileDoodad!.type) || doodadVanillaTypeList.includes(tileDoodad!.type)) {
+                    const typeId = mappedDoodads.some(v => v.registered.includes(tileDoodad!.type) || v.vanilla === tileDoodad!.type);
+                    if (typeId) {
                         usePaintAction(color, tileDoodad?.type);
                     }
                 }
-                if ((tileTerrain && terrainTypeList.includes(tileTerrain)) || (tileTerrain && terrainVanillaTypeList.includes(tileTerrain))) {
-                    usePaintAction(color, undefined, tileTerrain);
+                if (tileTerrain) {
+                    const typeId = mappedTerrains.some(v => v.registered.includes(tileTerrain) || v.vanilla === tileTerrain);
+                    if (typeId) { 
+                        usePaintAction(color, undefined, tileTerrain);
+                    }
                 }
             } else {
                 player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoDyeAllowed);
@@ -833,57 +786,48 @@ export default class ColorsEverywhere extends Mod {
             const tileDoodad = tile.doodad;
             const tileTerrain = TileHelpers.getType(tile);
 
-            const doodadTypeList = ColorsEverywhere.INSTANCE.getDoodadList();
-            const terrainTypeList = ColorsEverywhere.INSTANCE.getTerrainList();
+            const ths = ColorsEverywhere.INSTANCE;
+            const mappedDoodads = ths.mappedDoodads();
+            const mappedTerrains = ths.mappedTerrains();
 
             function useRemovePaintAction (doodadType?: DoodadType, terrainType?: TerrainType) {
 
-                let keyName: string | undefined;
-
                 if (doodadType) {
-                    const doodadKeys = Enums.toString(DoodadType, doodadType);
-                    keyName = doodadKeys.split(" | ").pop();
-                }
-                if (terrainType) {
-                    const terrainKeys = Enums.toString(TerrainType, terrainType);
-                    keyName = terrainKeys.split(" | ").pop();
+                    mappedDoodads.map(vanillaType => {
+                        const color = ths.getDoodadColor(doodadType);
+                        if (doodadType === vanillaType.registered[color]) {
+                            tileDoodad?.changeType(vanillaType.vanilla);
+                            item.returns();
+                        }
+                    })
                 }
 
-                // Remove paint
-                if (keyName?.includes('ModColorsEverywhere')) {
-                    const removedModName = keyName.replace('ModColorsEverywhere', '');
-                    const colorArray = ['White', 'Black', 'Red', 'Yellow', 'Blue', 'Orange', 'Green', 'Purple'];
-                    colorArray.forEach(val => {
-                        if (keyName?.includes(val)) {
-                            keyName = removedModName.replace(val, '')
+                if (terrainType) {
+                    mappedTerrains.map(vanillaType => {
+                        const color = ths.getTileColor(terrainType);
+                        if (terrainType === vanillaType.registered[color]) {
+                            game.changeTile(vanillaType.vanilla, tilePosition.x, tilePosition.y, tilePosition.z, false);
+                            item.returns();
                         }
                     })
                 }
 
                 game.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[Colors.White]);
 
-                if (doodadType) {
-                    const name = `${keyName}` as keyof typeof DoodadType;
-                    const changedTypeName = DoodadType[name] as DoodadType;
-                    tileDoodad?.changeType(changedTypeName);
-                }
-
-                if (terrainType) {
-                    const name = `${keyName}` as keyof typeof TerrainType;
-                    const changedTypeName = TerrainType[name] as TerrainType;
-                    game.changeTile(changedTypeName, tilePosition.x, tilePosition.y, tilePosition.z, false)
-                }
-
-                item.returns();
-
             }
 
             if (tileDoodad || tileTerrain) {
-                if (tileDoodad && doodadTypeList.includes(tileDoodad.type)) {
-                    useRemovePaintAction(tileDoodad?.type);
+                if (tileDoodad) {
+                    const typeId = mappedDoodads.some(v => v.registered.includes(tileDoodad!.type));
+                    if (typeId) {
+                        useRemovePaintAction(tileDoodad?.type);
+                    }
                 }
-                if (tileTerrain && terrainTypeList.includes(tileTerrain)) {
-                    useRemovePaintAction(undefined, tileTerrain);
+                if (tileTerrain) {
+                    const typeId = mappedTerrains.some(v => v.registered.includes(tileTerrain));
+                    if (typeId) {
+                        useRemovePaintAction(undefined, tileTerrain);
+                    }
                 }
             } else {
                 player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoDyeAllowed);
@@ -939,16 +883,17 @@ export default class ColorsEverywhere extends Mod {
 
     // ------------------------------------------------------------ //
 
-    public getDyeList (): DoodadType[] {
+    public getDyeList(): DoodadType[] {
         return [
             ...this.doodadsDyes
         ];
     }
 
-    public getVanillaEquipment (): ItemType[] {
+    public mappedEquipment() {
         return [
-            ItemType.LeatherTunic
-        ];
+            { vanilla: ItemType.LeatherTunic, registered: [...this.itemsLeatherTunics] },
+            { vanilla: ItemType.LeatherBelt, registered: [...this.itemsLeatherBelts] }
+        ]
     }
 
     @Register.action("DyeItem", new Action(ActionArgument.Item)
@@ -959,9 +904,10 @@ export default class ColorsEverywhere extends Mod {
             const tile = player.getFacingTile();
             const tileDoodad = tile.doodad;
             const itemType = item.type;
+
             const ths = ColorsEverywhere.INSTANCE;
             const dyeTubs = ths.getDyeList();
-            const vanillaEquipment = ths.getVanillaEquipment();
+            const mappedEquipment = ths.mappedEquipment();
             const color = ths.getItemColor(item.type);
 
             function applyDye (color: Colors, doodadType?: DoodadType, itemType?: ItemType) {
@@ -988,11 +934,10 @@ export default class ColorsEverywhere extends Mod {
                         item.changeInto(itemBulkRegistrations[doodadColor]);
                         tileDoodad!.damage();
                     } else {
-                        vanillaEquipment.map(() => {
-
-                            itemType === ItemType.LeatherTunic ?
-                            item.changeInto(ColorsEverywhere.INSTANCE.itemsLeatherTunics[doodadColor]) : null
-
+                        mappedEquipment.map(vanillaType => {
+                            if (itemType === vanillaType.vanilla) {
+                                item.changeInto(vanillaType.registered[doodadColor]);
+                            }
                         })
                     }
                 }
@@ -1000,7 +945,8 @@ export default class ColorsEverywhere extends Mod {
             }
 
             if (tileDoodad) {
-                if (dyeTubs.includes(tileDoodad!.type)) {
+                const typeId = dyeTubs.some(v => v === tileDoodad!.type);
+                if (typeId) {
                     applyDye(color, tileDoodad?.type, itemType);
                 }
             } else {
@@ -1019,12 +965,35 @@ export default class ColorsEverywhere extends Mod {
     ////////////////////////////////////////////////////////////
 
     private milkThistleOrig: IItemDescription;
-    private leatherTunicOrig: IItemDescription;
+    private itemOrig: IItemDescription[] = [];
+
+    private addDyeActions() {
+        const dyeItemTypes = this.mappedEquipment();
+        dyeItemTypes.map( itemType => {
+            this.itemOrig.push({...itemDescriptions[itemType.vanilla]});
+            const itemTypeName = itemDescriptions[itemType.vanilla];
+            if (itemTypeName) {
+                !itemTypeName.use ? itemTypeName.use = [ColorsEverywhere.INSTANCE.actionDyeItem] : undefined;
+            }
+        })
+    }
+
+    private removeDyeActions() {
+        const dyeItemTypes = this.mappedEquipment();
+        dyeItemTypes.map( itemType => {
+            this.itemOrig.map(value => {
+                itemDescriptions[itemType.vanilla] = value;
+            })
+        })
+        this.itemOrig = [];
+    }
 
     @Override public onLoad () {
 
-        // Milk Thistle
+        // Create dye actions
+        this.addDyeActions();
 
+        // Milk Thistle
         this.milkThistleOrig = itemDescriptions[ItemType.MilkThistleFlowers];
         const milkThistle = itemDescriptions[ItemType.MilkThistleFlowers];
 
@@ -1040,20 +1009,13 @@ export default class ColorsEverywhere extends Mod {
             };
         }
 
-        // Leather Tunic
-        this.leatherTunicOrig = itemDescriptions[ItemType.LeatherTunic];
-        const leatherTunic = itemDescriptions[ItemType.LeatherTunic];
-
-        if (leatherTunic) {
-            // Append dye action
-            !leatherTunic.use ? leatherTunic.use = [ColorsEverywhere.INSTANCE.actionDyeItem] : undefined;
-        }
-
     }
 
     @Override public onUnload () {
         itemDescriptions[ItemType.MilkThistleFlowers] = this.milkThistleOrig;
-        itemDescriptions[ItemType.LeatherTunic] = this.leatherTunicOrig;
+
+        // Remove dye actions
+        this.removeDyeActions();
     }
 
     @Override @HookMethod
@@ -1071,6 +1033,7 @@ export default class ColorsEverywhere extends Mod {
             localPlayer.createItemInInventory(ItemType.ClayJugOfUnpurifiedFreshWater);
             localPlayer.createItemInInventory(ItemType.LargeRock);
             localPlayer.createItemInInventory(ItemType.LeatherTunic);
+            localPlayer.createItemInInventory(ItemType.LeatherBelt);
             localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsPaintbrushes[Colors.Red]);
             localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsPaintbrushes[Colors.Yellow]);
             localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsPaintbrushes[Colors.White]);
