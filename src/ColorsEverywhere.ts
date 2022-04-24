@@ -10,7 +10,6 @@ import { itemDescriptions } from "game/item/Items";
 import { doodadDescriptions } from "game/doodad/Doodads";
 import { TerrainType, TerrainTypeGroup } from "game/tile/ITerrain";
 import Message from "language/dictionary/Message";
-import { HookMethod } from "mod/IHookHost";
 import Mod from "mod/Mod";
 import Register, { Registry } from "mod/ModRegistry";
 import { Tuple } from "utilities/collection/Arrays";
@@ -27,6 +26,9 @@ import { getPigmentDescription } from "./pigments/Pigments";
 import { DyeRemoverDescription, getItemPaintbrushDescription, PaintbrushDescription, StoneBowlDescription } from "./tools/Tools";
 import { rgbColors } from "./utils/Utils";
 import terrainDescriptions from "game/tile/Terrains";
+import { EventHandler } from "event/EventManager";
+import { EventBus } from "event/EventBuses";
+import { Game } from "game/Game";
 
 type ItemRegistrations = PickValues<ColorsEverywhere, (ItemType | ItemTypeGroup)[]>;
 const itemBulkRegistrations: (keyof ItemRegistrations)[] = [
@@ -706,7 +708,8 @@ export default class ColorsEverywhere extends Mod {
                 }
 
                 // Painting over the paint
-                game.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[color]);
+                renderer?.particle.create(player.island, player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[color])
+                //Renderer.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[color]);
 
                 if (doodadType && !terrainType) {
                     const doodadBulkRegistration = ths.getDoodadBulkRegistration(doodadType);
@@ -732,13 +735,13 @@ export default class ColorsEverywhere extends Mod {
                 if (terrainType && !doodadType) {
                     const terrainBulkRegistration = ths.getTerrainBulkRegistration(terrainType);
                     if (terrainBulkRegistration) {
-                        game.changeTile(terrainBulkRegistration[color], tilePosition.x, tilePosition.y, tilePosition.z, false);
+                        localIsland?.changeTile(terrainBulkRegistration[color], tilePosition.x, tilePosition.y, tilePosition.z, false);
                         item.returns();
                     } else {
                         mappedTerrains.map(vanillaType => {
 
                             function changeTile(newTileInfo: TerrainType) {
-                                return game.changeTile(newTileInfo, tilePosition.x, tilePosition.y, tilePosition.z, false)
+                                return localIsland?.changeTile(newTileInfo, tilePosition.x, tilePosition.y, tilePosition.z, false)
                             }
 
                             if (terrainType === vanillaType.vanilla) {
@@ -806,13 +809,13 @@ export default class ColorsEverywhere extends Mod {
                     mappedTerrains.map(vanillaType => {
                         const color = ths.getTileColor(terrainType);
                         if (terrainType === vanillaType.registered[color]) {
-                            game.changeTile(vanillaType.vanilla, tilePosition.x, tilePosition.y, tilePosition.z, false);
+                            localIsland?.changeTile(vanillaType.vanilla, tilePosition.x, tilePosition.y, tilePosition.z, false);
                             item.returns();
                         }
                     })
                 }
 
-                game.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[Colors.White]);
+                renderer?.particle.create(player.island, player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[Colors.White]);
 
             }
 
@@ -851,7 +854,7 @@ export default class ColorsEverywhere extends Mod {
             const cleanBrush = ColorsEverywhere.INSTANCE.itemPaintbrush;
 
             function cleanIt () {
-                game.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[Colors.Blue]);
+                renderer?.particle.create(player.island,player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[Colors.Blue]);
                 item.changeInto(cleanBrush);
             }
 
@@ -925,7 +928,7 @@ export default class ColorsEverywhere extends Mod {
                 }
 
                 // Painting over the paint
-                game.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[existingColor]);
+                renderer?.particle.create(player.island,player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[existingColor]);
 
                 if (doodadType && itemType) {
                     const doodadColor = ths.getDoodadColor(doodadType);
@@ -988,7 +991,7 @@ export default class ColorsEverywhere extends Mod {
         this.itemOrig = [];
     }
 
-    @Override public onLoad () {
+    public override onLoad(): void {
 
         // Create dye actions
         this.addDyeActions();
@@ -1011,15 +1014,17 @@ export default class ColorsEverywhere extends Mod {
 
     }
 
-    @Override public onUnload () {
+    public override onUnload(): void {
+
         itemDescriptions[ItemType.MilkThistleFlowers] = this.milkThistleOrig;
 
         // Remove dye actions
         this.removeDyeActions();
     }
 
-    @Override @HookMethod
-    public onGameStart (isLoadingSave: boolean, playedCount: number): void {
+
+    @EventHandler(EventBus.Game, "play")
+    public onGameStart (game: Game, isLoadingSave: boolean, playedCount: number): void {
         if (!isLoadingSave) {
             localPlayer.createItemInInventory(ItemType.IronHoe);
             localPlayer.createItemInInventory(this.itemCornflower);
