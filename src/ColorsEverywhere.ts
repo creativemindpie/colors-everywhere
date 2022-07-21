@@ -56,7 +56,51 @@ const itemBulkRegistrations: (keyof ItemRegistrations)[] = [
     "itemsClayWalls",
     "itemsAshCementWalls",
     "itemsLeatherTunics",
-    "itemsLeatherBelts"
+    "itemsLeatherBelts",
+    "itemsAnimalPelts",
+    "itemsArmoredScaleBelts",
+    "itemsArmoredScaleBevors",
+    "itemsArmoredScaleBoots",
+    "itemsArmoredScaleCrowns",
+    "itemsArmoredScaleCuisses",
+    "itemsArmoredScaleGloves",
+    "itemsArmoredScaleVests",
+    "itemsBackpacks",
+    "itemsBarkLeggings",
+    "itemsBarkShields",
+    "itemsBarkTunics",
+    "itemsBows",
+    "itemsBrambleCrowns",
+    "itemsCloaks",
+    "itemsClothShirts",
+    "itemsClothTrousers",
+    "itemsCompositeBows",
+    "itemsCordedSlings",
+    "itemsFurBoots",
+    "itemsFurCoats",
+    "itemsFurMittens",
+    "itemsLeatherBoots",
+    "itemsLeatherCaps",
+    "itemsLeatherGloves",
+    "itemsLeatherGorgets",
+    "itemsLeatherPants",
+    "itemsLeatherQuivers",
+    "itemsLeatherSlings",
+    "itemsLongBows",
+    "itemsMageRobes",
+    "itemsOrnateCapes",
+    "itemsPirateHats",
+    "itemsScaleBelts",
+    "itemsScaleBevors",
+    "itemsScaleBoots",
+    "itemsScaleCaps",
+    "itemsScaleGloves",
+    "itemsScaleLeggings",
+    "itemsScaleVests",
+    "itemsShortbows",
+    "itemsSkullCaps",
+    "itemsSmallBags",
+    "itemsStrawHats"
 ];
 
 type DoodadRegistrations = PickValues<ColorsEverywhere, (DoodadType | DoodadTypeGroup)[]>;
@@ -617,6 +661,402 @@ export default class ColorsEverywhere extends Mod {
         })))
     public itemsLeatherBelts: ItemType[];
 
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}AnimalPelt`, {
+        ...itemDescriptions[ItemType.AnimalPelt],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsAnimalPelts: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsArmoredScaleBelts`, {
+        ...itemDescriptions[ItemType.ArmoredScaleBelt],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsArmoredScaleBelts: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsArmoredScaleBevors`, {
+        ...itemDescriptions[ItemType.ArmoredScaleBevor],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsArmoredScaleBevors: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsArmoredScaleBoots`, {
+        ...itemDescriptions[ItemType.ArmoredScaleBoots],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsArmoredScaleBoots: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsArmoredScaleCrowns`, {
+        ...itemDescriptions[ItemType.ArmoredScaleCrown],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsArmoredScaleCrowns: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsArmoredScaleCuisses`, {
+        ...itemDescriptions[ItemType.ArmoredScaleCuisses],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsArmoredScaleCuisses: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsArmoredScaleGloves`, {
+        ...itemDescriptions[ItemType.ArmoredScaleGloves],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsArmoredScaleGloves: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsArmoredScaleVests`, {
+        ...itemDescriptions[ItemType.ArmoredScaleVest],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsArmoredScaleVests: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsBackpacks`, {
+        ...itemDescriptions[ItemType.Backpack],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsBackpacks: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsBarkLeggings`, {
+        ...itemDescriptions[ItemType.BarkLeggings],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsBarkLeggings: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsBarkShields`, {
+        ...itemDescriptions[ItemType.BarkShield],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsBarkShields: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsBarkTunics`, {
+        ...itemDescriptions[ItemType.BarkTunic],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsBarkTunics: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsBows`, {
+        ...itemDescriptions[ItemType.Bow],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsBows: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsBrambleCrowns`, {
+        ...itemDescriptions[ItemType.BrambleCrown],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsBrambleCrowns: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsCloaks`, {
+        ...itemDescriptions[ItemType.Cloak],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsCloaks: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsClothShirts`, {
+        ...itemDescriptions[ItemType.ClothShirt],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsClothShirts: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsClothTrousers`, {
+        ...itemDescriptions[ItemType.ClothTrousers],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsClothTrousers: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsCompositeBows`, {
+        ...itemDescriptions[ItemType.CompositeBow],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsCompositeBows: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsCordedSlings`, {
+        ...itemDescriptions[ItemType.CordedSling],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsCordedSlings: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsFurBoots`, {
+        ...itemDescriptions[ItemType.FurBoots],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsFurBoots: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsFurCoats`, {
+        ...itemDescriptions[ItemType.FurCoat],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsFurCoats: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsFurMittens`, {
+        ...itemDescriptions[ItemType.FurMittens],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsFurMittens: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsLeatherBoots`, {
+        ...itemDescriptions[ItemType.LeatherBoots],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsLeatherBoots: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsLeatherCaps`, {
+        ...itemDescriptions[ItemType.LeatherCap],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsLeatherCaps: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsLeatherGloves`, {
+        ...itemDescriptions[ItemType.LeatherGloves],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsLeatherGloves: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsLeatherGorgets`, {
+        ...itemDescriptions[ItemType.LeatherGorget],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsLeatherGorgets: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsLeatherPants`, {
+        ...itemDescriptions[ItemType.LeatherPants],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsLeatherPants: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsLeatherQuivers`, {
+        ...itemDescriptions[ItemType.LeatherQuiver],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsLeatherQuivers: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsLeatherSlings`, {
+        ...itemDescriptions[ItemType.LeatherSling],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsLeatherSlings: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsLongBows`, {
+        ...itemDescriptions[ItemType.LongBow],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsLongBows: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsMageRobes`, {
+        ...itemDescriptions[ItemType.MageRobe],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsMageRobes: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsOrnateCapes`, {
+        ...itemDescriptions[ItemType.OrnateCape],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsOrnateCapes: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsPirateHats`, {
+        ...itemDescriptions[ItemType.PirateHat],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsPirateHats: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsScaleBelts`, {
+        ...itemDescriptions[ItemType.ScaleBelt],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsScaleBelts: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsScaleBevors`, {
+        ...itemDescriptions[ItemType.ScaleBevor],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsScaleBevors: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsScaleBoots`, {
+        ...itemDescriptions[ItemType.ScaleBoots],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsScaleBoots: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsScaleCaps`, {
+        ...itemDescriptions[ItemType.ScaleCap],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsScaleCaps: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsScaleGloves`, {
+        ...itemDescriptions[ItemType.ScaleGloves],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsScaleGloves: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsScaleLeggings`, {
+        ...itemDescriptions[ItemType.ScaleLeggings],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsScaleLeggings: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsScaleVests`, {
+        ...itemDescriptions[ItemType.ScaleVest],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsScaleVests: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsShortbows`, {
+        ...itemDescriptions[ItemType.ShortBow],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsShortbows: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsSkullCaps`, {
+        ...itemDescriptions[ItemType.Skullcap],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsSkullCaps: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsSmallBags`, {
+        ...itemDescriptions[ItemType.SmallBag],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsSmallBags: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}itemsStrawHats`, {
+        ...itemDescriptions[ItemType.StrawHat],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: [ItemTypeGroup.Equipment]
+    })))
+    public itemsStrawHats: ItemType[];
+
 
     ////////////////////////////////////////////////////////////
     // Register messages
@@ -709,7 +1149,6 @@ export default class ColorsEverywhere extends Mod {
 
                 // Painting over the paint
                 renderer?.particle.create(player.island, player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[color])
-                //Renderer.particle.create(player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[color]);
 
                 if (doodadType && !terrainType) {
                     const doodadBulkRegistration = ths.getDoodadBulkRegistration(doodadType);
@@ -895,7 +1334,51 @@ export default class ColorsEverywhere extends Mod {
     public mappedEquipment() {
         return [
             { vanilla: ItemType.LeatherTunic, registered: [...this.itemsLeatherTunics] },
-            { vanilla: ItemType.LeatherBelt, registered: [...this.itemsLeatherBelts] }
+            { vanilla: ItemType.LeatherBelt, registered: [...this.itemsLeatherBelts] },
+            { vanilla: ItemType.AnimalPelt, registered: [...this.itemsAnimalPelts] },
+            { vanilla: ItemType.ArmoredScaleBelt, registered: [...this.itemsArmoredScaleBelts] },
+            { vanilla: ItemType.ArmoredScaleBevor, registered: [...this.itemsArmoredScaleBevors] },
+            { vanilla: ItemType.ArmoredScaleBoots, registered: [...this.itemsArmoredScaleBoots] },
+            { vanilla: ItemType.ArmoredScaleCrown, registered: [...this.itemsArmoredScaleCrowns] },
+            { vanilla: ItemType.ArmoredScaleCuisses, registered: [...this.itemsArmoredScaleCuisses] },
+            { vanilla: ItemType.ArmoredScaleGloves, registered: [...this.itemsArmoredScaleGloves] },
+            { vanilla: ItemType.ArmoredScaleVest, registered: [...this.itemsArmoredScaleVests] },
+            { vanilla: ItemType.Backpack, registered: [...this.itemsBackpacks] },
+            { vanilla: ItemType.BarkLeggings, registered: [...this.itemsBarkLeggings] },
+            { vanilla: ItemType.BarkShield, registered: [...this.itemsBarkShields] },
+            { vanilla: ItemType.BarkTunic, registered: [...this.itemsBarkTunics] },
+            { vanilla: ItemType.Bow, registered: [...this.itemsBows] },
+            { vanilla: ItemType.BrambleCrown, registered: [...this.itemsBrambleCrowns] },
+            { vanilla: ItemType.Cloak, registered: [...this.itemsCloaks] },
+            { vanilla: ItemType.ClothShirt, registered: [...this.itemsClothShirts] },
+            { vanilla: ItemType.ClothTrousers, registered: [...this.itemsClothTrousers] },
+            { vanilla: ItemType.CompositeBow, registered: [...this.itemsCompositeBows] },
+            { vanilla: ItemType.CordedSling, registered: [...this.itemsCordedSlings] },
+            { vanilla: ItemType.FurBoots, registered: [...this.itemsFurBoots] },
+            { vanilla: ItemType.FurCoat, registered: [...this.itemsFurCoats] },
+            { vanilla: ItemType.FurMittens, registered: [...this.itemsFurMittens] },
+            { vanilla: ItemType.LeatherBoots, registered: [...this.itemsLeatherBoots] },
+            { vanilla: ItemType.LeatherCap, registered: [...this.itemsLeatherCaps] },
+            { vanilla: ItemType.LeatherGloves, registered: [...this.itemsLeatherGloves] },
+            { vanilla: ItemType.LeatherGorget, registered: [...this.itemsLeatherGorgets] },
+            { vanilla: ItemType.LeatherPants, registered: [...this.itemsLeatherPants] },
+            { vanilla: ItemType.LeatherQuiver, registered: [...this.itemsLeatherQuivers] },
+            { vanilla: ItemType.LeatherSling, registered: [...this.itemsLeatherSlings] },
+            { vanilla: ItemType.LongBow, registered: [...this.itemsLongBows] },
+            { vanilla: ItemType.MageRobe, registered: [...this.itemsMageRobes] },
+            { vanilla: ItemType.OrnateCape, registered: [...this.itemsOrnateCapes] },
+            { vanilla: ItemType.PirateHat, registered: [...this.itemsPirateHats] },
+            { vanilla: ItemType.ScaleBelt, registered: [...this.itemsScaleBelts] },
+            { vanilla: ItemType.ScaleBevor, registered: [...this.itemsScaleBevors] },
+            { vanilla: ItemType.ScaleBoots, registered: [...this.itemsScaleBoots] },
+            { vanilla: ItemType.ScaleCap, registered: [...this.itemsScaleCaps] },
+            { vanilla: ItemType.ScaleGloves, registered: [...this.itemsScaleGloves] },
+            { vanilla: ItemType.ScaleLeggings, registered: [...this.itemsScaleLeggings] },
+            { vanilla: ItemType.ScaleVest, registered: [...this.itemsScaleVests] },
+            { vanilla: ItemType.ShortBow, registered: [...this.itemsShortbows] },
+            { vanilla: ItemType.Skullcap, registered: [...this.itemsSkullCaps] },
+            { vanilla: ItemType.SmallBag, registered: [...this.itemsSmallBags] },
+            { vanilla: ItemType.StrawHat, registered: [...this.itemsStrawHats] }
         ]
     }
 
