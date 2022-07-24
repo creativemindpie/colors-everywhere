@@ -9,4 +9,8 @@ export enum Colors {
 	Purple
 }
 
+export enum DialogTexts {
+	SpecialThanks
+}
+
 export const MOD_NAME = "Colors Everywhere";

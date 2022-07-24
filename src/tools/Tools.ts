@@ -30,7 +30,7 @@ export const DyeRemoverDescription: IItemDescription = {
         type: Registry<ColorsEverywhere>(MOD_NAME).get("itemDyeRemover"),
         damaged: true,
     },
-    use: [Registry<ColorsEverywhere>(MOD_NAME).get("actionRemovePaint"), Registry<ColorsEverywhere>(MOD_NAME).get("actionCleanPaintbrush")]
+    use: [Registry<ColorsEverywhere>(MOD_NAME).get("actionRemovePaintDoodad"), Registry<ColorsEverywhere>(MOD_NAME).get("actionRemovePaintTerrain"), Registry<ColorsEverywhere>(MOD_NAME).get("actionCleanPaintbrush")]
 }
 
 export const PaintbrushDescription: IItemDescription = {
@@ -60,6 +60,6 @@ export function getItemPaintbrushDescription (color: Colors): IItemDescription {
             type: Registry<ColorsEverywhere>(MOD_NAME).get(`itemsPaintbrushes`, color),
             damaged: true,
         },
-        use: [Registry<ColorsEverywhere>(MOD_NAME).get("actionPaint"), Registry<ColorsEverywhere>(MOD_NAME).get("actionCleanPaintbrush")]
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get("actionPaintDoodad"), Registry<ColorsEverywhere>(MOD_NAME).get("actionPaintTerrain"), Registry<ColorsEverywhere>(MOD_NAME).get("actionCleanPaintbrush")]
     };
 }

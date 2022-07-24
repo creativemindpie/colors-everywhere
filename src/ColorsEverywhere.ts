@@ -9,26 +9,34 @@ import { IItemDescription, ItemType, ItemTypeGroup } from "game/item/IItem";
 import { itemDescriptions } from "game/item/Items";
 import { doodadDescriptions } from "game/doodad/Doodads";
 import { TerrainType, TerrainTypeGroup } from "game/tile/ITerrain";
-import Message from "language/dictionary/Message";
-import Mod from "mod/Mod";
-import Register, { Registry } from "mod/ModRegistry";
 import { Tuple } from "utilities/collection/Arrays";
-import Enums from "utilities/enum/Enums";
-import TileHelpers from "utilities/game/TileHelpers";
 import { DyeGroup } from "./dyes/DyeGroup";
 import { getDoodadDyeDescription, getItemDyeDescription } from "./dyes/Dyes";
 import { CornflowerDescription, CornflowerDoodadDescription, CornflowerSeedsDescription } from "./flowers/Cornflower";
 import { RoseDescription, RoseDoodadDescription, RoseSeedsDescription } from "./flowers/Rose";
 import { SunflowerDescription, SunflowerDoodadDescription, SunflowerSeedsDescription } from "./flowers/Sunflower";
-import { Colors, MOD_NAME } from "./IColorsEverywhere";
+import { Colors, DialogTexts, MOD_NAME } from "./IColorsEverywhere";
 import { getPigmentIngredientGroupDescription } from "./pigments/PigmentGroups";
 import { getPigmentDescription } from "./pigments/Pigments";
 import { DyeRemoverDescription, getItemPaintbrushDescription, PaintbrushDescription, StoneBowlDescription } from "./tools/Tools";
 import { rgbColors } from "./utils/Utils";
-import terrainDescriptions from "game/tile/Terrains";
 import { EventHandler } from "event/EventManager";
 import { EventBus } from "event/EventBuses";
 import { Game } from "game/Game";
+import { DialogId } from "ui/screen/screens/game/Dialogs";
+import { IInput } from "ui/input/IInput";
+
+import Register, { Registry } from "mod/ModRegistry";
+import Enums from "utilities/enum/Enums";
+import Message from "language/dictionary/Message";
+import Mod from "mod/Mod";
+import TileHelpers from "utilities/game/TileHelpers";
+import Bindable from "ui/input/Bindable";
+import ItemManager from "game/item/ItemManager";
+import ColorsEverywhereDialog from "./ColorsEverywhereDialog";
+import Dictionary from "language/Dictionary";
+import Bind from "ui/input/Bind";
+import terrainDescriptions from "game/tile/Terrains";
 
 type ItemRegistrations = PickValues<ColorsEverywhere, (ItemType | ItemTypeGroup)[]>;
 const itemBulkRegistrations: (keyof ItemRegistrations)[] = [
@@ -100,7 +108,42 @@ const itemBulkRegistrations: (keyof ItemRegistrations)[] = [
     "itemsShortbows",
     "itemsSkullCaps",
     "itemsSmallBags",
-    "itemsStrawHats"
+    "itemsStrawHats",
+    "itemsTinGloves",
+    "itemsTinHelmet",
+    "itemsTinShield",
+    "itemsWoodenShield",
+    "itemsWroughtIronBoots",
+    "itemsWroughtIronBreastplate",
+    "itemsWroughtIronCuisses",
+    "itemsWroughtIronGauntlets",
+    "itemsWroughtIronGorget",
+    "itemsWroughtIronHelmet",
+    "itemsWroughtIronShield",
+    "itemsBronzeBevor",
+    "itemsBronzeBoots",
+    "itemsBronzeChestArmor",
+    "itemsBronzeGauntlets",
+    "itemsBronzeGreaves",
+    "itemsBronzeHelmet",
+    "itemsBronzeKiteShield",
+    "itemsCopperBoots",
+    "itemsCopperBuckler",
+    "itemsCopperCuirass",
+    "itemsCopperGauntlets",
+    "itemsCopperGorget",
+    "itemsCopperGreaves",
+    "itemsIronBoots",
+    "itemsIronBreastplate",
+    "itemsIronCuisses",
+    "itemsIronGauntlets",
+    "itemsIronGorget",
+    "itemsIronHeater",
+    "itemsIronHelmet",
+    "itemsTinBevor",
+    "itemsTinChausses",
+    "itemsTinCuirass",
+    "itemsTinFootGear"
 ];
 
 type DoodadRegistrations = PickValues<ColorsEverywhere, (DoodadType | DoodadTypeGroup)[]>;
@@ -115,7 +158,6 @@ const doodadBulkRegistrations: (keyof DoodadRegistrations)[] = [
     "doodadsOrnateWoodenChests",
     "doodadsStoneWalls",
     "doodadsWoodenWalls",
-    "doodadsWoodenGates",
     "doodadsWoodenDoors",
     "doodadsWoodenDoorsOpen",
     "doodadsWoodenFences",
@@ -648,7 +690,7 @@ export default class ColorsEverywhere extends Mod {
             ...itemDescriptions[ItemType.LeatherTunic],
             recipe: undefined,
             use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-            groups: [ItemTypeGroup.Equipment]
+            groups: ItemManager.getGroups(ItemType.LeatherTunic)
         })))
     public itemsLeatherTunics: ItemType[];
 
@@ -657,7 +699,7 @@ export default class ColorsEverywhere extends Mod {
             ...itemDescriptions[ItemType.LeatherBelt],
             recipe: undefined,
             use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-            groups: [ItemTypeGroup.Equipment]
+            groups: ItemManager.getGroups(ItemType.LeatherBelt)
         })))
     public itemsLeatherBelts: ItemType[];
 
@@ -666,397 +708,711 @@ export default class ColorsEverywhere extends Mod {
         ...itemDescriptions[ItemType.AnimalPelt],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.AnimalPelt)
     })))
     public itemsAnimalPelts: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsArmoredScaleBelts`, {
+    .map(color => Tuple(`${Colors[color]}ArmoredScaleBelt`, {
         ...itemDescriptions[ItemType.ArmoredScaleBelt],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.ArmoredScaleBelt)
     })))
     public itemsArmoredScaleBelts: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsArmoredScaleBevors`, {
+    .map(color => Tuple(`${Colors[color]}ArmoredScaleBevor`, {
         ...itemDescriptions[ItemType.ArmoredScaleBevor],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.ArmoredScaleBevor)
     })))
     public itemsArmoredScaleBevors: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsArmoredScaleBoots`, {
+    .map(color => Tuple(`${Colors[color]}ArmoredScaleBoots`, {
         ...itemDescriptions[ItemType.ArmoredScaleBoots],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.ArmoredScaleBoots)
     })))
     public itemsArmoredScaleBoots: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsArmoredScaleCrowns`, {
+    .map(color => Tuple(`${Colors[color]}ArmoredScaleCrown`, {
         ...itemDescriptions[ItemType.ArmoredScaleCrown],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.ArmoredScaleCrown)
     })))
     public itemsArmoredScaleCrowns: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsArmoredScaleCuisses`, {
+    .map(color => Tuple(`${Colors[color]}ArmoredScaleCuisses`, {
         ...itemDescriptions[ItemType.ArmoredScaleCuisses],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.ArmoredScaleCuisses)
     })))
     public itemsArmoredScaleCuisses: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsArmoredScaleGloves`, {
+    .map(color => Tuple(`${Colors[color]}ArmoredScaleGloves`, {
         ...itemDescriptions[ItemType.ArmoredScaleGloves],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.ArmoredScaleGloves)
     })))
     public itemsArmoredScaleGloves: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsArmoredScaleVests`, {
+    .map(color => Tuple(`${Colors[color]}ArmoredScaleVest`, {
         ...itemDescriptions[ItemType.ArmoredScaleVest],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.ArmoredScaleVest)
     })))
     public itemsArmoredScaleVests: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsBackpacks`, {
+    .map(color => Tuple(`${Colors[color]}Backpack`, {
         ...itemDescriptions[ItemType.Backpack],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.Backpack)
     })))
     public itemsBackpacks: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsBarkLeggings`, {
+    .map(color => Tuple(`${Colors[color]}BarkLeggings`, {
         ...itemDescriptions[ItemType.BarkLeggings],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.BarkLeggings)
     })))
     public itemsBarkLeggings: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsBarkShields`, {
+    .map(color => Tuple(`${Colors[color]}BarkShield`, {
         ...itemDescriptions[ItemType.BarkShield],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.BarkShield)
     })))
     public itemsBarkShields: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsBarkTunics`, {
+    .map(color => Tuple(`${Colors[color]}BarkTunic`, {
         ...itemDescriptions[ItemType.BarkTunic],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.BarkTunic)
     })))
     public itemsBarkTunics: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsBows`, {
+    .map(color => Tuple(`${Colors[color]}Bow`, {
         ...itemDescriptions[ItemType.Bow],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.Bow)
     })))
     public itemsBows: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsBrambleCrowns`, {
+    .map(color => Tuple(`${Colors[color]}BrambleCrown`, {
         ...itemDescriptions[ItemType.BrambleCrown],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.BrambleCrown)
     })))
     public itemsBrambleCrowns: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsCloaks`, {
+    .map(color => Tuple(`${Colors[color]}Cloak`, {
         ...itemDescriptions[ItemType.Cloak],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.Cloak)
     })))
     public itemsCloaks: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsClothShirts`, {
+    .map(color => Tuple(`${Colors[color]}ClothShirt`, {
         ...itemDescriptions[ItemType.ClothShirt],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.ClothShirt)
     })))
     public itemsClothShirts: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsClothTrousers`, {
+    .map(color => Tuple(`${Colors[color]}ClothTrousers`, {
         ...itemDescriptions[ItemType.ClothTrousers],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.ClothTrousers)
     })))
     public itemsClothTrousers: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsCompositeBows`, {
+    .map(color => Tuple(`${Colors[color]}CompositeBow`, {
         ...itemDescriptions[ItemType.CompositeBow],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.CompositeBow)
     })))
     public itemsCompositeBows: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsCordedSlings`, {
+    .map(color => Tuple(`${Colors[color]}CordedSling`, {
         ...itemDescriptions[ItemType.CordedSling],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.CordedSling)
     })))
     public itemsCordedSlings: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsFurBoots`, {
+    .map(color => Tuple(`${Colors[color]}FurBoots`, {
         ...itemDescriptions[ItemType.FurBoots],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.FurBoots)
     })))
     public itemsFurBoots: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsFurCoats`, {
+    .map(color => Tuple(`${Colors[color]}FurCoat`, {
         ...itemDescriptions[ItemType.FurCoat],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.FurCoat)
     })))
     public itemsFurCoats: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsFurMittens`, {
+    .map(color => Tuple(`${Colors[color]}FurMittens`, {
         ...itemDescriptions[ItemType.FurMittens],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.FurMittens)
     })))
     public itemsFurMittens: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsLeatherBoots`, {
+    .map(color => Tuple(`${Colors[color]}LeatherBoots`, {
         ...itemDescriptions[ItemType.LeatherBoots],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.LeatherBoots)
     })))
     public itemsLeatherBoots: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsLeatherCaps`, {
+    .map(color => Tuple(`${Colors[color]}LeatherCap`, {
         ...itemDescriptions[ItemType.LeatherCap],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.LeatherCap)
     })))
     public itemsLeatherCaps: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsLeatherGloves`, {
+    .map(color => Tuple(`${Colors[color]}LeatherGloves`, {
         ...itemDescriptions[ItemType.LeatherGloves],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.LeatherGloves)
     })))
     public itemsLeatherGloves: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsLeatherGorgets`, {
+    .map(color => Tuple(`${Colors[color]}LeatherGorget`, {
         ...itemDescriptions[ItemType.LeatherGorget],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.LeatherGorget)
     })))
     public itemsLeatherGorgets: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsLeatherPants`, {
+    .map(color => Tuple(`${Colors[color]}LeatherPants`, {
         ...itemDescriptions[ItemType.LeatherPants],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.LeatherPants)
     })))
     public itemsLeatherPants: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsLeatherQuivers`, {
+    .map(color => Tuple(`${Colors[color]}LeatherQuiver`, {
         ...itemDescriptions[ItemType.LeatherQuiver],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.LeatherQuiver)
     })))
     public itemsLeatherQuivers: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsLeatherSlings`, {
+    .map(color => Tuple(`${Colors[color]}LeatherSling`, {
         ...itemDescriptions[ItemType.LeatherSling],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.LeatherSling)
     })))
     public itemsLeatherSlings: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsLongBows`, {
+    .map(color => Tuple(`${Colors[color]}LongBow`, {
         ...itemDescriptions[ItemType.LongBow],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.LongBow)
     })))
     public itemsLongBows: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsMageRobes`, {
+    .map(color => Tuple(`${Colors[color]}MageRobe`, {
         ...itemDescriptions[ItemType.MageRobe],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.MageRobe)
     })))
     public itemsMageRobes: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsOrnateCapes`, {
+    .map(color => Tuple(`${Colors[color]}OrnateCape`, {
         ...itemDescriptions[ItemType.OrnateCape],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.OrnateCape)
     })))
     public itemsOrnateCapes: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsPirateHats`, {
+    .map(color => Tuple(`${Colors[color]}PirateHat`, {
         ...itemDescriptions[ItemType.PirateHat],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.PirateHat)
     })))
     public itemsPirateHats: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsScaleBelts`, {
+    .map(color => Tuple(`${Colors[color]}ScaleBelt`, {
         ...itemDescriptions[ItemType.ScaleBelt],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.ScaleBelt)
     })))
     public itemsScaleBelts: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsScaleBevors`, {
+    .map(color => Tuple(`${Colors[color]}ScaleBevor`, {
         ...itemDescriptions[ItemType.ScaleBevor],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.ScaleBevor)
     })))
     public itemsScaleBevors: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsScaleBoots`, {
+    .map(color => Tuple(`${Colors[color]}ScaleBoots`, {
         ...itemDescriptions[ItemType.ScaleBoots],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.ScaleBoots)
     })))
     public itemsScaleBoots: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsScaleCaps`, {
+    .map(color => Tuple(`${Colors[color]}ScaleCap`, {
         ...itemDescriptions[ItemType.ScaleCap],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.ScaleCap)
     })))
     public itemsScaleCaps: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsScaleGloves`, {
+    .map(color => Tuple(`${Colors[color]}ScaleGloves`, {
         ...itemDescriptions[ItemType.ScaleGloves],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.ScaleGloves)
     })))
     public itemsScaleGloves: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsScaleLeggings`, {
+    .map(color => Tuple(`${Colors[color]}ScaleLeggings`, {
         ...itemDescriptions[ItemType.ScaleLeggings],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.ScaleLeggings)
     })))
     public itemsScaleLeggings: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsScaleVests`, {
+    .map(color => Tuple(`${Colors[color]}ScaleVest`, {
         ...itemDescriptions[ItemType.ScaleVest],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.ScaleVest)
     })))
     public itemsScaleVests: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsShortbows`, {
+    .map(color => Tuple(`${Colors[color]}ShortBow`, {
         ...itemDescriptions[ItemType.ShortBow],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.ShortBow)
     })))
     public itemsShortbows: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsSkullCaps`, {
+    .map(color => Tuple(`${Colors[color]}Skullcap`, {
         ...itemDescriptions[ItemType.Skullcap],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.Skullcap)
     })))
     public itemsSkullCaps: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsSmallBags`, {
+    .map(color => Tuple(`${Colors[color]}SmallBag`, {
         ...itemDescriptions[ItemType.SmallBag],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.SmallBag)
     })))
     public itemsSmallBags: ItemType[];
 
     @Register.bulk("item", ...Enums.values(Colors)
-    .map(color => Tuple(`${Colors[color]}itemsStrawHats`, {
+    .map(color => Tuple(`${Colors[color]}StrawHat`, {
         ...itemDescriptions[ItemType.StrawHat],
         recipe: undefined,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
-        groups: [ItemTypeGroup.Equipment]
+        groups: ItemManager.getGroups(ItemType.StrawHat)
     })))
     public itemsStrawHats: ItemType[];
 
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}TinGloves`, {
+        ...itemDescriptions[ItemType.TinGloves],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.TinGloves)
+    })))
+    public itemsTinGloves: ItemType[];
+    
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}TinHelmet`, {
+        ...itemDescriptions[ItemType.TinHelmet],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.TinHelmet)
+    })))
+    public itemsTinHelmet: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}TinShield`, {
+        ...itemDescriptions[ItemType.TinShield],
+        recipe: undefined,
+        use: [ActionType.Melee, Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.TinShield)
+    })))
+    public itemsTinShield: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}WoodenShield`, {
+        ...itemDescriptions[ItemType.WoodenShield],
+        recipe: undefined,
+        use: [ActionType.Melee, Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.WoodenShield)
+    })))
+    public itemsWoodenShield: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}WroughtIronBoots`, {
+        ...itemDescriptions[ItemType.WroughtIronBoots],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.WroughtIronBoots)
+    })))
+    public itemsWroughtIronBoots: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}WroughtIronBreastplate`, {
+        ...itemDescriptions[ItemType.WroughtIronBreastplate],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.WroughtIronBreastplate)
+    })))
+    public itemsWroughtIronBreastplate: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}WroughtIronCuisses`, {
+        ...itemDescriptions[ItemType.WroughtIronCuisses],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.WroughtIronCuisses)
+    })))
+    public itemsWroughtIronCuisses: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}WroughtIronGauntlets`, {
+        ...itemDescriptions[ItemType.WroughtIronGauntlets],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.WroughtIronGauntlets)
+    })))
+    public itemsWroughtIronGauntlets: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}WroughtIronGorget`, {
+        ...itemDescriptions[ItemType.WroughtIronGorget],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.WroughtIronGorget)
+    })))
+    public itemsWroughtIronGorget: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}WroughtIronHelmet`, {
+        ...itemDescriptions[ItemType.WroughtIronHelmet],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.WroughtIronHelmet)
+    })))
+    public itemsWroughtIronHelmet: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}WroughtIronShield`, {
+        ...itemDescriptions[ItemType.WroughtIronShield],
+        recipe: undefined,
+        use: [ActionType.Melee, Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.WroughtIronShield)
+    })))
+    public itemsWroughtIronShield: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}BronzeBevor`, {
+        ...itemDescriptions[ItemType.BronzeBevor],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.BronzeBevor)
+    })))
+    public itemsBronzeBevor: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}BronzeBoots`, {
+        ...itemDescriptions[ItemType.BronzeBoots],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.BronzeBoots)
+    })))
+    public itemsBronzeBoots: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}BronzeChestArmor`, {
+        ...itemDescriptions[ItemType.BronzeChestArmor],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.BronzeChestArmor)
+    })))
+    public itemsBronzeChestArmor: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}BronzeGauntlets`, {
+        ...itemDescriptions[ItemType.BronzeGauntlets],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.BronzeGauntlets)
+    })))
+    public itemsBronzeGauntlets: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}BronzeGreaves`, {
+        ...itemDescriptions[ItemType.BronzeGreaves],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.BronzeGreaves)
+    })))
+    public itemsBronzeGreaves: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}BronzeHelmet`, {
+        ...itemDescriptions[ItemType.BronzeHelmet],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.BronzeHelmet)
+    })))
+    public itemsBronzeHelmet: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}BronzeKiteShield`, {
+        ...itemDescriptions[ItemType.BronzeKiteShield],
+        recipe: undefined,
+        use: [ActionType.Melee, Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.BronzeKiteShield)
+    })))
+    public itemsBronzeKiteShield: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}CopperBoots`, {
+        ...itemDescriptions[ItemType.CopperBoots],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.CopperBoots)
+    })))
+    public itemsCopperBoots: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}CopperBuckler`, {
+        ...itemDescriptions[ItemType.CopperBuckler],
+        recipe: undefined,
+        use: [ActionType.Melee, Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.CopperBuckler)
+    })))
+    public itemsCopperBuckler: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}CopperCuirass`, {
+        ...itemDescriptions[ItemType.CopperCuirass],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.CopperCuirass)
+    })))
+    public itemsCopperCuirass: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}CopperGauntlets`, {
+        ...itemDescriptions[ItemType.CopperGauntlets],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.CopperGauntlets)
+    })))
+    public itemsCopperGauntlets: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}CopperGorget`, {
+        ...itemDescriptions[ItemType.CopperGorget],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.CopperGorget)
+    })))
+    public itemsCopperGorget: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}CopperGreaves`, {
+        ...itemDescriptions[ItemType.CopperGreaves],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.CopperGreaves)
+    })))
+    public itemsCopperGreaves: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}IronBoots`, {
+        ...itemDescriptions[ItemType.IronBoots],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.IronBoots)
+    })))
+    public itemsIronBoots: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}IronBreastplate`, {
+        ...itemDescriptions[ItemType.IronBreastplate],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.IronBreastplate)
+    })))
+    public itemsIronBreastplate: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}IronCuisses`, {
+        ...itemDescriptions[ItemType.IronCuisses],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.IronCuisses)
+    })))
+    public itemsIronCuisses: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}IronGauntlets`, {
+        ...itemDescriptions[ItemType.IronGauntlets],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.IronGauntlets)
+    })))
+    public itemsIronGauntlets: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}IronGorget`, {
+        ...itemDescriptions[ItemType.IronGorget],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.IronGorget)
+    })))
+    public itemsIronGorget: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}IronHeater`, {
+        ...itemDescriptions[ItemType.IronHeater],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.IronHeater)
+    })))
+    public itemsIronHeater: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}IronHelmet`, {
+        ...itemDescriptions[ItemType.IronHelmet],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.IronHelmet)
+    })))
+    public itemsIronHelmet: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}TinBevor`, {
+        ...itemDescriptions[ItemType.TinBevor],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.TinBevor)
+    })))
+    public itemsTinBevor: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}TinChausses`, {
+        ...itemDescriptions[ItemType.TinChausses],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.TinChausses)
+    })))
+    public itemsTinChausses: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}TinCuirass`, {
+        ...itemDescriptions[ItemType.TinCuirass],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.TinCuirass)
+    })))
+    public itemsTinCuirass: ItemType[];
+
+    @Register.bulk("item", ...Enums.values(Colors)
+    .map(color => Tuple(`${Colors[color]}TinFootgear`, {
+        ...itemDescriptions[ItemType.TinFootgear],
+        recipe: undefined,
+        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        groups: ItemManager.getGroups(ItemType.TinFootgear)
+    })))
+    public itemsTinFootGear: ItemType[];
 
     ////////////////////////////////////////////////////////////
     // Register messages
@@ -1077,6 +1433,24 @@ export default class ColorsEverywhere extends Mod {
     @Register.message("NoSameColor")
     public readonly messageNoSameColor: Message;
 
+    ////////////////////////////////////////////////////////////
+    // Register dialog
+    ////////////////////////////////////////////////////////////    
+
+    @Register.dialog("ColorsEverywhereDialog", ColorsEverywhereDialog.description, ColorsEverywhereDialog)
+	public readonly dialogMain: DialogId;
+
+    @Register.dictionary("ColorsEverywhere", DialogTexts)
+	public readonly dictionary: Dictionary;
+
+    @Register.bindable("Toggle", IInput.key("Delete", "Shift"))
+	public readonly keyBind: Bindable;
+
+    @Bind.onDown(Registry<ColorsEverywhere>().get("keyBind"))
+	public onToggleBind() {
+        gameScreen!.dialogs.open(ColorsEverywhere.INSTANCE.dialogMain);
+        return true;
+	}
 
     ////////////////////////////////////////////////////////////
     // Register actions
@@ -1112,33 +1486,24 @@ export default class ColorsEverywhere extends Mod {
         ]
     }
 
-    @Register.action("Paint", new Action(ActionArgument.ItemNearby)
+    @Register.action("PaintDoodad", new Action(ActionArgument.ItemNearby)
         .setUsableBy(EntityType.Player)
         .setHandler((action, item) => {
 
-            // TODO
-            // - Trigger dialog for overlapping doodad/terrain options
-
             const player = action.executor;
             const tile = player.getFacingTile();
-            const tilePosition = player.getFacingPoint();
             const tileDoodad = tile.doodad;
-            const tileTerrain = TileHelpers.getType(tile);
 
             const ths = ColorsEverywhere.INSTANCE;
             const mappedDoodads = ths.mappedDoodads();
-            const mappedTerrains = ths.mappedTerrains();
             const color = ths.getItemColor(item.type);
 
-            function usePaintAction (color: Colors, doodadType?: DoodadType, terrainType?: TerrainType) {
+            function usePaintAction (color: Colors, doodadType?: DoodadType) {
 
                 let existingColor!: Colors;
 
                 if (doodadType) {
                     existingColor = ths.getDoodadColor(doodadType);
-                }
-                if (terrainType) {
-                    existingColor = ths.getTileColor(terrainType);
                 }
 
                 // Can't paint it the same color
@@ -1150,7 +1515,7 @@ export default class ColorsEverywhere extends Mod {
                 // Painting over the paint
                 renderer?.particle.create(player.island, player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[color])
 
-                if (doodadType && !terrainType) {
+                if (doodadType) {
                     const doodadBulkRegistration = ths.getDoodadBulkRegistration(doodadType);
                     if (doodadBulkRegistration ) {
                         tileDoodad?.changeType(doodadBulkRegistration[color]);
@@ -1164,48 +1529,18 @@ export default class ColorsEverywhere extends Mod {
                         })
                     }
                 } else {
-                    if (!terrainType) {
-                        // Implied wooden door since index is 0
-                        tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWoodenDoors[color]);
-                        item.returns();
-                    }
-                }
-
-                if (terrainType && !doodadType) {
-                    const terrainBulkRegistration = ths.getTerrainBulkRegistration(terrainType);
-                    if (terrainBulkRegistration) {
-                        localIsland?.changeTile(terrainBulkRegistration[color], tilePosition.x, tilePosition.y, tilePosition.z, false);
-                        item.returns();
-                    } else {
-                        mappedTerrains.map(vanillaType => {
-
-                            function changeTile(newTileInfo: TerrainType) {
-                                return localIsland?.changeTile(newTileInfo, tilePosition.x, tilePosition.y, tilePosition.z, false)
-                            }
-
-                            if (terrainType === vanillaType.vanilla) {
-                                changeTile(vanillaType.registered[color]);
-                                item.returns();
-                            }
-
-                        })
-                    }
+                    // Implied wooden door since index is 0
+                    tileDoodad?.changeType(ColorsEverywhere.INSTANCE.doodadsWoodenDoors[color]);
+                    item.returns();
                 }
 
             }
 
-            if (tileDoodad || tileTerrain) {
-                if (tileDoodad) {
-                    const typeId = mappedDoodads.some(v => v.registered.includes(tileDoodad!.type) || v.vanilla === tileDoodad!.type);
-                    if (typeId) {
-                        usePaintAction(color, tileDoodad?.type);
-                    }
-                }
-                if (tileTerrain) {
-                    const typeId = mappedTerrains.some(v => v.registered.includes(tileTerrain) || v.vanilla === tileTerrain);
-                    if (typeId) { 
-                        usePaintAction(color, undefined, tileTerrain);
-                    }
+
+            if (tileDoodad) {
+                const typeId = mappedDoodads.some(v => v.registered.includes(tileDoodad!.type) || v.vanilla === tileDoodad!.type);
+                if (typeId) {
+                    usePaintAction(color, tileDoodad?.type);
                 }
             } else {
                 player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoDyeAllowed);
@@ -1214,25 +1549,89 @@ export default class ColorsEverywhere extends Mod {
             game.passTurn(player);
         }))
 
-    public readonly actionPaint: ActionType;
+    public readonly actionPaintDoodad: ActionType;
+
+    @Register.action("PaintTerrain", new Action(ActionArgument.ItemNearby)
+    .setUsableBy(EntityType.Player)
+    .setHandler((action, item) => {
+
+        const player = action.executor;
+        const tile = player.getFacingTile();
+        const tilePosition = player.getFacingPoint();
+        const tileTerrain = TileHelpers.getType(tile);
+
+        const ths = ColorsEverywhere.INSTANCE;
+        const mappedTerrains = ths.mappedTerrains();
+        const color = ths.getItemColor(item.type);
+
+        function usePaintAction (color: Colors, terrainType?: TerrainType) {
+
+            let existingColor!: Colors;
+
+            if (terrainType) {
+                existingColor = ths.getTileColor(terrainType);
+            }
+
+            // Can't paint it the same color
+            if (color === existingColor) {
+                player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoSameColor);
+                return;
+            }
+
+            // Painting over the paint
+            renderer?.particle.create(player.island, player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[color])
+
+            if (terrainType) {
+                const terrainBulkRegistration = ths.getTerrainBulkRegistration(terrainType);
+                if (terrainBulkRegistration) {
+                    localIsland?.changeTile(terrainBulkRegistration[color], tilePosition.x, tilePosition.y, tilePosition.z, false);
+                    item.returns();
+                } else {
+                    mappedTerrains.map(vanillaType => {
+
+                        function changeTile(newTileInfo: TerrainType) {
+                            return localIsland?.changeTile(newTileInfo, tilePosition.x, tilePosition.y, tilePosition.z, false)
+                        }
+
+                        if (terrainType === vanillaType.vanilla) {
+                            changeTile(vanillaType.registered[color]);
+                            item.returns();
+                        }
+
+                    })
+                }
+            }
+
+        }
+
+        if (tileTerrain) {
+            const typeId = mappedTerrains.some(v => v.registered.includes(tileTerrain) || v.vanilla === tileTerrain);
+            if (typeId) { 
+                usePaintAction(color, tileTerrain);
+            } else {
+                player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoDyeAllowed);
+            }
+        }
+
+        game.passTurn(player);
+    }))
+
+    public readonly actionPaintTerrain: ActionType;
 
     // ------------------------------------------------------------ //
 
-    @Register.action("RemovePaint", new Action(ActionArgument.Item)
+    @Register.action("RemovePaintDoodad", new Action(ActionArgument.Item)
         .setUsableBy(EntityType.Player)
         .setHandler((action, item) => {
 
             const player = action.executor;
             const tile = player.getFacingTile();
-            const tilePosition = player.getFacingPoint();
             const tileDoodad = tile.doodad;
-            const tileTerrain = TileHelpers.getType(tile);
 
             const ths = ColorsEverywhere.INSTANCE;
             const mappedDoodads = ths.mappedDoodads();
-            const mappedTerrains = ths.mappedTerrains();
 
-            function useRemovePaintAction (doodadType?: DoodadType, terrainType?: TerrainType) {
+            function useRemovePaintAction (doodadType?: DoodadType) {
 
                 if (doodadType) {
                     mappedDoodads.map(vanillaType => {
@@ -1244,41 +1643,65 @@ export default class ColorsEverywhere extends Mod {
                     })
                 }
 
-                if (terrainType) {
-                    mappedTerrains.map(vanillaType => {
-                        const color = ths.getTileColor(terrainType);
-                        if (terrainType === vanillaType.registered[color]) {
-                            localIsland?.changeTile(vanillaType.vanilla, tilePosition.x, tilePosition.y, tilePosition.z, false);
-                            item.returns();
-                        }
-                    })
-                }
-
                 renderer?.particle.create(player.island, player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[Colors.White]);
 
             }
 
-            if (tileDoodad || tileTerrain) {
-                if (tileDoodad) {
-                    const typeId = mappedDoodads.some(v => v.registered.includes(tileDoodad!.type));
-                    if (typeId) {
-                        useRemovePaintAction(tileDoodad?.type);
-                    }
+            if (tileDoodad) {
+                const typeId = mappedDoodads.some(v => v.registered.includes(tileDoodad!.type));
+                if (typeId) {
+                    useRemovePaintAction(tileDoodad?.type);
+                } else {
+                    player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoDyeAllowed);
                 }
-                if (tileTerrain) {
-                    const typeId = mappedTerrains.some(v => v.registered.includes(tileTerrain));
-                    if (typeId) {
-                        useRemovePaintAction(undefined, tileTerrain);
-                    }
-                }
-            } else {
-                player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoDyeAllowed);
             }
-
+                
             game.passTurn(player);
         }))
 
-    public readonly actionRemovePaint: ActionType;
+    public readonly actionRemovePaintDoodad: ActionType;
+
+    @Register.action("RemovePaintTerrain", new Action(ActionArgument.Item)
+    .setUsableBy(EntityType.Player)
+    .setHandler((action, item) => {
+
+        const player = action.executor;
+        const tile = player.getFacingTile();
+        const tilePosition = player.getFacingPoint();
+        const tileTerrain = TileHelpers.getType(tile);
+
+        const ths = ColorsEverywhere.INSTANCE;
+        const mappedTerrains = ths.mappedTerrains();
+
+        function useRemovePaintAction (terrainType?: TerrainType) {
+
+            if (terrainType) {
+                mappedTerrains.map(vanillaType => {
+                    const color = ths.getTileColor(terrainType);
+                    if (terrainType === vanillaType.registered[color]) {
+                        localIsland?.changeTile(vanillaType.vanilla, tilePosition.x, tilePosition.y, tilePosition.z, false);
+                        item.returns();
+                    }
+                })
+            }
+
+            renderer?.particle.create(player.island, player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[Colors.White]);
+
+        }
+
+        if (tileTerrain) {
+            const typeId = mappedTerrains.some(v => v.registered.includes(tileTerrain));
+            if (typeId) {
+                useRemovePaintAction(tileTerrain);
+            } else {
+                player.messages.source(Source.Action).send(ColorsEverywhere.INSTANCE.messageNoDyeAllowed);
+            }
+        }
+
+        game.passTurn(player);
+    }))
+
+    public readonly actionRemovePaintTerrain: ActionType;
 
     // ------------------------------------------------------------ //
 
@@ -1378,7 +1801,42 @@ export default class ColorsEverywhere extends Mod {
             { vanilla: ItemType.ShortBow, registered: [...this.itemsShortbows] },
             { vanilla: ItemType.Skullcap, registered: [...this.itemsSkullCaps] },
             { vanilla: ItemType.SmallBag, registered: [...this.itemsSmallBags] },
-            { vanilla: ItemType.StrawHat, registered: [...this.itemsStrawHats] }
+            { vanilla: ItemType.StrawHat, registered: [...this.itemsStrawHats] },
+            { vanilla: ItemType.TinGloves, registered: [...this.itemsTinGloves] },
+            { vanilla: ItemType.TinHelmet, registered: [...this.itemsTinHelmet] },
+            { vanilla: ItemType.TinShield, registered: [...this.itemsTinShield] },
+            { vanilla: ItemType.WoodenShield, registered: [...this.itemsWoodenShield] },
+            { vanilla: ItemType.WroughtIronBoots, registered: [...this.itemsWroughtIronBoots] },
+            { vanilla: ItemType.WroughtIronBreastplate, registered: [...this.itemsWroughtIronBreastplate] },
+            { vanilla: ItemType.WroughtIronCuisses, registered: [...this.itemsWroughtIronCuisses] },
+            { vanilla: ItemType.WroughtIronGauntlets, registered: [...this.itemsWroughtIronGauntlets] },
+            { vanilla: ItemType.WroughtIronGorget, registered: [...this.itemsWroughtIronGorget] },
+            { vanilla: ItemType.WroughtIronHelmet, registered: [...this.itemsWroughtIronHelmet] },
+            { vanilla: ItemType.WroughtIronShield, registered: [...this.itemsWroughtIronShield] },
+            { vanilla: ItemType.BronzeBevor, registered: [...this.itemsBronzeBevor] },
+            { vanilla: ItemType.BronzeBoots, registered: [...this.itemsBronzeBoots] },
+            { vanilla: ItemType.BronzeChestArmor, registered: [...this.itemsBronzeChestArmor] },
+            { vanilla: ItemType.BronzeGauntlets, registered: [...this.itemsBronzeGauntlets] },
+            { vanilla: ItemType.BronzeGreaves, registered: [...this.itemsBronzeGreaves] },
+            { vanilla: ItemType.BronzeHelmet, registered: [...this.itemsBronzeHelmet] },
+            { vanilla: ItemType.BronzeKiteShield, registered: [...this.itemsBronzeKiteShield] },
+            { vanilla: ItemType.CopperBoots, registered: [...this.itemsCopperBoots] },
+            { vanilla: ItemType.CopperBuckler, registered: [...this.itemsCopperBuckler] },
+            { vanilla: ItemType.CopperCuirass, registered: [...this.itemsCopperCuirass] },
+            { vanilla: ItemType.CopperGauntlets, registered: [...this.itemsCopperGauntlets] },
+            { vanilla: ItemType.CopperGorget, registered: [...this.itemsCopperGorget] },
+            { vanilla: ItemType.CopperGreaves, registered: [...this.itemsCopperGreaves] },
+            { vanilla: ItemType.IronBoots, registered: [...this.itemsIronBoots] },
+            { vanilla: ItemType.IronBreastplate, registered: [...this.itemsIronBreastplate] },
+            { vanilla: ItemType.IronCuisses, registered: [...this.itemsIronCuisses] },
+            { vanilla: ItemType.IronGauntlets, registered: [...this.itemsIronGauntlets] },
+            { vanilla: ItemType.IronGorget, registered: [...this.itemsIronGorget] },
+            { vanilla: ItemType.IronHeater, registered: [...this.itemsIronHeater] },
+            { vanilla: ItemType.IronHelmet, registered: [...this.itemsIronHelmet] },
+            { vanilla: ItemType.TinBevor, registered: [...this.itemsTinBevor] },
+            { vanilla: ItemType.TinChausses, registered: [...this.itemsTinChausses] },
+            { vanilla: ItemType.TinCuirass, registered: [...this.itemsTinCuirass] },
+            { vanilla: ItemType.TinFootgear, registered: [...this.itemsTinFootGear] }
         ]
     }
 
@@ -1451,15 +1909,25 @@ export default class ColorsEverywhere extends Mod {
     ////////////////////////////////////////////////////////////
 
     private milkThistleOrig: IItemDescription;
-    private itemOrig: IItemDescription[] = [];
+
+    private vanillaDuplicates: { 
+        itemIndex: number;
+        origItem: IItemDescription;
+    }[] = [];
 
     private addDyeActions() {
         const dyeItemTypes = this.mappedEquipment();
         dyeItemTypes.map( itemType => {
-            this.itemOrig.push({...itemDescriptions[itemType.vanilla]});
+
+            this.vanillaDuplicates.push({ itemIndex: itemType.vanilla, origItem: {...itemDescriptions[itemType.vanilla]} });
+
             const itemTypeName = itemDescriptions[itemType.vanilla];
-            if (itemTypeName) {
+            const actions = itemDescriptions[itemType.vanilla].use;
+            if (itemTypeName && !actions) {
                 !itemTypeName.use ? itemTypeName.use = [ColorsEverywhere.INSTANCE.actionDyeItem] : undefined;
+            }
+            if (itemTypeName && !actions?.includes(ColorsEverywhere.INSTANCE.actionDyeItem)) {
+                !itemTypeName.use ? itemTypeName.use = [ColorsEverywhere.INSTANCE.actionDyeItem] : actions?.push(ColorsEverywhere.INSTANCE.actionDyeItem);
             }
         })
     }
@@ -1467,11 +1935,17 @@ export default class ColorsEverywhere extends Mod {
     private removeDyeActions() {
         const dyeItemTypes = this.mappedEquipment();
         dyeItemTypes.map( itemType => {
-            this.itemOrig.map(value => {
-                itemDescriptions[itemType.vanilla] = value;
+
+            this.vanillaDuplicates.map(value => {
+                if (value.itemIndex === itemType.vanilla) {
+                    itemDescriptions[itemType.vanilla] = value.origItem;
+                    itemDescriptions[itemType.vanilla].use = value.origItem.use;
+                }
+                
             })
+
         })
-        this.itemOrig = [];
+        this.vanillaDuplicates = [];
     }
 
     public override onLoad(): void {
@@ -1566,6 +2040,13 @@ export default class ColorsEverywhere extends Mod {
             localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsWoodenGates[Colors.Green]);
             localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsClayWalls[Colors.Green]);
             localPlayer.createItemInInventory(ColorsEverywhere.INSTANCE.itemsAshCementWalls[Colors.Green]);
+            localPlayer.createItemInInventory(ItemType.MageRobe);
+            localPlayer.createItemInInventory(ItemType.ScaleBoots);
+            localPlayer.createItemInInventory(ItemType.BronzeKiteShield);
+            localPlayer.createItemInInventory(ItemType.BronzeChestArmor);
+            localPlayer.createItemInInventory(ItemType.WoodenShield);
+            localPlayer.createItemInInventory(ItemType.IronGauntlets);
+            localPlayer.createItemInInventory(ItemType.TinBevor);
         }
     }
 
