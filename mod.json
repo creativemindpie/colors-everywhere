@@ -6,6 +6,7 @@
 	"github": "https://github.com/creativemindpie/colors-everywhere",
 	"tags": ["Doodad", "Item", "Terrain", "Character"],
 	"file": "out/ColorsEverywhere",
+	"allowUnlockingMilestones": true,
 	"multiplayer": "compatible",
 	"languages": ["lang/english"],
 	"waywardVersion": "2.11.6-beta"

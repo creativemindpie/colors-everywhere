@@ -4,7 +4,6 @@ import { ActionArgument, ActionType } from "game/entity/action/IAction";
 import { EntityType } from "game/entity/IEntity";
 import { SkillType } from "game/entity/IHuman";
 import { Source } from "game/entity/player/IMessageManager";
-import { Quality } from "game/IObject";
 import { IItemDescription, ItemType, ItemTypeGroup } from "game/item/IItem";
 import { itemDescriptions } from "game/item/Items";
 import { doodadDescriptions } from "game/doodad/Doodads";
@@ -20,9 +19,6 @@ import { getPigmentIngredientGroupDescription } from "./pigments/PigmentGroups";
 import { getPigmentDescription } from "./pigments/Pigments";
 import { DyeRemoverDescription, getItemPaintbrushDescription, PaintbrushDescription, StoneBowlDescription } from "./tools/Tools";
 import { rgbColors } from "./utils/Utils";
-import { EventHandler } from "event/EventManager";
-import { EventBus } from "event/EventBuses";
-import { Game } from "game/Game";
 import { DialogId } from "ui/screen/screens/game/Dialogs";
 import { IInput } from "ui/input/IInput";
 
