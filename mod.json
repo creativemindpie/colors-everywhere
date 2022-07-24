@@ -1,8 +1,9 @@
 {
 	"name": "Colors Everywhere",
-	"description": "Creates a blue flower resource to be gathered, creating base pigments of Red, Yellow, and Blue that can be mixed to create other pigments. Dyes can then be created with the pigment colors and applied to chests, armor, etc.",
+	"description": "Colors Everywhere gives you the ability to paint/dye floors, walls, fences, gates, chests, armor, and much more! Three new flowers have been added to support pigmentations. Search around for the Cornflower, Rose, and Sunflower!",
 	"version": "1.0.0",
 	"author": "Tek",
+	"github": "https://github.com/creativemindpie/colors-everywhere",
 	"tags": ["Doodad", "Item", "Terrain", "Character"],
 	"file": "out/ColorsEverywhere",
 	"multiplayer": "compatible",
