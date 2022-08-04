@@ -1,7 +1,7 @@
 {
 	"name": "Colors Everywhere",
 	"description": "Colors Everywhere gives you the ability to paint/dye floors, walls, fences, gates, chests, armor, and much more! Three new flowers have been added to support pigmentations. Search around for the Cornflower, Rose, and Sunflower!",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"author": "Tek",
 	"github": "https://github.com/creativemindpie/colors-everywhere",
 	"tags": ["Doodad", "Item", "Terrain", "Character"],
@@ -9,5 +9,6 @@
 	"allowUnlockingMilestones": true,
 	"multiplayer": "compatible",
 	"languages": ["lang/english"],
-	"waywardVersion": "2.11.6-beta"
+	"waywardVersion": "2.11.6-beta",
+	"publishedFileId": "2839992249"
 }

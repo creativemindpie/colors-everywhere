@@ -775,7 +775,7 @@ export default class ColorsEverywhere extends Mod {
     .map(color => Tuple(`${Colors[color]}Backpack`, {
         ...itemDescriptions[ItemType.Backpack],
         recipe: undefined,
-        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        use: [ActionType.OpenContainer, Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.Backpack)
     })))
     public itemsBackpacks: ItemType[];
@@ -1081,7 +1081,7 @@ export default class ColorsEverywhere extends Mod {
     .map(color => Tuple(`${Colors[color]}SmallBag`, {
         ...itemDescriptions[ItemType.SmallBag],
         recipe: undefined,
-        use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
+        use: [ActionType.OpenContainer, Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.SmallBag)
     })))
     public itemsSmallBags: ItemType[];
@@ -1919,9 +1919,11 @@ export default class ColorsEverywhere extends Mod {
 
             const itemTypeName = itemDescriptions[itemType.vanilla];
             const actions = itemDescriptions[itemType.vanilla].use;
+
             if (itemTypeName && !actions) {
                 !itemTypeName.use ? itemTypeName.use = [ColorsEverywhere.INSTANCE.actionDyeItem] : undefined;
             }
+
             if (itemTypeName && !actions?.includes(ColorsEverywhere.INSTANCE.actionDyeItem)) {
                 !itemTypeName.use ? itemTypeName.use = [ColorsEverywhere.INSTANCE.actionDyeItem] : actions?.push(ColorsEverywhere.INSTANCE.actionDyeItem);
             }
