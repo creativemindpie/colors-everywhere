@@ -610,7 +610,8 @@ export default class ColorsEverywhere extends Mod {
             ...terrainDescriptions[TerrainType.CobblestoneFlooring],
             baseTerrain: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsCobblestoneFlooring`, color),
             terrainType: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsCobblestoneFlooring`, color),
-            groups: [TerrainTypeGroup.Flooring]
+            groups: [TerrainTypeGroup.Flooring],
+            resources: [{ type: Registry<ColorsEverywhere>(MOD_NAME).get(`itemsCobblestoneFlooring`, color) }]
         })))
     public terrainsCobblestoneFlooring: TerrainType[];
 
@@ -631,7 +632,8 @@ export default class ColorsEverywhere extends Mod {
             ...terrainDescriptions[TerrainType.WoodenFlooring],
             baseTerrain: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsWoodenFlooring`, color),
             terrainType: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsWoodenFlooring`, color),
-            groups: [TerrainTypeGroup.Flooring]
+            groups: [TerrainTypeGroup.Flooring],
+            resources: [{ type: Registry<ColorsEverywhere>(MOD_NAME).get(`itemsWoodenFlooring`, color) }]
         })))
     public terrainsWoodenFlooring: TerrainType[];
 
@@ -652,7 +654,8 @@ export default class ColorsEverywhere extends Mod {
             ...terrainDescriptions[TerrainType.ClayFlooring],
             baseTerrain: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsClayFlooring`, color),
             terrainType: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsClayFlooring`, color),
-            groups: [TerrainTypeGroup.Flooring]
+            groups: [TerrainTypeGroup.Flooring],
+            resources: [{ type: Registry<ColorsEverywhere>(MOD_NAME).get(`itemsClayFlooring`, color) }]
         })))
     public terrainsClayFlooring: TerrainType[];
 
@@ -673,7 +676,8 @@ export default class ColorsEverywhere extends Mod {
             ...terrainDescriptions[TerrainType.AshCementFlooring],
             baseTerrain: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsAshCementFlooring`, color),
             terrainType: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsAshCementFlooring`, color),
-            groups: [TerrainTypeGroup.Flooring]
+            groups: [TerrainTypeGroup.Flooring],
+            resources: [{ type: Registry<ColorsEverywhere>(MOD_NAME).get(`itemsAshCementFlooring`, color) }]
         })))
     public terrainsAshCementFlooring: TerrainType[];
 
