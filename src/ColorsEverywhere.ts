@@ -272,7 +272,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}WoodenChest`, {
             ...itemDescriptions[ItemType.WoodenChest],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenChests", color) },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsWoodenChests`, color),
@@ -294,7 +294,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}CopperChest`, {
             ...itemDescriptions[ItemType.CopperChest],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsCopperChests", color) },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsCopperChests`, color),
@@ -316,7 +316,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}WroughtIronChest`, {
             ...itemDescriptions[ItemType.WroughtIronChest],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWroughtIronChests", color) },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsWroughtIronChests`, color),
@@ -338,7 +338,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}IronChest`, {
             ...itemDescriptions[ItemType.IronChest],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsIronChests", color) },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsIronChests`, color),
@@ -360,7 +360,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}TinChest`, {
             ...itemDescriptions[ItemType.TinChest],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsTinChests", color) },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsTinChests`, color),
@@ -382,7 +382,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}BronzeChest`, {
             ...itemDescriptions[ItemType.BronzeChest],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsBronzeChests", color) },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsBronzeChests`, color),
@@ -404,7 +404,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}OrnateWoodenChest`, {
             ...itemDescriptions[ItemType.OrnateWoodenChest],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsOrnateWoodenChests", color) },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsOrnateWoodenChests`, color),
@@ -428,7 +428,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}StoneWall`, {
             ...itemDescriptions[ItemType.StoneWall],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsStoneWalls", color) },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsStoneWalls", color),
@@ -449,7 +449,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}ClayWall`, {
             ...itemDescriptions[ItemType.ClayWall],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsClayWalls", color) },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsClayWalls", color),
@@ -470,7 +470,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}AshCementWall`, {
             ...itemDescriptions[ItemType.AshCementWall],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsAshCementWalls", color) },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsAshCementWalls", color),
@@ -491,7 +491,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}WoodenWall`, {
             ...itemDescriptions[ItemType.WoodenWall],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenWalls", color) },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenWalls", color),
@@ -512,7 +512,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}WoodenGate`, {
             ...itemDescriptions[ItemType.WoodenGate],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenGates", color) },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenGates", color),
@@ -543,7 +543,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}WoodenDoor`, {
             ...itemDescriptions[ItemType.WoodenDoor],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenDoors", color) },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenDoors", color),
@@ -574,7 +574,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}WoodenFence`, {
             ...itemDescriptions[ItemType.WoodenFence],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.Build],
             onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenFences", color) },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenFences", color),
@@ -598,7 +598,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}CobblestoneFlooring`, {
             ...itemDescriptions[ItemType.CobblestoneFlooring],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.SetDown],
             onUse: { [ActionType.SetDown]: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsCobblestoneFlooring`, color) },
             groups: [ItemTypeGroup.Housing]
@@ -619,7 +619,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}WoodenFlooring`, {
             ...itemDescriptions[ItemType.WoodenFlooring],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.SetDown],
             onUse: { [ActionType.SetDown]: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsWoodenFlooring`, color) },
             groups: [ItemTypeGroup.Housing]
@@ -640,7 +640,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}ClayFlooring`, {
             ...itemDescriptions[ItemType.ClayFlooring],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.SetDown],
             onUse: { [ActionType.SetDown]: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsClayFlooring`, color) },
             groups: [ItemTypeGroup.Housing]
@@ -661,7 +661,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}AshCementFlooring`, {
             ...itemDescriptions[ItemType.AshCementFlooring],
-            recipe: undefined,
+            craftable: false,
             use: [ActionType.SetDown],
             onUse: { [ActionType.SetDown]: Registry<ColorsEverywhere>(MOD_NAME).get(`terrainsAshCementFlooring`, color) },
             groups: [ItemTypeGroup.Housing]
@@ -684,7 +684,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}LeatherTunic`, {
             ...itemDescriptions[ItemType.LeatherTunic],
-            recipe: undefined,
+            craftable: false,
             use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
             groups: ItemManager.getGroups(ItemType.LeatherTunic)
         })))
@@ -693,7 +693,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
         .map(color => Tuple(`${Colors[color]}LeatherBelt`, {
             ...itemDescriptions[ItemType.LeatherBelt],
-            recipe: undefined,
+            craftable: false,
             use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
             groups: ItemManager.getGroups(ItemType.LeatherBelt)
         })))
@@ -702,7 +702,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}AnimalPelt`, {
         ...itemDescriptions[ItemType.AnimalPelt],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.AnimalPelt)
     })))
@@ -711,7 +711,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}ArmoredScaleBelt`, {
         ...itemDescriptions[ItemType.ArmoredScaleBelt],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.ArmoredScaleBelt)
     })))
@@ -720,7 +720,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}ArmoredScaleBevor`, {
         ...itemDescriptions[ItemType.ArmoredScaleBevor],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.ArmoredScaleBevor)
     })))
@@ -729,7 +729,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}ArmoredScaleBoots`, {
         ...itemDescriptions[ItemType.ArmoredScaleBoots],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.ArmoredScaleBoots)
     })))
@@ -738,7 +738,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}ArmoredScaleCrown`, {
         ...itemDescriptions[ItemType.ArmoredScaleCrown],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.ArmoredScaleCrown)
     })))
@@ -747,7 +747,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}ArmoredScaleCuisses`, {
         ...itemDescriptions[ItemType.ArmoredScaleCuisses],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.ArmoredScaleCuisses)
     })))
@@ -756,7 +756,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}ArmoredScaleGloves`, {
         ...itemDescriptions[ItemType.ArmoredScaleGloves],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.ArmoredScaleGloves)
     })))
@@ -765,7 +765,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}ArmoredScaleVest`, {
         ...itemDescriptions[ItemType.ArmoredScaleVest],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.ArmoredScaleVest)
     })))
@@ -774,7 +774,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}Backpack`, {
         ...itemDescriptions[ItemType.Backpack],
-        recipe: undefined,
+        craftable: false,
         use: [ActionType.OpenContainer, Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.Backpack)
     })))
@@ -783,7 +783,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}BarkLeggings`, {
         ...itemDescriptions[ItemType.BarkLeggings],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.BarkLeggings)
     })))
@@ -792,7 +792,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}BarkShield`, {
         ...itemDescriptions[ItemType.BarkShield],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.BarkShield)
     })))
@@ -801,7 +801,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}BarkTunic`, {
         ...itemDescriptions[ItemType.BarkTunic],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.BarkTunic)
     })))
@@ -810,7 +810,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}Bow`, {
         ...itemDescriptions[ItemType.Bow],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.Bow)
     })))
@@ -819,7 +819,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}BrambleCrown`, {
         ...itemDescriptions[ItemType.BrambleCrown],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.BrambleCrown)
     })))
@@ -828,7 +828,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}Cloak`, {
         ...itemDescriptions[ItemType.Cloak],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.Cloak)
     })))
@@ -837,7 +837,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}ClothShirt`, {
         ...itemDescriptions[ItemType.ClothShirt],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.ClothShirt)
     })))
@@ -846,7 +846,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}ClothTrousers`, {
         ...itemDescriptions[ItemType.ClothTrousers],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.ClothTrousers)
     })))
@@ -855,7 +855,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}CompositeBow`, {
         ...itemDescriptions[ItemType.CompositeBow],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.CompositeBow)
     })))
@@ -864,7 +864,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}CordedSling`, {
         ...itemDescriptions[ItemType.CordedSling],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.CordedSling)
     })))
@@ -873,7 +873,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}FurBoots`, {
         ...itemDescriptions[ItemType.FurBoots],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.FurBoots)
     })))
@@ -882,7 +882,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}FurCoat`, {
         ...itemDescriptions[ItemType.FurCoat],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.FurCoat)
     })))
@@ -891,7 +891,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}FurMittens`, {
         ...itemDescriptions[ItemType.FurMittens],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.FurMittens)
     })))
@@ -900,7 +900,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}LeatherBoots`, {
         ...itemDescriptions[ItemType.LeatherBoots],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.LeatherBoots)
     })))
@@ -909,7 +909,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}LeatherCap`, {
         ...itemDescriptions[ItemType.LeatherCap],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.LeatherCap)
     })))
@@ -918,7 +918,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}LeatherGloves`, {
         ...itemDescriptions[ItemType.LeatherGloves],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.LeatherGloves)
     })))
@@ -927,7 +927,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}LeatherGorget`, {
         ...itemDescriptions[ItemType.LeatherGorget],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.LeatherGorget)
     })))
@@ -936,7 +936,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}LeatherPants`, {
         ...itemDescriptions[ItemType.LeatherPants],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.LeatherPants)
     })))
@@ -945,7 +945,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}LeatherQuiver`, {
         ...itemDescriptions[ItemType.LeatherQuiver],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.LeatherQuiver)
     })))
@@ -954,7 +954,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}LeatherSling`, {
         ...itemDescriptions[ItemType.LeatherSling],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.LeatherSling)
     })))
@@ -963,7 +963,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}LongBow`, {
         ...itemDescriptions[ItemType.LongBow],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.LongBow)
     })))
@@ -972,7 +972,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}MageRobe`, {
         ...itemDescriptions[ItemType.MageRobe],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.MageRobe)
     })))
@@ -981,7 +981,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}OrnateCape`, {
         ...itemDescriptions[ItemType.OrnateCape],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.OrnateCape)
     })))
@@ -990,7 +990,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}PirateHat`, {
         ...itemDescriptions[ItemType.PirateHat],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.PirateHat)
     })))
@@ -999,7 +999,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}ScaleBelt`, {
         ...itemDescriptions[ItemType.ScaleBelt],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.ScaleBelt)
     })))
@@ -1008,7 +1008,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}ScaleBevor`, {
         ...itemDescriptions[ItemType.ScaleBevor],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.ScaleBevor)
     })))
@@ -1017,7 +1017,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}ScaleBoots`, {
         ...itemDescriptions[ItemType.ScaleBoots],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.ScaleBoots)
     })))
@@ -1026,7 +1026,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}ScaleCap`, {
         ...itemDescriptions[ItemType.ScaleCap],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.ScaleCap)
     })))
@@ -1035,7 +1035,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}ScaleGloves`, {
         ...itemDescriptions[ItemType.ScaleGloves],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.ScaleGloves)
     })))
@@ -1044,7 +1044,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}ScaleLeggings`, {
         ...itemDescriptions[ItemType.ScaleLeggings],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.ScaleLeggings)
     })))
@@ -1053,7 +1053,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}ScaleVest`, {
         ...itemDescriptions[ItemType.ScaleVest],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.ScaleVest)
     })))
@@ -1062,7 +1062,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}ShortBow`, {
         ...itemDescriptions[ItemType.ShortBow],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.ShortBow)
     })))
@@ -1071,7 +1071,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}Skullcap`, {
         ...itemDescriptions[ItemType.Skullcap],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.Skullcap)
     })))
@@ -1080,7 +1080,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}SmallBag`, {
         ...itemDescriptions[ItemType.SmallBag],
-        recipe: undefined,
+        craftable: false,
         use: [ActionType.OpenContainer, Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.SmallBag)
     })))
@@ -1089,7 +1089,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}StrawHat`, {
         ...itemDescriptions[ItemType.StrawHat],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.StrawHat)
     })))
@@ -1098,7 +1098,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}TinGloves`, {
         ...itemDescriptions[ItemType.TinGloves],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.TinGloves)
     })))
@@ -1107,7 +1107,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}TinHelmet`, {
         ...itemDescriptions[ItemType.TinHelmet],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.TinHelmet)
     })))
@@ -1116,7 +1116,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}TinShield`, {
         ...itemDescriptions[ItemType.TinShield],
-        recipe: undefined,
+        craftable: false,
         use: [ActionType.Melee, Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.TinShield)
     })))
@@ -1125,7 +1125,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}WoodenShield`, {
         ...itemDescriptions[ItemType.WoodenShield],
-        recipe: undefined,
+        craftable: false,
         use: [ActionType.Melee, Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.WoodenShield)
     })))
@@ -1134,7 +1134,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}WroughtIronBoots`, {
         ...itemDescriptions[ItemType.WroughtIronBoots],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.WroughtIronBoots)
     })))
@@ -1143,7 +1143,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}WroughtIronBreastplate`, {
         ...itemDescriptions[ItemType.WroughtIronBreastplate],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.WroughtIronBreastplate)
     })))
@@ -1152,7 +1152,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}WroughtIronCuisses`, {
         ...itemDescriptions[ItemType.WroughtIronCuisses],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.WroughtIronCuisses)
     })))
@@ -1161,7 +1161,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}WroughtIronGauntlets`, {
         ...itemDescriptions[ItemType.WroughtIronGauntlets],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.WroughtIronGauntlets)
     })))
@@ -1170,7 +1170,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}WroughtIronGorget`, {
         ...itemDescriptions[ItemType.WroughtIronGorget],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.WroughtIronGorget)
     })))
@@ -1179,7 +1179,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}WroughtIronHelmet`, {
         ...itemDescriptions[ItemType.WroughtIronHelmet],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.WroughtIronHelmet)
     })))
@@ -1188,7 +1188,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}WroughtIronShield`, {
         ...itemDescriptions[ItemType.WroughtIronShield],
-        recipe: undefined,
+        craftable: false,
         use: [ActionType.Melee, Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.WroughtIronShield)
     })))
@@ -1197,7 +1197,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}BronzeBevor`, {
         ...itemDescriptions[ItemType.BronzeBevor],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.BronzeBevor)
     })))
@@ -1206,7 +1206,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}BronzeBoots`, {
         ...itemDescriptions[ItemType.BronzeBoots],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.BronzeBoots)
     })))
@@ -1215,7 +1215,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}BronzeChestArmor`, {
         ...itemDescriptions[ItemType.BronzeChestArmor],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.BronzeChestArmor)
     })))
@@ -1224,7 +1224,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}BronzeGauntlets`, {
         ...itemDescriptions[ItemType.BronzeGauntlets],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.BronzeGauntlets)
     })))
@@ -1233,7 +1233,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}BronzeGreaves`, {
         ...itemDescriptions[ItemType.BronzeGreaves],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.BronzeGreaves)
     })))
@@ -1242,7 +1242,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}BronzeHelmet`, {
         ...itemDescriptions[ItemType.BronzeHelmet],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.BronzeHelmet)
     })))
@@ -1251,7 +1251,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}BronzeKiteShield`, {
         ...itemDescriptions[ItemType.BronzeKiteShield],
-        recipe: undefined,
+        craftable: false,
         use: [ActionType.Melee, Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.BronzeKiteShield)
     })))
@@ -1260,7 +1260,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}CopperBoots`, {
         ...itemDescriptions[ItemType.CopperBoots],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.CopperBoots)
     })))
@@ -1269,7 +1269,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}CopperBuckler`, {
         ...itemDescriptions[ItemType.CopperBuckler],
-        recipe: undefined,
+        craftable: false,
         use: [ActionType.Melee, Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.CopperBuckler)
     })))
@@ -1278,7 +1278,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}CopperCuirass`, {
         ...itemDescriptions[ItemType.CopperCuirass],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.CopperCuirass)
     })))
@@ -1287,7 +1287,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}CopperGauntlets`, {
         ...itemDescriptions[ItemType.CopperGauntlets],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.CopperGauntlets)
     })))
@@ -1296,7 +1296,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}CopperGorget`, {
         ...itemDescriptions[ItemType.CopperGorget],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.CopperGorget)
     })))
@@ -1305,7 +1305,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}CopperGreaves`, {
         ...itemDescriptions[ItemType.CopperGreaves],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.CopperGreaves)
     })))
@@ -1314,7 +1314,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}IronBoots`, {
         ...itemDescriptions[ItemType.IronBoots],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.IronBoots)
     })))
@@ -1323,7 +1323,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}IronBreastplate`, {
         ...itemDescriptions[ItemType.IronBreastplate],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.IronBreastplate)
     })))
@@ -1332,7 +1332,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}IronCuisses`, {
         ...itemDescriptions[ItemType.IronCuisses],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.IronCuisses)
     })))
@@ -1341,7 +1341,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}IronGauntlets`, {
         ...itemDescriptions[ItemType.IronGauntlets],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.IronGauntlets)
     })))
@@ -1350,7 +1350,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}IronGorget`, {
         ...itemDescriptions[ItemType.IronGorget],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.IronGorget)
     })))
@@ -1359,7 +1359,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}IronHeater`, {
         ...itemDescriptions[ItemType.IronHeater],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.IronHeater)
     })))
@@ -1368,7 +1368,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}IronHelmet`, {
         ...itemDescriptions[ItemType.IronHelmet],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.IronHelmet)
     })))
@@ -1377,7 +1377,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}TinBevor`, {
         ...itemDescriptions[ItemType.TinBevor],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.TinBevor)
     })))
@@ -1386,7 +1386,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}TinChausses`, {
         ...itemDescriptions[ItemType.TinChausses],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.TinChausses)
     })))
@@ -1395,7 +1395,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}TinCuirass`, {
         ...itemDescriptions[ItemType.TinCuirass],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.TinCuirass)
     })))
@@ -1404,7 +1404,7 @@ export default class ColorsEverywhere extends Mod {
     @Register.bulk("item", ...Enums.values(Colors)
     .map(color => Tuple(`${Colors[color]}TinFootgear`, {
         ...itemDescriptions[ItemType.TinFootgear],
-        recipe: undefined,
+        craftable: false,
         use: [Registry<ColorsEverywhere>(MOD_NAME).get('actionDyeItem')],
         groups: ItemManager.getGroups(ItemType.TinFootgear)
     })))
