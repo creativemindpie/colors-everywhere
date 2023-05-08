@@ -91,7 +91,7 @@ for (const value in Colors) {
     const barkTunic = {[`${baseName}${Colors[value]}BarkTunic`]: [`${value} bark tunic`, `Tree bark chest armor bound together with string.`]}
     const cobblestoneFlooring = {[`${baseName}${Colors[value]}CobblestoneFlooring`]: [`${value} cobblestone flooring`, `Primitive flooring created by placing stones in an organized pattern, filling any gaps.`]}
     const skullcap = {[`${baseName}${Colors[value]}Skullcap`]: [`${value} skullcap`, `A hollowed-out animal skull, useful as a provisional helmet.`]}
-    const stoneWall = {[`${baseName}${Colors[value]}StoneWall`]: [`${value} stone wall`, `A series of interlaced stones and rocks, shaped into a vertical wall structure. Can be built to keep enemies out.`]}
+    const graniteWall = {[`${baseName}${Colors[value]}GraniteWall`]: [`${value} granite wall`, `A series of interlaced stones and rocks, shaped into a vertical wall structure. Can be built to keep enemies out.`]}
     const bow = {[`${baseName}${Colors[value]}Bow`]: [`${value} bow`, `A bent wooden pole with a shorter string tied to both ends. The tension of the string is used to fire arrows.`]}
     const smallBag = {[`${baseName}${Colors[value]}SmallBag`]: [`${value} small bag`, `A leather pouch used for holding a few items, carried at your waist, reducing encumbrance.`]}
     const leatherBelt = {[`${baseName}${Colors[value]}LeatherBelt`]: [`${value} leather belt`, `Made from tanned animal hide, cut, wrapped, and stitched together to tie around the waist.`]}
@@ -191,7 +191,7 @@ for (const value in Colors) {
     const wroughtIronChestDoodad = {[`${baseName}${Colors[value]}WroughtIronChest`]: [`${value} wrought iron chest`, `A large chest, used for storage and keeping edibles fresher.`]}
     const tinChestDoodad = {[`${baseName}${Colors[value]}TinChest`]: [`${value} tin chest`, `Not much more than a folded piece of tin sheet metal, this chest will still hold a fair number of items for you.`]}
     const bronzeChestDoodad = {[`${baseName}${Colors[value]}BronzeChest`]: [`${value} bronze chest`, `A large bronze chest with amazing storage capacity.`]}
-    const stoneWallDoodad = {[`${baseName}${Colors[value]}StoneWall`]: [`${value} stone wall`, `A hardy wall built from rocks.`]}
+    const graniteWallDoodad = {[`${baseName}${Colors[value]}GraniteWall`]: [`${value} stone wall`, `A hardy wall built from rocks.`]}
     const woodenWallDoodad = {[`${baseName}${Colors[value]}WoodenWall`]: [`${value} wooden wall`, `A wall crafted by connecting wooden logs together.`]}
     const woodenGateDoodad = {[`${baseName}${Colors[value]}WoodenGate`]: [`${value} wooden gate`, `A gate, used as a passage through connected fences.`]}
     const woodenGateOpen = {[`${baseName}${Colors[value]}WoodenGateOpen`]: [`${value} open wooden gate`, `An opened gate, allowing anything to escape or enter.`]}
@@ -223,7 +223,7 @@ for (const value in Colors) {
         ...barkTunic,
         ...cobblestoneFlooring,
         ...skullcap,
-        ...stoneWall,
+        ...graniteWall,
         ...bow,
         ...smallBag,
         ...leatherBelt,
@@ -324,7 +324,7 @@ for (const value in Colors) {
         ...wroughtIronChestDoodad,
         ...tinChestDoodad,
         ...bronzeChestDoodad,
-        ...stoneWallDoodad,
+        ...graniteWallDoodad,
         ...woodenWallDoodad,
         ...woodenGateDoodad,
         ...woodenGateOpen,

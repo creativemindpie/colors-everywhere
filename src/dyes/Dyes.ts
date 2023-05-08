@@ -2,7 +2,7 @@ import { IDoodadDescription } from "game/doodad/IDoodad";
 import { ActionType } from "game/entity/action/IAction";
 import { SkillType } from "game/entity/IHuman";
 import { IItemDescription, ItemTypeGroup, RecipeLevel } from "game/item/IItem";
-import { RecipeComponent } from "game/item/Items";
+import { RecipeComponent } from "game/item/ItemDescriptions";
 import { Registry } from "mod/ModRegistry";
 import ColorsEverywhere from "../ColorsEverywhere";
 import { Colors, MOD_NAME } from "../IColorsEverywhere";
@@ -22,7 +22,7 @@ export function getItemDyeDescription (color: Colors): IItemDescription {
             reputation: 2
         },
         use: [ActionType.Build],
-        onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsDyes`, color) },
+        onUse: { [ActionType.Build]: { type: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsDyes`, color) } },
         placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsDyes`, color)
     };
 }

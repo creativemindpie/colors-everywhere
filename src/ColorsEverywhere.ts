@@ -5,10 +5,10 @@ import { EntityType } from "game/entity/IEntity";
 import { SkillType } from "game/entity/IHuman";
 import { Source } from "game/entity/player/IMessageManager";
 import { IItemDescription, ItemType, ItemTypeGroup } from "game/item/IItem";
-import { itemDescriptions } from "game/item/Items";
+import { itemDescriptions } from "game/item/ItemDescriptions";
 import { doodadDescriptions } from "game/doodad/Doodads";
 import { TerrainType, TerrainTypeGroup } from "game/tile/ITerrain";
-import { Tuple } from "utilities/collection/Arrays";
+import { Tuple } from "utilities/collection/Tuple";
 import { DyeGroup } from "./dyes/DyeGroup";
 import { getDoodadDyeDescription, getItemDyeDescription } from "./dyes/Dyes";
 import { CornflowerDescription, CornflowerDoodadDescription, CornflowerSeedsDescription } from "./flowers/Cornflower";
@@ -26,13 +26,12 @@ import Register, { Registry } from "mod/ModRegistry";
 import Enums from "utilities/enum/Enums";
 import Message from "language/dictionary/Message";
 import Mod from "mod/Mod";
-import TileHelpers from "utilities/game/TileHelpers";
 import Bindable from "ui/input/Bindable";
 import ItemManager from "game/item/ItemManager";
 import ColorsEverywhereDialog from "./ColorsEverywhereDialog";
 import Dictionary from "language/Dictionary";
 import Bind from "ui/input/Bind";
-import terrainDescriptions from "game/tile/Terrains";
+import terrainDescriptions from "game/tile/TerrainResources";
 
 type ItemRegistrations = PickValues<ColorsEverywhere, (ItemType | ItemTypeGroup)[]>;
 const itemBulkRegistrations: (keyof ItemRegistrations)[] = [
@@ -47,7 +46,7 @@ const itemBulkRegistrations: (keyof ItemRegistrations)[] = [
     "itemsTinChests",
     "itemsBronzeChests",
     "itemsOrnateWoodenChests",
-    "itemsStoneWalls",
+    "itemsGraniteWalls",
     "itemsWoodenWalls",
     "itemsWoodenGates",
     "itemsWoodenDoors",
@@ -152,7 +151,7 @@ const doodadBulkRegistrations: (keyof DoodadRegistrations)[] = [
     "doodadsTinChests",
     "doodadsBronzeChests",
     "doodadsOrnateWoodenChests",
-    "doodadsStoneWalls",
+    "doodadsGraniteWalls",
     "doodadsWoodenWalls",
     "doodadsWoodenDoors",
     "doodadsWoodenDoorsOpen",
@@ -274,7 +273,7 @@ export default class ColorsEverywhere extends Mod {
             ...itemDescriptions[ItemType.WoodenChest],
             craftable: false,
             use: [ActionType.Build],
-            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenChests", color) },
+            onUse: { [ActionType.Build]: {type: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenChests", color)} },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsWoodenChests`, color),
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenChests", color),
             groups: [ItemTypeGroup.Storage]
@@ -296,7 +295,7 @@ export default class ColorsEverywhere extends Mod {
             ...itemDescriptions[ItemType.CopperChest],
             craftable: false,
             use: [ActionType.Build],
-            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsCopperChests", color) },
+            onUse: { [ActionType.Build]: {type: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsCopperChests", color)} },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsCopperChests`, color),
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsCopperChests", color),
             groups: [ItemTypeGroup.Storage]
@@ -318,7 +317,7 @@ export default class ColorsEverywhere extends Mod {
             ...itemDescriptions[ItemType.WroughtIronChest],
             craftable: false,
             use: [ActionType.Build],
-            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWroughtIronChests", color) },
+            onUse: { [ActionType.Build]: {type: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWroughtIronChests", color)} },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsWroughtIronChests`, color),
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWroughtIronChests", color),
             groups: [ItemTypeGroup.Storage]
@@ -340,7 +339,7 @@ export default class ColorsEverywhere extends Mod {
             ...itemDescriptions[ItemType.IronChest],
             craftable: false,
             use: [ActionType.Build],
-            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsIronChests", color) },
+            onUse: { [ActionType.Build]: {type: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsIronChests", color)} },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsIronChests`, color),
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsIronChests", color),
             groups: [ItemTypeGroup.Storage]
@@ -362,7 +361,7 @@ export default class ColorsEverywhere extends Mod {
             ...itemDescriptions[ItemType.TinChest],
             craftable: false,
             use: [ActionType.Build],
-            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsTinChests", color) },
+            onUse: { [ActionType.Build]: {type: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsTinChests", color)} },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsTinChests`, color),
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsTinChests", color),
             groups: [ItemTypeGroup.Storage]
@@ -384,7 +383,7 @@ export default class ColorsEverywhere extends Mod {
             ...itemDescriptions[ItemType.BronzeChest],
             craftable: false,
             use: [ActionType.Build],
-            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsBronzeChests", color) },
+            onUse: { [ActionType.Build]: {type: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsBronzeChests", color)} },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsBronzeChests`, color),
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsBronzeChests", color),
             groups: [ItemTypeGroup.Storage]
@@ -406,7 +405,7 @@ export default class ColorsEverywhere extends Mod {
             ...itemDescriptions[ItemType.OrnateWoodenChest],
             craftable: false,
             use: [ActionType.Build],
-            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsOrnateWoodenChests", color) },
+            onUse: { [ActionType.Build]: {type: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsOrnateWoodenChests", color)} },
             doodadContainer: Registry<ColorsEverywhere>(MOD_NAME).get(`doodadsOrnateWoodenChests`, color),
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsOrnateWoodenChests", color),
             groups: [ItemTypeGroup.Storage]
@@ -426,23 +425,23 @@ export default class ColorsEverywhere extends Mod {
     ////////////////////////////////////////////////////////////
 
     @Register.bulk("item", ...Enums.values(Colors)
-        .map(color => Tuple(`${Colors[color]}StoneWall`, {
-            ...itemDescriptions[ItemType.StoneWall],
+        .map(color => Tuple(`${Colors[color]}GraniteWall`, {
+            ...itemDescriptions[ItemType.GraniteWall],
             craftable: false,
             use: [ActionType.Build],
-            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsStoneWalls", color) },
-            placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsStoneWalls", color),
+            onUse: { [ActionType.Build]: {type: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsGraniteWalls", color)} },
+            placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsGraniteWalls", color),
             groups: [ItemTypeGroup.Housing]
         })))
-    public itemsStoneWalls: ItemType[];
+    public itemsGraniteWalls: ItemType[];
 
     @Register.bulk("doodad", ...Enums.values(Colors)
-        .map(color => Tuple(`${Colors[color]}StoneWall`, {
-            ...doodadDescriptions[DoodadType.StoneWall],
-            repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsStoneWalls", color),
-            pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsStoneWalls", color)]
+        .map(color => Tuple(`${Colors[color]}GraniteWall`, {
+            ...doodadDescriptions[DoodadType.GraniteWall],
+            repairItem: Registry<ColorsEverywhere>(MOD_NAME).get("itemsGraniteWalls", color),
+            pickUp: [Registry<ColorsEverywhere>(MOD_NAME).get("itemsGraniteWalls", color)]
         })))
-    public doodadsStoneWalls: DoodadType[];
+    public doodadsGraniteWalls: DoodadType[];
 
     ////////////////////////////////////////////////////////////
 
@@ -451,7 +450,7 @@ export default class ColorsEverywhere extends Mod {
             ...itemDescriptions[ItemType.ClayWall],
             craftable: false,
             use: [ActionType.Build],
-            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsClayWalls", color) },
+            onUse: { [ActionType.Build]: {type: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsClayWalls", color)} },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsClayWalls", color),
             groups: [ItemTypeGroup.Housing]
         })))
@@ -472,7 +471,7 @@ export default class ColorsEverywhere extends Mod {
             ...itemDescriptions[ItemType.AshCementWall],
             craftable: false,
             use: [ActionType.Build],
-            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsAshCementWalls", color) },
+            onUse: { [ActionType.Build]: {type: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsAshCementWalls", color)} },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsAshCementWalls", color),
             groups: [ItemTypeGroup.Housing]
         })))
@@ -493,7 +492,7 @@ export default class ColorsEverywhere extends Mod {
             ...itemDescriptions[ItemType.WoodenWall],
             craftable: false,
             use: [ActionType.Build],
-            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenWalls", color) },
+            onUse: { [ActionType.Build]: {type: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenWalls", color)} },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenWalls", color),
             groups: [ItemTypeGroup.Housing]
         })))
@@ -514,7 +513,7 @@ export default class ColorsEverywhere extends Mod {
             ...itemDescriptions[ItemType.WoodenGate],
             craftable: false,
             use: [ActionType.Build],
-            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenGates", color) },
+            onUse: { [ActionType.Build]: {type: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenGates", color)} },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenGates", color),
             groups: [ItemTypeGroup.Housing]
         })))
@@ -545,7 +544,7 @@ export default class ColorsEverywhere extends Mod {
             ...itemDescriptions[ItemType.WoodenDoor],
             craftable: false,
             use: [ActionType.Build],
-            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenDoors", color) },
+            onUse: { [ActionType.Build]: {type: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenDoors", color)} },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenDoors", color),
             groups: [ItemTypeGroup.Housing]
         })))
@@ -576,7 +575,7 @@ export default class ColorsEverywhere extends Mod {
             ...itemDescriptions[ItemType.WoodenFence],
             craftable: false,
             use: [ActionType.Build],
-            onUse: { [ActionType.Build]: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenFences", color) },
+            onUse: { [ActionType.Build]: {type: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenFences", color)} },
             placeDownType: Registry<ColorsEverywhere>(MOD_NAME).get("doodadsWoodenFences", color),
             groups: [ItemTypeGroup.Housing]
         })))
@@ -1474,7 +1473,7 @@ export default class ColorsEverywhere extends Mod {
             { vanilla: DoodadType.TinChest, registered: [...this.doodadsTinChests] },
             { vanilla: DoodadType.BronzeChest, registered: [...this.doodadsBronzeChests] },
             { vanilla: DoodadType.OrnateWoodenChest, registered: [...this.doodadsOrnateWoodenChests] },
-            { vanilla: DoodadType.StoneWall, registered: [...this.doodadsStoneWalls] },
+            { vanilla: DoodadType.GraniteWall, registered: [...this.doodadsGraniteWalls] },
             { vanilla: DoodadType.WoodenWall, registered: [...this.doodadsWoodenWalls] },
             { vanilla: DoodadType.WoodenDoor, registered: [...this.doodadsWoodenDoors] },
             { vanilla: DoodadType.WoodenDoorOpen, registered: [...this.doodadsWoodenDoorsOpen] },
@@ -1491,7 +1490,7 @@ export default class ColorsEverywhere extends Mod {
         .setHandler((action, item) => {
 
             const player = action.executor;
-            const tile = player.getFacingTile();
+            const tile = player.facingTile;
             const tileDoodad = tile.doodad;
 
             const ths = ColorsEverywhere.INSTANCE;
@@ -1513,7 +1512,7 @@ export default class ColorsEverywhere extends Mod {
                 }
 
                 // Painting over the paint
-                renderer?.particle.create(player.island, player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[color])
+                renderer?.particle.create(tile, rgbColors[color])
 
                 if (doodadType) {
                     const doodadBulkRegistration = ths.getDoodadBulkRegistration(doodadType);
@@ -1556,9 +1555,9 @@ export default class ColorsEverywhere extends Mod {
     .setHandler((action, item) => {
 
         const player = action.executor;
-        const tile = player.getFacingTile();
-        const tilePosition = player.getFacingPoint();
-        const tileTerrain = TileHelpers.getType(tile);
+        const tile = player.facingTile;
+        //const tilePosition = player.point;
+        const tileTerrain = tile.type;
 
         const ths = ColorsEverywhere.INSTANCE;
         const mappedTerrains = ths.mappedTerrains();
@@ -1579,18 +1578,18 @@ export default class ColorsEverywhere extends Mod {
             }
 
             // Painting over the paint
-            renderer?.particle.create(player.island, player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[color])
+            renderer?.particle.create(tile, rgbColors[color])
 
             if (terrainType) {
                 const terrainBulkRegistration = ths.getTerrainBulkRegistration(terrainType);
                 if (terrainBulkRegistration) {
-                    localIsland?.changeTile(terrainBulkRegistration[color], tilePosition.x, tilePosition.y, tilePosition.z, false);
+                    tile?.changeTile(terrainBulkRegistration[color], false);
                     item.returns();
                 } else {
                     mappedTerrains.map(vanillaType => {
 
                         function changeTile(newTileInfo: TerrainType) {
-                            return localIsland?.changeTile(newTileInfo, tilePosition.x, tilePosition.y, tilePosition.z, false)
+                            return tile?.changeTile(newTileInfo, false)
                         }
 
                         if (terrainType === vanillaType.vanilla) {
@@ -1625,7 +1624,7 @@ export default class ColorsEverywhere extends Mod {
         .setHandler((action, item) => {
 
             const player = action.executor;
-            const tile = player.getFacingTile();
+            const tile = player.facingTile;
             const tileDoodad = tile.doodad;
 
             const ths = ColorsEverywhere.INSTANCE;
@@ -1643,7 +1642,7 @@ export default class ColorsEverywhere extends Mod {
                     })
                 }
 
-                renderer?.particle.create(player.island, player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[Colors.White]);
+                renderer?.particle.create(tile, rgbColors[Colors.White])
 
             }
 
@@ -1666,9 +1665,9 @@ export default class ColorsEverywhere extends Mod {
     .setHandler((action, item) => {
 
         const player = action.executor;
-        const tile = player.getFacingTile();
-        const tilePosition = player.getFacingPoint();
-        const tileTerrain = TileHelpers.getType(tile);
+        const tile = player.facingTile;
+        //const tilePosition = player.point;
+        const tileTerrain = tile.type;
 
         const ths = ColorsEverywhere.INSTANCE;
         const mappedTerrains = ths.mappedTerrains();
@@ -1679,13 +1678,13 @@ export default class ColorsEverywhere extends Mod {
                 mappedTerrains.map(vanillaType => {
                     const color = ths.getTileColor(terrainType);
                     if (terrainType === vanillaType.registered[color]) {
-                        localIsland?.changeTile(vanillaType.vanilla, tilePosition.x, tilePosition.y, tilePosition.z, false);
+                        tile?.changeTile(vanillaType.vanilla, false);
                         item.returns();
                     }
                 })
             }
 
-            renderer?.particle.create(player.island, player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[Colors.White]);
+            renderer?.particle.create(tile, rgbColors[Colors.White])
 
         }
 
@@ -1710,13 +1709,13 @@ export default class ColorsEverywhere extends Mod {
         .setHandler((action, item) => {
 
             const player = action.executor;
-            const tile = player.getFacingTile();
+            const tile = player.facingTile;
             const tileDoodad = tile.doodad;
-            const terrainType = TileHelpers.getType(tile);
+            const terrainType = tile.type;
             const cleanBrush = ColorsEverywhere.INSTANCE.itemPaintbrush;
 
             function cleanIt () {
-                renderer?.particle.create(player.island,player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[Colors.Blue]);
+                renderer?.particle.create(tile, rgbColors[Colors.Blue])
                 item.changeInto(cleanBrush);
             }
 
@@ -1730,10 +1729,10 @@ export default class ColorsEverywhere extends Mod {
                     || terrainType === TerrainType.ShallowFreshWater
                     || terrainType === TerrainType.DeepFreshWater
                     || tileDoodad?.type === DoodadType.ClayWell
-                    || tileDoodad?.type === DoodadType.StoneWell
+                    || tileDoodad?.type === DoodadType.GraniteWell
                     || tileDoodad?.type === DoodadType.SandstoneWell
                     || tileDoodad?.type === DoodadType.ClayWaterStill
-                    || tileDoodad?.type === DoodadType.StoneWaterStill
+                    || tileDoodad?.type === DoodadType.GraniteWaterStill
                     || tileDoodad?.type === DoodadType.SandstoneWaterStill
                 ) {
                     cleanIt();
@@ -1845,7 +1844,8 @@ export default class ColorsEverywhere extends Mod {
         .setHandler((action, item) => {
 
             const player = action.executor;
-            const tile = player.getFacingTile();
+            const tile = player.facingTile;
+            //const tileNew = player.facingTile();
             const tileDoodad = tile.doodad;
             const itemType = item.type;
 
@@ -1869,7 +1869,7 @@ export default class ColorsEverywhere extends Mod {
                 }
 
                 // Painting over the paint
-                renderer?.particle.create(player.island,player.x + player.direction.x, player.y + player.direction.y, player.z, rgbColors[existingColor]);
+                renderer?.particle.create(tile, rgbColors[existingColor])
 
                 if (doodadType && itemType) {
                     const doodadColor = ths.getDoodadColor(doodadType);
@@ -2011,7 +2011,7 @@ export default class ColorsEverywhere extends Mod {
         }
 
         this.getLog().warn("Tried to get color of non-bulk-registered item or itemGroup", registration);
-        return -1;
+        return 0;
     }
 
     private getDoodadBulkRegistration<R extends DoodadType | DoodadTypeGroup> (registration: R) {
@@ -2040,7 +2040,7 @@ export default class ColorsEverywhere extends Mod {
         }
 
         this.getLog().warn("Tried to get color of non-bulk-registered doodad or doodadGroup", registration);
-        return -1;
+        return 0;
     }
 
     private getTerrainBulkRegistration (registration: TerrainType) {
@@ -2066,7 +2066,7 @@ export default class ColorsEverywhere extends Mod {
         }
 
         this.getLog().warn("Tried to get color of non-bulk-registered tile", registration);
-        return -1;
+        return 0;
     }
 
 }

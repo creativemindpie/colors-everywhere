@@ -10,17 +10,13 @@ import { DialogTexts, MOD_NAME } from "./IColorsEverywhere";
 
 export default class ColorsEverywhereDialog extends Dialog {
 	public static description: IDialogDescription = {
-		minSize: {
+		minResolution: {
 			x: 20,
 			y: 20,
 		},
 		size: {
 			x: 20,
 			y: 30,
-		},
-		maxSize: {
-			x: 50,
-			y: 70,
 		},
 		edges: "center",
 		saveOpen: false

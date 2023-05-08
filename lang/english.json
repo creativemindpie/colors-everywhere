@@ -104,8 +104,8 @@
                 "white skullcap",
                 "A hollowed-out animal skull, useful as a provisional helmet."
             ],
-            "modColorsEverywhereWhiteStoneWall": [
-                "white stone wall",
+            "modColorsEverywhereWhiteGraniteWall": [
+                "white granite wall",
                 "A series of interlaced stones and rocks, shaped into a vertical wall structure. Can be built to keep enemies out."
             ],
             "modColorsEverywhereWhiteBow": [
@@ -524,8 +524,8 @@
                 "black skullcap",
                 "A hollowed-out animal skull, useful as a provisional helmet."
             ],
-            "modColorsEverywhereBlackStoneWall": [
-                "black stone wall",
+            "modColorsEverywhereBlackGraniteWall": [
+                "black granite wall",
                 "A series of interlaced stones and rocks, shaped into a vertical wall structure. Can be built to keep enemies out."
             ],
             "modColorsEverywhereBlackBow": [
@@ -944,8 +944,8 @@
                 "red skullcap",
                 "A hollowed-out animal skull, useful as a provisional helmet."
             ],
-            "modColorsEverywhereRedStoneWall": [
-                "red stone wall",
+            "modColorsEverywhereRedGraniteWall": [
+                "red granite wall",
                 "A series of interlaced stones and rocks, shaped into a vertical wall structure. Can be built to keep enemies out."
             ],
             "modColorsEverywhereRedBow": [
@@ -1364,8 +1364,8 @@
                 "yellow skullcap",
                 "A hollowed-out animal skull, useful as a provisional helmet."
             ],
-            "modColorsEverywhereYellowStoneWall": [
-                "yellow stone wall",
+            "modColorsEverywhereYellowGraniteWall": [
+                "yellow granite wall",
                 "A series of interlaced stones and rocks, shaped into a vertical wall structure. Can be built to keep enemies out."
             ],
             "modColorsEverywhereYellowBow": [
@@ -1784,8 +1784,8 @@
                 "blue skullcap",
                 "A hollowed-out animal skull, useful as a provisional helmet."
             ],
-            "modColorsEverywhereBlueStoneWall": [
-                "blue stone wall",
+            "modColorsEverywhereBlueGraniteWall": [
+                "blue granite wall",
                 "A series of interlaced stones and rocks, shaped into a vertical wall structure. Can be built to keep enemies out."
             ],
             "modColorsEverywhereBlueBow": [
@@ -2204,8 +2204,8 @@
                 "orange skullcap",
                 "A hollowed-out animal skull, useful as a provisional helmet."
             ],
-            "modColorsEverywhereOrangeStoneWall": [
-                "orange stone wall",
+            "modColorsEverywhereOrangeGraniteWall": [
+                "orange granite wall",
                 "A series of interlaced stones and rocks, shaped into a vertical wall structure. Can be built to keep enemies out."
             ],
             "modColorsEverywhereOrangeBow": [
@@ -2624,8 +2624,8 @@
                 "green skullcap",
                 "A hollowed-out animal skull, useful as a provisional helmet."
             ],
-            "modColorsEverywhereGreenStoneWall": [
-                "green stone wall",
+            "modColorsEverywhereGreenGraniteWall": [
+                "green granite wall",
                 "A series of interlaced stones and rocks, shaped into a vertical wall structure. Can be built to keep enemies out."
             ],
             "modColorsEverywhereGreenBow": [
@@ -3044,8 +3044,8 @@
                 "purple skullcap",
                 "A hollowed-out animal skull, useful as a provisional helmet."
             ],
-            "modColorsEverywherePurpleStoneWall": [
-                "purple stone wall",
+            "modColorsEverywherePurpleGraniteWall": [
+                "purple granite wall",
                 "A series of interlaced stones and rocks, shaped into a vertical wall structure. Can be built to keep enemies out."
             ],
             "modColorsEverywherePurpleBow": [
@@ -3450,7 +3450,7 @@
                 "white bronze chest",
                 "A large bronze chest with amazing storage capacity."
             ],
-            "modColorsEverywhereWhiteStoneWall": [
+            "modColorsEverywhereWhiteGraniteWall": [
                 "white stone wall",
                 "A hardy wall built from rocks."
             ],
@@ -3518,7 +3518,7 @@
                 "black bronze chest",
                 "A large bronze chest with amazing storage capacity."
             ],
-            "modColorsEverywhereBlackStoneWall": [
+            "modColorsEverywhereBlackGraniteWall": [
                 "black stone wall",
                 "A hardy wall built from rocks."
             ],
@@ -3586,7 +3586,7 @@
                 "red bronze chest",
                 "A large bronze chest with amazing storage capacity."
             ],
-            "modColorsEverywhereRedStoneWall": [
+            "modColorsEverywhereRedGraniteWall": [
                 "red stone wall",
                 "A hardy wall built from rocks."
             ],
@@ -3654,7 +3654,7 @@
                 "yellow bronze chest",
                 "A large bronze chest with amazing storage capacity."
             ],
-            "modColorsEverywhereYellowStoneWall": [
+            "modColorsEverywhereYellowGraniteWall": [
                 "yellow stone wall",
                 "A hardy wall built from rocks."
             ],
@@ -3722,7 +3722,7 @@
                 "blue bronze chest",
                 "A large bronze chest with amazing storage capacity."
             ],
-            "modColorsEverywhereBlueStoneWall": [
+            "modColorsEverywhereBlueGraniteWall": [
                 "blue stone wall",
                 "A hardy wall built from rocks."
             ],
@@ -3790,7 +3790,7 @@
                 "orange bronze chest",
                 "A large bronze chest with amazing storage capacity."
             ],
-            "modColorsEverywhereOrangeStoneWall": [
+            "modColorsEverywhereOrangeGraniteWall": [
                 "orange stone wall",
                 "A hardy wall built from rocks."
             ],
@@ -3858,7 +3858,7 @@
                 "green bronze chest",
                 "A large bronze chest with amazing storage capacity."
             ],
-            "modColorsEverywhereGreenStoneWall": [
+            "modColorsEverywhereGreenGraniteWall": [
                 "green stone wall",
                 "A hardy wall built from rocks."
             ],
@@ -3926,7 +3926,7 @@
                 "purple bronze chest",
                 "A large bronze chest with amazing storage capacity."
             ],
-            "modColorsEverywherePurpleStoneWall": [
+            "modColorsEverywherePurpleGraniteWall": [
                 "purple stone wall",
                 "A hardy wall built from rocks."
             ],

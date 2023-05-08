@@ -1,6 +1,6 @@
 import { SkillType } from "game/entity/IHuman";
 import { IItemDescription, ItemType, ItemTypeGroup, RecipeLevel } from "game/item/IItem";
-import { RecipeComponent } from "game/item/Items";
+import { RecipeComponent } from "game/item/ItemDescriptions";
 import { Registry } from "mod/ModRegistry";
 import ColorsEverywhere from "../ColorsEverywhere";
 import { Colors, MOD_NAME } from "../IColorsEverywhere";
